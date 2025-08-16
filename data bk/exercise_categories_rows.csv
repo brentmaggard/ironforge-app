@@ -1,0 +1,14 @@
+id,category_id,name,description,color,icon,sort_order,is_active,created_at
+23f3a67a-7437-455d-8333-b3461d7108f9,posterior,Posterior,Posterior chain exercises,#8b5cf6,,14,true,2025-08-15 18:12:56.329979+00
+29c9cb21-4d77-4c6a-af02-0211a6c3f805,legs,Legs,"Lower body exercises (quads, hamstrings, glutes)",#22c55e,,3,true,2025-08-15 13:36:32.34819+00
+2b2bc013-cdd7-4b74-b787-863a9b3f7ba2,cardio,Cardio,Cardiovascular exercises,#ec4899,,5,true,2025-08-15 13:36:32.34819+00
+3c0e40be-1b99-40f4-a8ac-4947f8495d99,arms,Arms,Biceps and triceps focused exercises,#06b6d4,,9,true,2025-08-15 17:52:45.251919+00
+7c94819f-5c44-40c6-8b79-997c2bbc9a8a,grip,Grip,Forearm and grip strength exercises,#64748b,,11,true,2025-08-15 17:52:45.251919+00
+7f9a4ec5-e287-40d4-acb9-2413d9e0d691,push,Push,"Pushing movements (chest, shoulders, triceps)",#ef4444,,1,true,2025-08-15 13:36:32.34819+00
+829b02c2-efee-47f2-891c-8f787c62e892,flexibility,Flexibility,Stretching and mobility exercises,#8b5cf6,,6,true,2025-08-15 13:36:32.34819+00
+94f8e58f-8773-44c4-8a61-48429d102b50,power,Power,Explosive and Olympic-style movements,#9333ea,,7,true,2025-08-15 17:52:45.251919+00
+9e956c6f-b251-443c-a21d-609b269dceee,glutes,Glutes,Glute-focused exercises,#84cc16,,10,true,2025-08-15 17:52:45.251919+00
+a222efa4-6669-4584-ae22-c84fa9d734c4,quad,Quads,Quadriceps focused exercises,#10b981,,13,true,2025-08-15 18:12:56.329979+00
+c10f0f27-1cf9-4da8-947a-c43ca4df1ceb,pull,Pull,"Pulling movements (back, biceps)",#3b82f6,,2,true,2025-08-15 13:36:32.34819+00
+d1661846-7077-439a-ba86-907688a4c33e,core,Core,Core and abdominal exercises,#f97316,,4,true,2025-08-15 13:36:32.34819+00
+e9ec855b-60af-4724-930c-e1097f09e72a,mobility,Mobility,Flexibility and mobility exercises,#f59e0b,,12,true,2025-08-15 18:12:56.329979+00

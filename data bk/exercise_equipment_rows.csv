@@ -1,0 +1,19 @@
+id,equipment_id,name,description,is_active,created_at
+023141af-6b5f-4d31-9af8-439bc39fc150,cable,Cable Machine,Cable machine exercises,true,2025-08-15 13:36:32.34819+00
+20aa1de6-fab5-4e53-ac12-1fde71beb70e,rings,Rings,Gymnastic rings for bodyweight exercises,true,2025-08-15 18:12:56.329979+00
+2fcea2a6-b765-43ec-8211-f5db8a82aed5,pullup_bar,Pull-up Bar,Pull-up and hanging exercises,true,2025-08-15 13:36:32.34819+00
+30d76f88-2b57-4427-8518-42ab44fca3c2,dumbbell,Dumbbell,Dumbbell exercises,true,2025-08-15 13:36:32.34819+00
+34bc46c9-1c0e-4b07-bffc-7d09db9b13b5,bodyweight,Bodyweight,No equipment required,true,2025-08-15 13:36:32.34819+00
+3643ccd7-7fd5-48e3-912d-44b60cb8829a,kettlebell,Kettlebell,Kettlebell exercises,true,2025-08-15 13:36:32.34819+00
+3775d79c-ee7e-4ced-978a-75d52c866b1a,pvc_pipe,PVC Pipe,Light pipe for mobility work,true,2025-08-15 18:12:56.329979+00
+397dd3be-9233-4cbb-b07a-cf2fa874009c,smith_machine,Smith Machine,Smith machine guided barbell,true,2025-08-15 13:36:32.34819+00
+659d49ed-316f-4b28-91be-bc0c114d93db,resistance_band,Resistance Band,Band resistance exercises,true,2025-08-15 13:36:32.34819+00
+6d9afed9-2af6-4f7b-a146-4f7d53ae0a11,dip_bar,Dip Bars,Parallel bars for dips,true,2025-08-15 17:52:45.251919+00
+85efdbeb-b1e6-46f3-afe1-6eeea7e96d73,trap_bar,Trap Bar,Hexagonal deadlift bar,true,2025-08-15 17:52:45.251919+00
+91a41c99-1679-4edc-8b4f-5e08c03394ac,machine,Machine,Weight machine exercises,true,2025-08-15 13:36:32.34819+00
+a150422d-ee9a-44dd-8d37-3c893382de84,farmer_handles,Farmer Handles,Specialized farmer walk handles,true,2025-08-15 17:52:45.251919+00
+b7d95272-6ddf-4a10-8828-a59f872358a0,bench,Bench,Bench-based exercises,true,2025-08-15 13:36:32.34819+00
+e4e20014-8ca2-4da2-a30d-e2a6577fcb66,medicine_ball,Medicine Ball,Weighted ball for explosive movements,true,2025-08-15 17:52:45.251919+00
+ed3fe1aa-0e9c-4877-86f7-a020e5627ac0,barbell,Barbell,Standard Olympic barbell exercises,true,2025-08-15 13:36:32.34819+00
+edf11179-4f48-4e52-9ace-b00fac4a2d7c,sled,Sled,Weighted sled for pushing/pulling,true,2025-08-15 18:12:56.329979+00
+f38535db-801d-4ab1-b08c-f346a3f09371,battle_ropes,Battle Ropes,Heavy ropes for cardio and strength,true,2025-08-15 18:12:56.329979+00

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "0a27e7e0-4a0c-4de2-9bb3-b52dd892fd30",
+    "goal_id": "2fb13696-6496-485c-b04a-244b051c5ccd",
+    "value": 8,
+    "notes": "Could barely do 8",
+    "recorded_at": "2025-06-15 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "0e005432-034b-482c-8aba-1a932b888741",
+    "goal_id": "32a4614b-b00c-4e5e-9a87-57d4e1b67ca4",
+    "value": 175,
+    "notes": "Starting weight",
+    "recorded_at": "2025-07-15 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "13ddb065-7c1c-4913-831f-9acd8599a509",
+    "goal_id": "4a1ecc56-bf30-4e3c-adee-7283add67c89",
+    "value": 5,
+    "notes": "",
+    "recorded_at": "2025-08-15 12:18:28.642+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "294436bb-5c4c-4ea4-ab39-9605745e2b2e",
+    "goal_id": "2fb13696-6496-485c-b04a-244b051c5ccd",
+    "value": 10,
+    "notes": "Hit double digits!",
+    "recorded_at": "2025-07-15 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "3b4038a5-c16c-4a49-b9e2-a226cb88d35b",
+    "goal_id": "4a1ecc56-bf30-4e3c-adee-7283add67c89",
+    "value": 5,
+    "notes": "test pull-up",
+    "recorded_at": "2025-08-15 12:19:41.778+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "7534151f-cb56-4263-a32d-9ee0817a29e0",
+    "goal_id": "2fb13696-6496-485c-b04a-244b051c5ccd",
+    "value": 12,
+    "notes": "Current max",
+    "recorded_at": "2025-08-14 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "94b58d0f-ffd3-4062-9054-92e069e3ade1",
+    "goal_id": "8efd755a-75b0-4a13-94ce-75b554d123cb",
+    "value": 275,
+    "notes": "Current max",
+    "recorded_at": "2025-08-14 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "aa74cb81-443b-4fa5-bc9f-9fc951259251",
+    "goal_id": "32a4614b-b00c-4e5e-9a87-57d4e1b67ca4",
+    "value": 185,
+    "notes": "Current max",
+    "recorded_at": "2025-08-14 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "acdf4d84-b18f-4972-824d-4dbf481650c3",
+    "goal_id": "8efd755a-75b0-4a13-94ce-75b554d123cb",
+    "value": 265,
+    "notes": "Starting point",
+    "recorded_at": "2025-06-30 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "cc3c30ae-9209-49b2-986f-ecab2e090acb",
+    "goal_id": "32a4614b-b00c-4e5e-9a87-57d4e1b67ca4",
+    "value": 180,
+    "notes": "Good progress this week",
+    "recorded_at": "2025-07-31 18:56:24.475474+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  },
+  {
+    "id": "d5f69696-322e-4e8c-9528-e9980121120d",
+    "goal_id": "4a1ecc56-bf30-4e3c-adee-7283add67c89",
+    "value": 7,
+    "notes": "",
+    "recorded_at": "2025-08-15 12:20:07.609+00",
+    "user_id": "1a4c6395-f3b3-4faa-a3c3-117b0410f6a8"
+  }
+]

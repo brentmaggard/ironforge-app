@@ -1,0 +1,145 @@
+[
+  {
+    "id": "23f3a67a-7437-455d-8333-b3461d7108f9",
+    "category_id": "posterior",
+    "name": "Posterior",
+    "description": "Posterior chain exercises",
+    "color": "#8b5cf6",
+    "icon": "",
+    "sort_order": 14,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "29c9cb21-4d77-4c6a-af02-0211a6c3f805",
+    "category_id": "legs",
+    "name": "Legs",
+    "description": "Lower body exercises (quads, hamstrings, glutes)",
+    "color": "#22c55e",
+    "icon": "",
+    "sort_order": 3,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "2b2bc013-cdd7-4b74-b787-863a9b3f7ba2",
+    "category_id": "cardio",
+    "name": "Cardio",
+    "description": "Cardiovascular exercises",
+    "color": "#ec4899",
+    "icon": "",
+    "sort_order": 5,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "3c0e40be-1b99-40f4-a8ac-4947f8495d99",
+    "category_id": "arms",
+    "name": "Arms",
+    "description": "Biceps and triceps focused exercises",
+    "color": "#06b6d4",
+    "icon": "",
+    "sort_order": 9,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "7c94819f-5c44-40c6-8b79-997c2bbc9a8a",
+    "category_id": "grip",
+    "name": "Grip",
+    "description": "Forearm and grip strength exercises",
+    "color": "#64748b",
+    "icon": "",
+    "sort_order": 11,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "7f9a4ec5-e287-40d4-acb9-2413d9e0d691",
+    "category_id": "push",
+    "name": "Push",
+    "description": "Pushing movements (chest, shoulders, triceps)",
+    "color": "#ef4444",
+    "icon": "",
+    "sort_order": 1,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "829b02c2-efee-47f2-891c-8f787c62e892",
+    "category_id": "flexibility",
+    "name": "Flexibility",
+    "description": "Stretching and mobility exercises",
+    "color": "#8b5cf6",
+    "icon": "",
+    "sort_order": 6,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "94f8e58f-8773-44c4-8a61-48429d102b50",
+    "category_id": "power",
+    "name": "Power",
+    "description": "Explosive and Olympic-style movements",
+    "color": "#9333ea",
+    "icon": "",
+    "sort_order": 7,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "9e956c6f-b251-443c-a21d-609b269dceee",
+    "category_id": "glutes",
+    "name": "Glutes",
+    "description": "Glute-focused exercises",
+    "color": "#84cc16",
+    "icon": "",
+    "sort_order": 10,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "a222efa4-6669-4584-ae22-c84fa9d734c4",
+    "category_id": "quad",
+    "name": "Quads",
+    "description": "Quadriceps focused exercises",
+    "color": "#10b981",
+    "icon": "",
+    "sort_order": 13,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c10f0f27-1cf9-4da8-947a-c43ca4df1ceb",
+    "category_id": "pull",
+    "name": "Pull",
+    "description": "Pulling movements (back, biceps)",
+    "color": "#3b82f6",
+    "icon": "",
+    "sort_order": 2,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "d1661846-7077-439a-ba86-907688a4c33e",
+    "category_id": "core",
+    "name": "Core",
+    "description": "Core and abdominal exercises",
+    "color": "#f97316",
+    "icon": "",
+    "sort_order": 4,
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "e9ec855b-60af-4724-930c-e1097f09e72a",
+    "category_id": "mobility",
+    "name": "Mobility",
+    "description": "Flexibility and mobility exercises",
+    "color": "#f59e0b",
+    "icon": "",
+    "sort_order": 12,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "023141af-6b5f-4d31-9af8-439bc39fc150",
+    "equipment_id": "cable",
+    "name": "Cable Machine",
+    "description": "Cable machine exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "20aa1de6-fab5-4e53-ac12-1fde71beb70e",
+    "equipment_id": "rings",
+    "name": "Rings",
+    "description": "Gymnastic rings for bodyweight exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "2fcea2a6-b765-43ec-8211-f5db8a82aed5",
+    "equipment_id": "pullup_bar",
+    "name": "Pull-up Bar",
+    "description": "Pull-up and hanging exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "30d76f88-2b57-4427-8518-42ab44fca3c2",
+    "equipment_id": "dumbbell",
+    "name": "Dumbbell",
+    "description": "Dumbbell exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "34bc46c9-1c0e-4b07-bffc-7d09db9b13b5",
+    "equipment_id": "bodyweight",
+    "name": "Bodyweight",
+    "description": "No equipment required",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "3643ccd7-7fd5-48e3-912d-44b60cb8829a",
+    "equipment_id": "kettlebell",
+    "name": "Kettlebell",
+    "description": "Kettlebell exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "3775d79c-ee7e-4ced-978a-75d52c866b1a",
+    "equipment_id": "pvc_pipe",
+    "name": "PVC Pipe",
+    "description": "Light pipe for mobility work",
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "397dd3be-9233-4cbb-b07a-cf2fa874009c",
+    "equipment_id": "smith_machine",
+    "name": "Smith Machine",
+    "description": "Smith machine guided barbell",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "659d49ed-316f-4b28-91be-bc0c114d93db",
+    "equipment_id": "resistance_band",
+    "name": "Resistance Band",
+    "description": "Band resistance exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "6d9afed9-2af6-4f7b-a146-4f7d53ae0a11",
+    "equipment_id": "dip_bar",
+    "name": "Dip Bars",
+    "description": "Parallel bars for dips",
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "85efdbeb-b1e6-46f3-afe1-6eeea7e96d73",
+    "equipment_id": "trap_bar",
+    "name": "Trap Bar",
+    "description": "Hexagonal deadlift bar",
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "91a41c99-1679-4edc-8b4f-5e08c03394ac",
+    "equipment_id": "machine",
+    "name": "Machine",
+    "description": "Weight machine exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "a150422d-ee9a-44dd-8d37-3c893382de84",
+    "equipment_id": "farmer_handles",
+    "name": "Farmer Handles",
+    "description": "Specialized farmer walk handles",
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "b7d95272-6ddf-4a10-8828-a59f872358a0",
+    "equipment_id": "bench",
+    "name": "Bench",
+    "description": "Bench-based exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "e4e20014-8ca2-4da2-a30d-e2a6577fcb66",
+    "equipment_id": "medicine_ball",
+    "name": "Medicine Ball",
+    "description": "Weighted ball for explosive movements",
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00"
+  },
+  {
+    "id": "ed3fe1aa-0e9c-4877-86f7-a020e5627ac0",
+    "equipment_id": "barbell",
+    "name": "Barbell",
+    "description": "Standard Olympic barbell exercises",
+    "is_active": true,
+    "created_at": "2025-08-15 13:36:32.34819+00"
+  },
+  {
+    "id": "edf11179-4f48-4e52-9ace-b00fac4a2d7c",
+    "equipment_id": "sled",
+    "name": "Sled",
+    "description": "Weighted sled for pushing/pulling",
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "f38535db-801d-4ab1-b08c-f346a3f09371",
+    "equipment_id": "battle_ropes",
+    "name": "Battle Ropes",
+    "description": "Heavy ropes for cardio and strength",
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00"
+  }
+]

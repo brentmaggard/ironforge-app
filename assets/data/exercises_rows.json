@@ -1,0 +1,2264 @@
+[
+  {
+    "id": "0ae13a81-2cd2-4494-b48e-48507d3b7430",
+    "exercise_id": "dumbbell_shoulder_press",
+    "name": "Dumbbell Shoulder Press",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "kettlebell"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "anterior_deltoid",
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "posterior_deltoid",
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 30.0,
+    "starting_weight_kg": 14.0,
+    "default_warmup_weight": 20.0,
+    "description": "## Setup\n1. Sit or stand with dumbbells at shoulder height\n2. Palms facing forward\n3. Core engaged\n4. Elbows under wrists\n\n## Execution\n1. Press dumbbells straight overhead\n2. Don't let them drift forward/back\n3. Full lockout at top\n4. Control the descent\n\n## Tips\n- Can be done seated or standing\n- Independent arm movement\n- Keep core tight throughout\n- Don't arch back excessively",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "0c7644b7-a808-4d9b-87c3-f65cac965606",
+    "exercise_id": "dumbbell_bench_press",
+    "name": "Dumbbell Bench Press",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest",
+      "triceps",
+      "anterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 60.0,
+    "starting_weight_kg": 27.0,
+    "default_warmup_weight": 25.0,
+    "description": "## Setup\n1. Lie on bench with dumbbell in each hand\n2. Start with weights at chest level\n3. Feet flat on floor\n4. Maintain natural arch\n\n## Execution\n1. Press dumbbells up and slightly together\n2. Full range of motion\n3. Control the descent\n4. Feel stretch at bottom\n\n## Tips\n- Greater range of motion than barbell\n- Can adjust grip angle for comfort\n- Independent arm movement\n- Control both dumbbells equally",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "10a8cbe7-dd15-4192-b74b-c60e148e9f05",
+    "exercise_id": "front_squat",
+    "name": "Front Squat",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "push",
+      "lower",
+      "quad"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "core",
+      "erector_spinae",
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 115.0,
+    "starting_weight_kg": 50.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Rest bar on front delts and collar bones\n2. Cross arms or use clean grip\n3. Keep elbows high\n4. Feet shoulder-width apart\n\n## Execution\n1. Descend while keeping chest up\n2. Elbows stay high throughout\n3. Full depth squat\n4. Drive up through heels\n\n## Tips\n- Requires good thoracic mobility\n- Keep elbows as high as possible\n- More quad-dominant than back squat\n- Lighter weight than back squat",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "12d87628-e0bf-4657-bfe5-1c84c44d1395",
+    "exercise_id": "dumbbell_row",
+    "name": "Dumbbell Row",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "cable"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "rhomboids",
+      "posterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "traps"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 40.0,
+    "starting_weight_kg": 18.0,
+    "default_warmup_weight": 25.0,
+    "description": "## Setup\n1. Place one knee and hand on bench\n2. Hold dumbbell in opposite hand\n3. Keep back flat and core engaged\n4. Let arm hang naturally\n\n## Execution\n1. Pull dumbbell to hip/lower chest\n2. Squeeze shoulder blade back\n3. Feel lat engagement\n4. Lower with control\n\n## Tips\n- Don't rotate torso\n- Pull elbow back, not just hand\n- Focus on lat contraction\n- Keep supporting arm straight",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "135cf9b6-985e-4539-8359-322f2ec3702e",
+    "exercise_id": "hip_thrust",
+    "name": "Hip Thrust",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "lower",
+      "glutes"
+    ],
+    "primary_muscles": [
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "core"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Sit with upper back against bench\n2. Place barbell over hips (use pad if needed)\n3. Feet flat on floor, knees bent\n4. Keep core engaged\n\n## Execution\n1. Drive through heels to lift hips up\n2. Squeeze glutes at top\n3. Form straight line from knees to shoulders\n4. Lower hips back to starting position\n\n## Tips\n- Focus on glute squeeze at top\n- Don't arch back excessively\n- Keep knees aligned with toes\n- Pause at top for maximum glute activation",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "13fb06eb-9af9-40e6-b2fa-c25069af1482",
+    "exercise_id": "romanian_deadlift",
+    "name": "Romanian Deadlift",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "kettlebell"
+    ],
+    "exercise_types": [
+      "pull",
+      "lower",
+      "posterior"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes",
+      "erector_spinae"
+    ],
+    "secondary_muscles": [
+      "core",
+      "forearms",
+      "traps"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Hold bar with overhand grip\n2. Stand tall, feet hip-width apart\n3. Slight bend in knees\n4. Shoulders back and down\n\n## Execution\n1. Push hips back, lower bar\n2. Keep bar close to legs\n3. Feel stretch in hamstrings\n4. Drive hips forward to return\n\n## Tips\n- This is a hip hinge, not squat\n- Go only as low as flexibility allows\n- Keep chest up, back flat\n- Focus on hamstring stretch",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "26f1b980-d4bc-4537-b2ae-3ac61f7f0eb3",
+    "exercise_id": "goblet_squat",
+    "name": "Goblet Squat",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "kettlebell"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "core",
+      "hamstrings"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 30.0,
+    "starting_weight_kg": 14.0,
+    "default_warmup_weight": 20.0,
+    "description": "## Setup\n1. Hold dumbbell at chest level\n2. Elbows pointing down\n3. Feet shoulder-width apart\n4. Toes slightly out\n\n## Execution\n1. Squat down keeping chest up\n2. Knees track over toes\n3. Full depth if possible\n4. Drive through heels to stand\n\n## Tips\n- Great for learning squat pattern\n- Weight helps with balance\n- Keep elbows inside knees at bottom\n- Good for beginners",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "29af43c9-11cb-441c-9f9e-b90b9650a0c9",
+    "exercise_id": "kettlebell_swing",
+    "name": "Kettlebell Swing",
+    "default_equipment": "kettlebell",
+    "available_equipment": [
+      "kettlebell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "pull",
+      "cardio",
+      "posterior"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "core",
+      "shoulders",
+      "erector_spinae"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 35.0,
+    "starting_weight_kg": 16.0,
+    "default_warmup_weight": 25.0,
+    "description": "## Setup\n1. Stand with feet wider than hips\n2. Hold kettlebell with both hands\n3. Hinge at hips, chest up\n4. Let bell hang between legs\n\n## Execution\n1. Drive hips forward explosively\n2. Bell swings to shoulder height\n3. Let gravity bring it down\n4. Absorb with hip hinge\n\n## Tips\n- Power comes from hips, not arms\n- Keep arms relaxed\n- Don't squat, hinge at hips\n- Squeeze glutes at top",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "2bb8e289-098d-4ab2-bbee-0123f13e313f",
+    "exercise_id": "dip",
+    "name": "Dip",
+    "default_equipment": "dip_bar",
+    "available_equipment": [
+      "dip_bar",
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "triceps",
+      "chest"
+    ],
+    "secondary_muscles": [
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Support body on parallel bars\n2. Arms straight, shoulders over wrists\n3. Legs can be bent or straight\n4. Core engaged\n\n## Execution\n1. Lower body until shoulders below elbows\n2. Keep elbows close to body\n3. Press back to starting position\n4. Full lockout at top\n\n## Tips\n- Don't go too low if shoulders are tight\n- Lean forward for more chest emphasis\n- Stay upright for more triceps\n- Control the descent",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "31b34aad-bcd4-435c-9eca-9939ad7fd842",
+    "exercise_id": "plank",
+    "name": "Plank",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "core"
+    ],
+    "primary_muscles": [
+      "abs",
+      "core"
+    ],
+    "secondary_muscles": [
+      "shoulders",
+      "glutes"
+    ],
+    "body_parts": [
+      "core"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Start in push-up position on forearms\n2. Body in straight line\n3. Core and glutes engaged\n4. Look down to maintain neutral neck\n\n## Execution\n1. Hold position for prescribed time\n2. Breathe normally\n3. Keep hips level\n4. Maintain body alignment\n\n## Tips\n- Quality over duration\n- Don't hold breath\n- Progress time gradually\n- Try variations for challenge",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "35b378b1-4eb1-4201-a6d1-0680f6690129",
+    "exercise_id": "burpee",
+    "name": "Burpee",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "cardio",
+      "full_body"
+    ],
+    "primary_muscles": [
+      "chest",
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "shoulders",
+      "core",
+      "hamstrings"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Stand with feet shoulder-width apart\n2. Arms at sides\n3. Core engaged\n4. Ready to move quickly\n\n## Execution\n1. Squat down, hands on floor\n2. Jump feet back to plank\n3. Optional push-up\n4. Jump feet back to squat\n5. Jump up with arms overhead\n\n## Tips\n- Maintain form even when tired\n- Modify by stepping vs jumping\n- Keep core tight in plank\n- Land softly",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "35d5c9e4-0a7e-48ba-b631-5425c718f5b1",
+    "exercise_id": "chin_up",
+    "name": "Chin-up",
+    "default_equipment": "pullup_bar",
+    "available_equipment": [
+      "pullup_bar"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps",
+      "rhomboids"
+    ],
+    "secondary_muscles": [
+      "posterior_deltoid",
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Hang from bar with underhand grip\n2. Hands shoulder-width apart\n3. Arms fully extended\n4. Core engaged\n\n## Execution\n1. Pull up until chin clears bar\n2. Focus on pulling elbows down\n3. Control the descent\n4. Full extension at bottom\n\n## Tips\n- More bicep involvement than pull-ups\n- Often easier than overhand pull-ups\n- Don't swing body\n- Keep shoulders back",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "40fde352-e34e-4925-8244-67ba4b1be42e",
+    "exercise_id": "leg_curl",
+    "name": "Leg Curl",
+    "default_equipment": "machine",
+    "available_equipment": [
+      "machine"
+    ],
+    "exercise_types": [
+      "pull",
+      "lower"
+    ],
+    "primary_muscles": [
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "calves"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 80.0,
+    "starting_weight_kg": 36.0,
+    "default_warmup_weight": 40.0,
+    "description": "## Setup\n1. Lie face down on machine\n2. Position pad just above heels\n3. Grip handles for stability\n4. Hips pressed into pad\n\n## Execution\n1. Curl heels toward glutes\n2. Squeeze hamstrings at top\n3. Lower with control\n4. Don't let weights touch\n\n## Tips\n- Focus on hamstring contraction\n- Don't use momentum\n- Keep hips down on pad\n- Full range of motion",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "419c13b2-9534-40af-ba2c-20c9a0673d48",
+    "exercise_id": "turkish_get_up",
+    "name": "Turkish Get-up",
+    "default_equipment": "kettlebell",
+    "available_equipment": [
+      "kettlebell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "full_body",
+      "core"
+    ],
+    "primary_muscles": [
+      "shoulders",
+      "core",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "quadriceps",
+      "hamstrings"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 25.0,
+    "starting_weight_kg": 12.0,
+    "default_warmup_weight": 15.0,
+    "description": "## Setup\n1. Lie on back with kettlebell in one hand\n2. Arm straight up, other arm at side\n3. Bend knee on same side as weight\n4. Keep eyes on the weight\n\n## Execution\n1. Roll to elbow, then to hand\n2. Lift hips up into bridge\n3. Thread leg under to kneel\n4. Stand up, reverse to return\n\n## Tips\n- Learn the pattern with no weight first\n- Keep eyes on weight throughout\n- Move slowly and controlled\n- Practice both sides equally",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "450de1e7-f576-4380-9ef0-620b41fbf2b5",
+    "exercise_id": "jumping_jacks",
+    "name": "Jumping Jacks",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "cardio"
+    ],
+    "primary_muscles": [
+      "calves",
+      "quadriceps"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "shoulders",
+      "core"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Stand with feet together\n2. Arms at sides\n3. Keep core engaged\n4. Be ready for continuous movement\n\n## Execution\n1. Jump feet apart while raising arms overhead\n2. Jump feet back together while lowering arms\n3. Maintain steady rhythm\n4. Land softly on balls of feet\n\n## Tips\n- Keep core engaged throughout\n- Land softly to reduce impact\n- Maintain good posture\n- Modify by stepping side to side if needed",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 1,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "4515815a-1aca-45d3-9962-058fbb2797e7",
+    "exercise_id": "muscle_up",
+    "name": "Muscle-up",
+    "default_equipment": "pullup_bar",
+    "available_equipment": [
+      "pullup_bar",
+      "rings"
+    ],
+    "exercise_types": [
+      "pull",
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "biceps",
+      "triceps",
+      "chest"
+    ],
+    "secondary_muscles": [
+      "core",
+      "shoulders"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Hang from bar with false grip\n2. Hands close together\n3. Generate swing or momentum\n4. Core engaged\n\n## Execution\n1. Explosive pull-up\n2. Transition over the bar\n3. Press to support position\n4. Lower with control\n\n## Tips\n- Very advanced movement\n- Master pull-ups and dips first\n- Practice transition movement\n- Consider kipping version",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "4bd188b5-626f-4c88-aa60-0dd283b1bdbe",
+    "exercise_id": "clean_and_press",
+    "name": "Clean and Press",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "kettlebell"
+    ],
+    "exercise_types": [
+      "power",
+      "full_body"
+    ],
+    "primary_muscles": [
+      "shoulders",
+      "traps",
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "core",
+      "hamstrings"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Bar on floor, feet hip-width apart\n2. Grip bar with hands shoulder-width\n3. Back straight, chest up\n4. Shoulders over bar\n\n## Execution\n1. Pull bar up explosively\n2. Catch at shoulder level\n3. Brief pause in front squat position\n4. Press overhead\n5. Lower bar to shoulders then floor\n\n## Tips\n- Explosive movement from floor\n- Requires good mobility\n- Start light to learn technique\n- Consider coaching for form",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 4,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "514577e3-ed49-471e-b3e6-e4be4226cf34",
+    "exercise_id": "cable_crossover",
+    "name": "Cable Crossover",
+    "default_equipment": "cable",
+    "available_equipment": [
+      "cable"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 40.0,
+    "starting_weight_kg": 18.0,
+    "default_warmup_weight": 25.0,
+    "description": "## Setup\n1. Stand between cable towers\n2. Grab handles at shoulder height\n3. Step forward, slight lean\n4. Arms slightly bent\n\n## Execution\n1. Bring handles together in front of chest\n2. Squeeze chest muscles\n3. Control the return\n4. Feel stretch at start position\n\n## Tips\n- Keep elbow angle constant\n- Focus on chest squeeze\n- Don't go too heavy\n- Control the eccentric",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "52744a4f-ef1d-4c62-8627-3a3d6d98f827",
+    "exercise_id": "pistol_squat",
+    "name": "Pistol Squat",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "core",
+      "calves"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Stand on one leg\n2. Extend other leg forward\n3. Arms forward for balance\n4. Core engaged\n\n## Execution\n1. Squat down on one leg\n2. Keep extended leg straight\n3. Go as deep as possible\n4. Drive through heel to stand\n\n## Tips\n- Very advanced movement\n- Requires great mobility and strength\n- Practice with assistance first\n- Work on ankle and hip mobility",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "55ec52c4-b4d8-4e8c-beb3-2919408135b9",
+    "exercise_id": "power_clean",
+    "name": "Power Clean",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "power",
+      "full_body"
+    ],
+    "primary_muscles": [
+      "traps",
+      "shoulders",
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "core",
+      "calves"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Bar on floor, feet hip-width apart\n2. Grip bar outside legs\n3. Back straight, chest up\n4. Shoulders slightly over bar\n\n## Execution\n1. Pull bar up explosively\n2. Shrug shoulders and pull under\n3. Catch in front squat position\n4. Stand up with weight\n5. Lower bar to floor with control\n\n## Tips\n- Focus on explosive hip extension\n- Quick turnover under the bar\n- Practice the catch position\n- Start with light weight",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 4,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "6a4be28e-ed1c-4f9e-a5b9-564ef6c9ba66",
+    "exercise_id": "lat_pulldown",
+    "name": "Lat Pulldown",
+    "default_equipment": "cable",
+    "available_equipment": [
+      "cable",
+      "machine"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "rhomboids"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "posterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 100.0,
+    "starting_weight_kg": 45.0,
+    "default_warmup_weight": 60.0,
+    "description": "## Setup\n1. Sit at lat pulldown machine\n2. Grip bar wider than shoulders\n3. Slight lean back\n4. Chest up, core engaged\n\n## Execution\n1. Pull bar to upper chest\n2. Squeeze shoulder blades together\n3. Control the return\n4. Full arm extension at top\n\n## Tips\n- Don't pull behind neck\n- Focus on lat engagement\n- Don't use momentum\n- Keep chest up throughout",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "7aad8dc4-bc02-4d1c-a5da-a57ef62c374f",
+    "exercise_id": "incline_bench_press",
+    "name": "Incline Bench Press",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "smith_machine"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest",
+      "anterior_deltoid",
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 115.0,
+    "starting_weight_kg": 50.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Set bench to 30-45° incline\n2. Eyes under bar when lying back\n3. Grip slightly wider than shoulders\n4. Feet flat, maintain contact with bench\n\n## Execution\n1. Lower bar to upper chest/collar bone\n2. Press up and slightly back\n3. Full lockout at top\n4. Control the descent\n\n## Tips\n- Don't go steeper than 45°\n- Target upper chest fibers\n- Keep wrists straight\n- Don't bounce off chest",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": true,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "7c36db2b-d59b-4e69-87c7-a9c8ad036418",
+    "exercise_id": "bench_press",
+    "name": "Bench Press",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "smith_machine",
+      "cable"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest",
+      "triceps",
+      "anterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 135.0,
+    "starting_weight_kg": 60.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Lie flat on bench with eyes under the bar\n2. Grip bar with hands slightly wider than shoulders\n3. Keep feet flat on floor, maintain natural arch\n4. Engage core and pull shoulder blades back\n\n## Execution\n1. Unrack bar and position over chest\n2. Lower bar to chest with control\n3. Press bar up explosively\n4. Lock out arms at top\n\n## Tips\n- Keep wrists straight and elbows at 45°\n- Touch chest lightly, don't bounce\n- Maintain tight upper back throughout",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": true,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "7f74d87c-168b-46bd-835c-09fc029849d8",
+    "exercise_id": "pull_up",
+    "name": "Pull-up",
+    "default_equipment": "pullup_bar",
+    "available_equipment": [
+      "pullup_bar"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "rhomboids",
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "posterior_deltoid",
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Hang from bar, hands shoulder-width\n2. Overhand grip, arms extended\n3. Engage core to prevent swing\n4. Shoulders active, not relaxed\n\n## Execution\n1. Pull up until chin clears bar\n2. Lead with chest, not chin\n3. Control the descent\n4. Full arm extension at bottom\n\n## Tips\n- Don't swing or use momentum\n- Focus on pulling with lats\n- Use assistance if needed\n- Progress with negatives",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "80ace318-6e21-45a9-9a36-68489a4a8a24",
+    "exercise_id": "chest_fly_machine",
+    "name": "Chest Fly Machine",
+    "default_equipment": "machine",
+    "available_equipment": [
+      "machine"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 80.0,
+    "starting_weight_kg": 36.0,
+    "default_warmup_weight": 40.0,
+    "description": "## Setup\n1. Sit in machine, back against pad\n2. Grip handles or position arms on pads\n3. Slight bend in elbows\n4. Chest up, shoulders back\n\n## Execution\n1. Bring handles/arms together\n2. Squeeze chest muscles\n3. Control the return\n4. Feel stretch at start position\n\n## Tips\n- Keep elbow angle constant\n- Focus on chest contraction\n- Don't go too heavy\n- Control both directions",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "81253ca7-94c3-4800-b331-e313ff8f22eb",
+    "exercise_id": "cat_cow_stretch",
+    "name": "Cat-Cow Stretch",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "mobility",
+      "core"
+    ],
+    "primary_muscles": [
+      "erector_spinae",
+      "core"
+    ],
+    "secondary_muscles": [
+      "shoulders"
+    ],
+    "body_parts": [
+      "core"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Start on hands and knees\n2. Hands under shoulders, knees under hips\n3. Neutral spine position\n4. Look down at floor\n\n## Execution\n1. Arch back and look up (cow)\n2. Round back and tuck chin (cat)\n3. Move slowly between positions\n4. Feel the stretch through spine\n\n## Tips\n- Move slowly and controlled\n- Feel the stretch in each position\n- Great for spine mobility\n- Can be done as warm-up",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 1,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "83a8c98d-a47f-4319-b1a4-de4add4a4589",
+    "exercise_id": "lateral_raise",
+    "name": "Lateral Raise",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "cable",
+      "resistance_band"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "anterior_deltoid",
+      "posterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "traps",
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 15.0,
+    "starting_weight_kg": 7.0,
+    "default_warmup_weight": 10.0,
+    "description": "## Setup\n1. Stand tall with dumbbells at sides\n2. Keep slight bend in elbows\n3. Maintain neutral spine\n4. Core engaged\n\n## Execution\n1. Raise weights out to sides\n2. Lift until arms parallel to floor\n3. Pause briefly at top\n4. Lower slowly and controlled\n\n## Tips\n- Lead with pinky finger\n- Don't lift higher than shoulder height\n- Control eccentric (lowering) portion\n- Don't use momentum or swing",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "8d1e760f-6644-4327-841c-90662d634350",
+    "exercise_id": "calf_raise",
+    "name": "Calf Raise",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight",
+      "dumbbell",
+      "machine"
+    ],
+    "exercise_types": [
+      "lower",
+      "calves"
+    ],
+    "primary_muscles": [
+      "calves"
+    ],
+    "secondary_muscles": [],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Stand tall with feet hip-width apart\n2. Keep core engaged\n3. Can hold dumbbells for added resistance\n4. Stand on edge of step for greater range (optional)\n\n## Execution\n1. Rise up onto toes as high as possible\n2. Squeeze calves at top\n3. Hold briefly at top\n4. Lower slowly to starting position\n\n## Tips\n- Control both lifting and lowering phases\n- Use full range of motion\n- Can be done on step for greater stretch\n- Focus on quality over speed",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 1,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "9410b8b5-c2ff-409c-8324-0ee16a4831f8",
+    "exercise_id": "squat",
+    "name": "Squat",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "smith_machine",
+      "dumbbell",
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "lower",
+      "quad"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "core",
+      "erector_spinae",
+      "calves"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 135.0,
+    "starting_weight_kg": 60.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Position bar on upper traps (high bar) or rear delts (low bar)\n2. Stand with feet shoulder-width apart\n3. Toes slightly pointed out\n4. Engage core and maintain neutral spine\n\n## Execution\n1. Initiate by pushing hips back\n2. Descend until hip crease below knee cap\n3. Drive through heels to return to start\n4. Maintain chest up throughout\n\n## Tips\n- Keep knees tracking over toes\n- Don't let knees cave inward\n- Full depth for best results\n- Control the descent",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "9fa0da04-f340-4f2c-8193-e481d7f90850",
+    "exercise_id": "sled_push",
+    "name": "Sled Push",
+    "default_equipment": "sled",
+    "available_equipment": [
+      "sled"
+    ],
+    "exercise_types": [
+      "push",
+      "cardio"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes",
+      "calves"
+    ],
+    "secondary_muscles": [
+      "core",
+      "shoulders",
+      "triceps"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 90.0,
+    "starting_weight_kg": 40.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Load sled with appropriate weight\n2. Grip handles firmly\n3. Body at 45° angle\n4. Core engaged\n\n## Execution\n1. Drive with legs, push sled forward\n2. Maintain body angle\n3. Small, quick steps\n4. Keep pushing through fatigue\n\n## Tips\n- Stay low for better leverage\n- Push through balls of feet\n- Keep core tight\n- Great for conditioning",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "a4366585-fc7c-4ba9-94bb-7d8fd21f93d3",
+    "exercise_id": "kettlebell_goblet_squat",
+    "name": "Kettlebell Goblet Squat",
+    "default_equipment": "kettlebell",
+    "available_equipment": [
+      "kettlebell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "core",
+      "hamstrings"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 35.0,
+    "starting_weight_kg": 16.0,
+    "default_warmup_weight": 25.0,
+    "description": "## Setup\n1. Hold kettlebell by horns at chest\n2. Elbows pointing down\n3. Feet shoulder-width apart\n4. Core engaged\n\n## Execution\n1. Squat down keeping chest up\n2. Elbows can touch inside of knees\n3. Full depth squat\n4. Drive through heels to stand\n\n## Tips\n- Great for learning squat pattern\n- Use elbows to push knees out\n- Keep weight at chest level\n- Focus on mobility",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "aace7a9d-8274-4bc3-851a-c3ab21a2012a",
+    "exercise_id": "leg_extension",
+    "name": "Leg Extension",
+    "default_equipment": "machine",
+    "available_equipment": [
+      "machine"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps"
+    ],
+    "secondary_muscles": [],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 80.0,
+    "starting_weight_kg": 36.0,
+    "default_warmup_weight": 40.0,
+    "description": "## Setup\n1. Sit in machine with back against pad\n2. Position pad just above ankles\n3. Grip handles for stability\n4. Thighs fully on seat\n\n## Execution\n1. Extend legs until knees straight\n2. Squeeze quads at top\n3. Lower with control\n4. Don't let weights touch\n\n## Tips\n- Don't swing or use momentum\n- Focus on quad contraction\n- Control the eccentric\n- Point toes up slightly",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "ac908c29-c8da-46a7-a455-bcadf0e8cb57",
+    "exercise_id": "bent_over_row",
+    "name": "Bent Over Row",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "rhomboids",
+      "posterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "traps",
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Hinge at hips, lean forward 45°\n2. Keep chest up and core engaged\n3. Grip bar shoulder-width apart\n4. Let arms hang naturally\n\n## Execution\n1. Pull bar to lower chest\n2. Squeeze shoulder blades together\n3. Keep elbows close to body\n4. Lower with control\n\n## Tips\n- Don't stand up during movement\n- Focus on pulling with back, not arms\n- Maintain hip hinge position\n- Don't let shoulders round",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "ba13751a-efee-45ed-b42b-e7dce6afb4d5",
+    "exercise_id": "handstand_push_up",
+    "name": "Handstand Push-up",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "shoulders",
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "core",
+      "forearms"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Kick up into handstand against wall\n2. Hands shoulder-width apart\n3. Body straight from hands to feet\n4. Core engaged\n\n## Execution\n1. Lower head toward floor\n2. Press back to straight arms\n3. Control both directions\n4. Keep body straight throughout\n\n## Tips\n- Master regular handstand first\n- Use wall for support initially\n- Very advanced exercise\n- Build up shoulder strength first",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 4,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "be08508d-e20c-4223-9469-31cfb3b4cbfc",
+    "exercise_id": "dumbbell_curl",
+    "name": "Dumbbell Bicep Curl",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "cable",
+      "barbell"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper",
+      "arms"
+    ],
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [
+      "forearms"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 25.0,
+    "starting_weight_kg": 12.0,
+    "default_warmup_weight": 15.0,
+    "description": "## Setup\n1. Stand with dumbbell in each hand\n2. Arms at sides, palms forward\n3. Core engaged, shoulders back\n4. Elbows close to sides\n\n## Execution\n1. Curl weights up by flexing biceps\n2. Keep upper arms stationary\n3. Squeeze at the top\n4. Lower slowly and controlled\n\n## Tips\n- Don't swing or use momentum\n- Keep elbows tucked to sides\n- Focus on bicep contraction\n- Full range of motion",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "bff7ab54-f38c-49f9-b7b4-00c101b72cea",
+    "exercise_id": "mountain_climbers",
+    "name": "Mountain Climbers",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "cardio",
+      "core"
+    ],
+    "primary_muscles": [
+      "core",
+      "shoulders"
+    ],
+    "secondary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Start in plank position\n2. Hands under shoulders\n3. Body in straight line\n4. Core engaged\n\n## Execution\n1. Bring one knee toward chest\n2. Quickly switch legs\n3. Continue alternating\n4. Maintain plank position\n\n## Tips\n- Keep hips level\n- Don't let hands drift forward\n- Start slow, build speed\n- Maintain straight body line",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c0d26cb9-6c16-4b2b-a09b-1151cd040ed2",
+    "exercise_id": "deadlift",
+    "name": "Deadlift",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "trap_bar",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "pull",
+      "lower",
+      "posterior"
+    ],
+    "primary_muscles": [
+      "hamstrings",
+      "glutes",
+      "erector_spinae",
+      "lats",
+      "traps"
+    ],
+    "secondary_muscles": [
+      "rhomboids",
+      "core",
+      "forearms",
+      "quadriceps"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 135.0,
+    "starting_weight_kg": 60.0,
+    "default_warmup_weight": 95.0,
+    "description": "## Setup\n1. Stand with feet hip-width apart, bar over mid-foot\n2. Hinge at hips and bend knees to grip bar\n3. Keep chest up and back neutral\n4. Engage lats and pull shoulders down\n\n## Execution\n1. Drive through heels to lift bar\n2. Extend hips and knees simultaneously\n3. Keep bar close to body\n4. Stand tall at top, shoulders back\n\n## Tips\n- Maintain neutral spine throughout\n- Bar travels in straight line\n- Don't round back or hyperextend\n- Think \"push floor away\" with feet",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 4,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c10a2f21-5b3c-47d5-b475-a1e3efb3dcbf",
+    "exercise_id": "dumbbell_lunge",
+    "name": "Dumbbell Lunge",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves",
+      "core"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 25.0,
+    "starting_weight_kg": 12.0,
+    "default_warmup_weight": 15.0,
+    "description": "## Setup\n1. Hold dumbbells at sides or shoulders\n2. Stand tall, core engaged\n3. Feet hip-width apart\n4. Look straight ahead\n\n## Execution\n1. Step forward into lunge position\n2. Both knees bend to 90°\n3. Push back to starting position\n4. Alternate legs or complete one side\n\n## Tips\n- Keep most weight on front leg\n- Don't let front knee drift past toes\n- Keep torso upright\n- Control the descent",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c14a4469-8b6f-4979-9f00-5fd31e2da5b8",
+    "exercise_id": "cable_row",
+    "name": "Cable Row",
+    "default_equipment": "cable",
+    "available_equipment": [
+      "cable",
+      "machine"
+    ],
+    "exercise_types": [
+      "pull",
+      "upper"
+    ],
+    "primary_muscles": [
+      "lats",
+      "rhomboids",
+      "posterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "traps"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 100.0,
+    "starting_weight_kg": 45.0,
+    "default_warmup_weight": 60.0,
+    "description": "## Setup\n1. Sit at cable row machine\n2. Feet on platform, knees slightly bent\n3. Grip handle with both hands\n4. Sit tall with chest up\n\n## Execution\n1. Pull handle to lower chest/upper abdomen\n2. Squeeze shoulder blades together\n3. Control the return\n4. Feel lat stretch at extension\n\n## Tips\n- Don't round back\n- Pull elbows back, not just hands\n- Keep chest up throughout\n- Control both directions",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c199125c-c8cb-4b74-9d1d-3d67423ef6fb",
+    "exercise_id": "tricep_pushdown",
+    "name": "Tricep Pushdown",
+    "default_equipment": "cable",
+    "available_equipment": [
+      "cable"
+    ],
+    "exercise_types": [
+      "push",
+      "upper",
+      "arms"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 60.0,
+    "starting_weight_kg": 27.0,
+    "default_warmup_weight": 40.0,
+    "description": "## Setup\n1. Stand at cable machine\n2. Grip rope or bar with both hands\n3. Elbows at sides\n4. Slight lean forward\n\n## Execution\n1. Push weight down by extending elbows\n2. Keep upper arms stationary\n3. Full lockout at bottom\n4. Control the return\n\n## Tips\n- Don't let elbows drift forward\n- Focus on tricep contraction\n- Keep wrists straight\n- Don't use momentum",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c519c62b-0952-4379-8d37-085676779582",
+    "exercise_id": "snatch",
+    "name": "Snatch",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell"
+    ],
+    "exercise_types": [
+      "power",
+      "full_body"
+    ],
+    "primary_muscles": [
+      "shoulders",
+      "traps",
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "core",
+      "hamstrings",
+      "lats"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 75.0,
+    "starting_weight_kg": 35.0,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Wide grip on bar, feet hip-width\n2. Bar over mid-foot\n3. Chest up, back straight\n4. Shoulders over bar\n\n## Execution\n1. Pull bar up explosively\n2. Full body extension\n3. Pull under bar overhead\n4. Catch in overhead squat\n5. Stand up with weight overhead\n\n## Tips\n- Most technical Olympic lift\n- Requires excellent mobility\n- Start with overhead squats\n- Seek qualified coaching",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 5,
+    "safety_rating": 5,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "c5d729a3-4424-430f-8e82-afaa52b9b3d2",
+    "exercise_id": "shoulder_dislocations",
+    "name": "Shoulder Dislocations",
+    "default_equipment": "resistance_band",
+    "available_equipment": [
+      "resistance_band",
+      "pvc_pipe"
+    ],
+    "exercise_types": [
+      "mobility",
+      "upper"
+    ],
+    "primary_muscles": [
+      "shoulders"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "lats"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Hold band/pipe with wide grip\n2. Arms straight, band in front\n3. Stand tall with good posture\n4. Core engaged\n\n## Execution\n1. Rotate arms overhead and behind back\n2. Keep arms straight throughout\n3. Return to front position\n4. Control the movement\n\n## Tips\n- Start with very wide grip\n- Don't force the range of motion\n- Great for shoulder mobility\n- Can adjust grip width as needed",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "d22a0525-fee4-47e9-b6a0-309414b78285",
+    "exercise_id": "tricep_dip",
+    "name": "Tricep Dip",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight",
+      "dip_bar"
+    ],
+    "exercise_types": [
+      "push",
+      "upper",
+      "arms"
+    ],
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "chest",
+      "anterior_deltoid"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Grip parallel bars or bench edge\n2. Support body weight on straight arms\n3. Keep shoulders over wrists\n4. Legs can be bent (easier) or straight (harder)\n\n## Execution\n1. Lower body by bending elbows\n2. Descend until shoulders below elbows\n3. Press back up to starting position\n4. Lock out arms at top\n\n## Tips\n- Keep elbows close to body\n- Don't go too low if shoulders are tight\n- Lean slightly forward for more chest\n- Stay upright for more triceps focus",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "d8e66214-3099-4bb5-af22-3bf4a8d144aa",
+    "exercise_id": "farmers_walk",
+    "name": "Farmers Walk",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "kettlebell",
+      "farmer_handles"
+    ],
+    "exercise_types": [
+      "core",
+      "grip"
+    ],
+    "primary_muscles": [
+      "forearms",
+      "traps",
+      "core"
+    ],
+    "secondary_muscles": [
+      "glutes",
+      "calves",
+      "rhomboids"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": 50.0,
+    "starting_weight_kg": 22.0,
+    "default_warmup_weight": 30.0,
+    "description": "## Setup\n1. Hold heavy weight in each hand\n2. Stand tall, shoulders back\n3. Core engaged, chest up\n4. Arms hanging naturally\n\n## Execution\n1. Walk forward with controlled steps\n2. Maintain upright posture\n3. Don't let weights sway\n4. Continue for distance/time\n\n## Tips\n- Keep shoulders pulled back\n- Take normal-sized steps\n- Focus on grip and posture\n- Don't let weights hit legs",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "e0bf7c83-4afa-4d64-86d7-5e9d8ace2f5d",
+    "exercise_id": "push_up",
+    "name": "Push-up",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest",
+      "triceps",
+      "anterior_deltoid"
+    ],
+    "secondary_muscles": [
+      "core"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Start in plank position\n2. Hands slightly wider than shoulders\n3. Body in straight line\n4. Core engaged\n\n## Execution\n1. Lower chest toward floor\n2. Keep body straight\n3. Push back to start position\n4. Full range of motion\n\n## Tips\n- Don't let hips sag or pike\n- Go to chest, not just halfway\n- Modify on knees if needed\n- Progress to harder variations",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 2,
+    "safety_rating": 1,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 13:38:39.68442+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "e72474f3-61b8-43d3-9760-594e9fe623ef",
+    "exercise_id": "hanging_leg_raise",
+    "name": "Hanging Leg Raise",
+    "default_equipment": "pullup_bar",
+    "available_equipment": [
+      "pullup_bar",
+      "dip_bar"
+    ],
+    "exercise_types": [
+      "core"
+    ],
+    "primary_muscles": [
+      "abs",
+      "hip_flexors"
+    ],
+    "secondary_muscles": [
+      "forearms",
+      "lats"
+    ],
+    "body_parts": [
+      "core"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Hang from pull-up bar with arms extended\n2. Keep shoulders active (not completely relaxed)\n3. Start with legs straight down\n4. Engage core to prevent swinging\n\n## Execution\n1. Lift legs up toward chest\n2. Keep legs straight or bent at knees\n3. Pause at top when knees reach chest\n4. Lower legs slowly and controlled\n\n## Tips\n- Don't use momentum or swing\n- Focus on using abs, not just hip flexors\n- Start with bent knees if too difficult\n- Control the descent",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "f62d3c84-b67e-4776-99c3-f5493f1196dc",
+    "exercise_id": "leg_press",
+    "name": "Leg Press",
+    "default_equipment": "machine",
+    "available_equipment": [
+      "machine"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 180.0,
+    "starting_weight_kg": 80.0,
+    "default_warmup_weight": 90.0,
+    "description": "## Setup\n1. Sit in leg press machine\n2. Feet shoulder-width apart on platform\n3. Back flat against pad\n4. Core engaged\n\n## Execution\n1. Lower weight until knees at 90°\n2. Press through heels\n3. Don't lock knees completely\n4. Control both directions\n\n## Tips\n- Don't let knees cave in\n- Keep back against pad\n- Full range of motion\n- Don't go too deep if uncomfortable",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "fac2e3df-8ce1-4950-b7f9-8a69edeb4506",
+    "exercise_id": "battle_ropes",
+    "name": "Battle Ropes",
+    "default_equipment": "battle_ropes",
+    "available_equipment": [
+      "battle_ropes"
+    ],
+    "exercise_types": [
+      "cardio",
+      "upper"
+    ],
+    "primary_muscles": [
+      "shoulders",
+      "core"
+    ],
+    "secondary_muscles": [
+      "forearms",
+      "glutes",
+      "quadriceps"
+    ],
+    "body_parts": [
+      "full_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Anchor ropes around stable object\n2. Hold one end in each hand\n3. Stand with feet shoulder-width apart\n4. Slight bend in knees\n\n## Execution\n1. Create waves by alternating arm movements\n2. Keep core engaged\n3. Various patterns (waves, spirals, slams)\n4. Maintain intensity throughout\n\n## Tips\n- Keep knees slightly bent\n- Engage core to prevent back arch\n- Vary the patterns for different stimulus\n- Great for cardio and strength",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "fae63275-5718-4b98-9be6-159aa48c9c3d",
+    "exercise_id": "lunge",
+    "name": "Lunge",
+    "default_equipment": "bodyweight",
+    "available_equipment": [
+      "bodyweight",
+      "dumbbell",
+      "barbell"
+    ],
+    "exercise_types": [
+      "push",
+      "lower"
+    ],
+    "primary_muscles": [
+      "quadriceps",
+      "glutes"
+    ],
+    "secondary_muscles": [
+      "hamstrings",
+      "calves",
+      "core"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": "",
+    "starting_weight_kg": "",
+    "default_warmup_weight": "",
+    "description": "## Setup\n1. Stand tall with feet hip-width apart\n2. Keep core engaged\n3. Hands on hips or at sides\n4. Look straight ahead\n\n## Execution\n1. Step forward with one leg\n2. Lower hips until both knees at 90 degrees\n3. Front knee over ankle, back knee hovering\n4. Push back to starting position\n\n## Tips\n- Keep most weight on front leg\n- Don't let front knee drift past toes\n- Keep torso upright\n- Alternate legs or do all reps on one side",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "fae740b1-e269-4fc9-9deb-4511aad31f15",
+    "exercise_id": "overhead_press",
+    "name": "Overhead Press",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell",
+      "dumbbell",
+      "kettlebell"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "anterior_deltoid",
+      "triceps"
+    ],
+    "secondary_muscles": [
+      "posterior_deltoid",
+      "core",
+      "traps"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 95.0,
+    "starting_weight_kg": 42.5,
+    "default_warmup_weight": 45.0,
+    "description": "## Setup\n1. Hold bar at shoulder height\n2. Feet hip-width apart\n3. Core engaged, chest up\n4. Elbows slightly forward\n\n## Execution\n1. Press bar straight overhead\n2. Keep bar path vertical\n3. Lock out arms fully\n4. Lower with control\n\n## Tips\n- Don't arch back excessively\n- Squeeze glutes for stability\n- Press through whole palm\n- Keep core tight throughout",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "fd6bdbb6-873e-436a-8eef-21f9de6f45a3",
+    "exercise_id": "dumbbell_flye",
+    "name": "Dumbbell Flye",
+    "default_equipment": "dumbbell",
+    "available_equipment": [
+      "dumbbell",
+      "cable"
+    ],
+    "exercise_types": [
+      "push",
+      "upper"
+    ],
+    "primary_muscles": [
+      "chest"
+    ],
+    "secondary_muscles": [
+      "anterior_deltoid",
+      "biceps"
+    ],
+    "body_parts": [
+      "upper_body"
+    ],
+    "starting_weight_lbs": 25.0,
+    "starting_weight_kg": 12.0,
+    "default_warmup_weight": 15.0,
+    "description": "## Setup\n1. Lie on bench with dumbbell in each hand\n2. Start with arms extended above chest\n3. Slight bend in elbows\n4. Palms facing each other\n\n## Execution\n1. Lower weights in wide arc\n2. Feel stretch across chest\n3. Squeeze chest to bring weights up\n4. Maintain elbow angle throughout\n\n## Tips\n- Keep elbow angle constant\n- Don't go too heavy\n- Focus on chest stretch and squeeze\n- Control the eccentric portion",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 3,
+    "safety_rating": 2,
+    "is_compound": false,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 17:52:45.251919+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  },
+  {
+    "id": "fd7aabd1-9b3c-4d16-b4a8-909651e74f90",
+    "exercise_id": "sumo_deadlift",
+    "name": "Sumo Deadlift",
+    "default_equipment": "barbell",
+    "available_equipment": [
+      "barbell"
+    ],
+    "exercise_types": [
+      "pull",
+      "lower"
+    ],
+    "primary_muscles": [
+      "glutes",
+      "quadriceps",
+      "hamstrings"
+    ],
+    "secondary_muscles": [
+      "erector_spinae",
+      "traps",
+      "core"
+    ],
+    "body_parts": [
+      "lower_body"
+    ],
+    "starting_weight_lbs": 135.0,
+    "starting_weight_kg": 60.0,
+    "default_warmup_weight": 95.0,
+    "description": "## Setup\n1. Wide stance, toes pointed out\n2. Grip bar inside legs, arms vertical\n3. Chest up, back neutral\n4. Knees track over toes\n\n## Execution\n1. Drive through heels and knees out\n2. Keep chest up as you rise\n3. Full hip extension at top\n4. Control the descent\n\n## Tips\n- More quad-dominant than conventional\n- Shorter range of motion\n- Requires hip mobility\n- Keep knees tracking out",
+    "instructions": "",
+    "tips": "",
+    "video_url": "",
+    "image_url_small": "",
+    "image_url_large": "",
+    "has_custom_image": false,
+    "difficulty_level": 4,
+    "safety_rating": 3,
+    "is_compound": true,
+    "is_unilateral": false,
+    "requires_spotter": false,
+    "is_active": true,
+    "created_at": "2025-08-15 18:12:56.329979+00",
+    "updated_at": "2025-08-15 18:12:56.329979+00"
+  }
+]
