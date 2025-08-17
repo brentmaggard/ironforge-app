@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/entities/exercise.dart';
+import '../../../core/providers/database_providers.dart';
 
 class ExerciseSelectionScreen extends ConsumerStatefulWidget {
   const ExerciseSelectionScreen({super.key});
@@ -21,81 +22,9 @@ class _ExerciseSelectionScreenState extends ConsumerState<ExerciseSelectionScree
     super.dispose();
   }
 
-  List<Exercise> _getDemoExercises() {
-    return [
-      Exercise(
-        id: '1',
-        exerciseId: 'bench_press',
-        name: 'Barbell Bench Press',
-        defaultEquipment: 'Barbell',
-        primaryMuscles: ['Chest'],
-        secondaryMuscles: ['Triceps', 'Shoulders'],
-        difficultyLevel: 3,
-        isCompound: true,
-        startingWeightLbs: 135,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-      Exercise(
-        id: '2',
-        exerciseId: 'squat',
-        name: 'Barbell Back Squat',
-        defaultEquipment: 'Barbell',
-        primaryMuscles: ['Legs'],
-        secondaryMuscles: ['Glutes', 'Core'],
-        difficultyLevel: 4,
-        isCompound: true,
-        startingWeightLbs: 95,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-      Exercise(
-        id: '3',
-        exerciseId: 'deadlift',
-        name: 'Conventional Deadlift',
-        defaultEquipment: 'Barbell',
-        primaryMuscles: ['Pull'],
-        secondaryMuscles: ['Legs', 'Core'],
-        difficultyLevel: 5,
-        isCompound: true,
-        startingWeightLbs: 135,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-      Exercise(
-        id: '4',
-        exerciseId: 'overhead_press',
-        name: 'Standing Overhead Press',
-        defaultEquipment: 'Barbell',
-        primaryMuscles: ['Push'],
-        secondaryMuscles: ['Core', 'Shoulders'],
-        difficultyLevel: 3,
-        isCompound: true,
-        startingWeightLbs: 65,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-      Exercise(
-        id: '5',
-        exerciseId: 'dumbbell_row',
-        name: 'Dumbbell Row',
-        defaultEquipment: 'Dumbbell',
-        primaryMuscles: ['Pull'],
-        secondaryMuscles: ['Core'],
-        difficultyLevel: 2,
-        isCompound: false,
-        startingWeightLbs: 25,
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ),
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
-    // Demo exercises for now - will be replaced with provider
-    final demoExercises = _getDemoExercises();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select Exercise'),
@@ -173,21 +102,45 @@ class _ExerciseSelectionScreenState extends ConsumerState<ExerciseSelectionScree
           ),
         ),
       ),
-      body: Builder(
-        builder: (context) {
-          final filteredExercises = _filterExercises(demoExercises);
+      body: Consumer(
+        builder: (context, ref, child) {
+          final exercisesAsync = ref.watch(allExercisesProvider);
+          
+          return exercisesAsync.when(
+            data: (exercises) {
+              final filteredExercises = _filterExercises(exercises);
 
-          if (filteredExercises.isEmpty) {
-            return _buildEmptyState();
-          }
+              if (filteredExercises.isEmpty) {
+                return _buildEmptyState();
+              }
 
-          return ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: filteredExercises.length,
-            itemBuilder: (context, index) {
-              final exercise = filteredExercises[index];
-              return _buildExerciseCard(exercise);
+              return ListView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: filteredExercises.length,
+                itemBuilder: (context, index) {
+                  final exercise = filteredExercises[index];
+                  return _buildExerciseCard(exercise);
+                },
+              );
             },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stackTrace) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                  const SizedBox(height: 16),
+                  Text('Error loading exercises: $error'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      ref.invalidate(allExercisesProvider);
+                    },
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            ),
           );
         },
       ),
@@ -225,10 +178,36 @@ class _ExerciseSelectionScreenState extends ConsumerState<ExerciseSelectionScree
         }
       }
 
-      // Category filter (using primaryMuscles for category filtering)
+      // Category filter
       if (_selectedCategory != null) {
-        final hasCategory = exercise.primaryMuscles?.any((muscle) => 
-          muscle.toLowerCase().contains(_selectedCategory!.toLowerCase())) ?? false;
+        final categoryLower = _selectedCategory!.toLowerCase();
+        bool hasCategory = false;
+        
+        switch (categoryLower) {
+          case 'push':
+            hasCategory = exercise.exerciseTypes?.any((type) => 
+              type.toLowerCase() == 'push') ?? false;
+            break;
+          case 'pull':
+            hasCategory = exercise.exerciseTypes?.any((type) => 
+              type.toLowerCase() == 'pull') ?? false;
+            break;
+          case 'legs':
+            hasCategory = (exercise.bodyParts?.any((part) => 
+              part.toLowerCase() == 'lower_body') ?? false) ||
+              (exercise.exerciseTypes?.any((type) => 
+              type.toLowerCase() == 'lower') ?? false);
+            break;
+          case 'core':
+            hasCategory = (exercise.primaryMuscles?.any((muscle) => 
+              muscle.toLowerCase().contains('core')) ?? false) ||
+              (exercise.secondaryMuscles?.any((muscle) => 
+              muscle.toLowerCase().contains('core')) ?? false);
+            break;
+          default:
+            hasCategory = false;
+        }
+        
         if (!hasCategory) return false;
       }
 

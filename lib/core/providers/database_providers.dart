@@ -16,6 +16,7 @@ import '../../domain/repositories/program_repository.dart';
 import '../../domain/repositories/user_program_repository.dart';
 import '../../domain/repositories/program_session_repository.dart';
 import '../../domain/entities/goal.dart' as domain;
+import '../../domain/entities/exercise.dart' as domain_exercise;
 
 /// Database provider - singleton instance
 final databaseProvider = Provider<AppDatabase>((ref) {
@@ -83,4 +84,11 @@ final databaseInitializationProvider = FutureProvider<void>((ref) async {
 final userGoalsProvider = FutureProvider.family<List<domain.Goal>, String>((ref, userId) async {
   final goalRepository = ref.watch(goalRepositoryProvider);
   return await goalRepository.getGoalsByUserId(userId);
+});
+
+/// All exercises provider - gets all exercises from the database
+final allExercisesProvider = FutureProvider<List<domain_exercise.Exercise>>((ref) async {
+  await ref.watch(databaseInitializationProvider.future);
+  final exerciseRepository = ref.watch(exerciseRepositoryProvider);
+  return await exerciseRepository.getAllExercises();
 });

@@ -42,7 +42,7 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
           bottom: TabBar(
             controller: _tabController,
             tabs: const [
-              Tab(icon: Icon(Icons.library_books), text: 'Templates'),
+              Tab(icon: Icon(Icons.library_books), text: 'Browse'),
               Tab(icon: Icon(Icons.person), text: 'My Programs'),
             ],
           ),
@@ -72,7 +72,7 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
         Expanded(
           child: Consumer(
             builder: (context, ref, child) {
-              final programsAsync = ref.watch(programTemplatesProvider);
+              final programsAsync = ref.watch(allProgramsProvider);
               
               return programsAsync.when(
                 data: (programs) {
@@ -601,7 +601,7 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
     
     if (result == true) {
       // Refresh the programs list
-      ref.invalidate(programTemplatesProvider);
+      ref.invalidate(allProgramsProvider);
     }
   }
 
@@ -617,7 +617,7 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
     
     if (result == true) {
       // Refresh the programs list
-      ref.invalidate(programTemplatesProvider);
+      ref.invalidate(allProgramsProvider);
     }
   }
 
@@ -696,8 +696,8 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
   }
 }
 
-// Program templates provider
-final programTemplatesProvider = FutureProvider<List<Program>>((ref) async {
+// All programs provider (includes templates and user-created programs)
+final allProgramsProvider = FutureProvider<List<Program>>((ref) async {
   final programRepository = ref.watch(programRepositoryProvider);
-  return await programRepository.getProgramTemplates();
+  return await programRepository.getAllPrograms();
 });
