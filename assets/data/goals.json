@@ -1,0 +1,29 @@
+[
+  {
+    "id": "g1",
+    "title": "Bench Press 225",
+    "type": "strength",
+    "target": 225,
+    "progress": 205,
+    "unit": "lb",
+    "dueDate": "2025-10-01"
+  },
+  {
+    "id": "g2",
+    "title": "Drop 10 lb",
+    "type": "weight",
+    "target": 10,
+    "progress": 4,
+    "unit": "lb",
+    "dueDate": "2025-12-31"
+  },
+  {
+    "id": "g3",
+    "title": "Train 20 days this month",
+    "type": "habit",
+    "target": 20,
+    "progress": 7,
+    "unit": "days",
+    "dueDate": "2025-08-31"
+  }
+]

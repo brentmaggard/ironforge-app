@@ -1,15 +1,29 @@
 import 'package:drift/drift.dart';
 import 'database.dart';
 import 'csv_seeder.dart';
+import 'program_seeder.dart';
 import '../models/exercise_model.dart';
 import '../models/goal_model.dart';
+import '../models/workout_model.dart';
+import '../models/workout_set_model.dart';
+import '../models/program_model.dart';
+import '../models/user_program_model.dart';
+import '../models/program_session_model.dart';
 import '../../domain/entities/exercise.dart' as domain;
 import '../../domain/entities/goal.dart' as domain;
+import '../../domain/entities/workout.dart' as domain;
+import '../../domain/entities/workout_set.dart' as domain;
+import '../../domain/entities/program.dart' as domain;
+import '../../domain/entities/user_program.dart' as domain;
+import '../../domain/entities/program_session.dart' as domain;
 
 class LocalDataSource {
   final AppDatabase _database;
 
   LocalDataSource(this._database);
+
+  // Getter for accessing database (for seeding operations)
+  AppDatabase get database => _database;
 
   // Exercise operations
   Future<List<domain.Exercise>> getAllExercises() async {
@@ -147,9 +161,247 @@ class LocalDataSource {
         ));
   }
 
+  // Workout operations
+  Future<List<domain.Workout>> getWorkoutsByUserId(String userId) async {
+    final workouts = await (_database.select(_database.workouts)
+          ..where((w) => w.userId.equals(userId))
+          ..orderBy([(w) => OrderingTerm.desc(w.createdAt)]))
+        .get();
+    return workouts.map((w) => w.toEntity()).toList();
+  }
+
+  Future<List<domain.Workout>> getRecentWorkouts(String userId, {int limit = 10}) async {
+    final workouts = await (_database.select(_database.workouts)
+          ..where((w) => w.userId.equals(userId))
+          ..orderBy([(w) => OrderingTerm.desc(w.createdAt)])
+          ..limit(limit))
+        .get();
+    return workouts.map((w) => w.toEntity()).toList();
+  }
+
+  Future<domain.Workout?> getWorkoutById(String id) async {
+    final workout = await (_database.select(_database.workouts)
+          ..where((w) => w.id.equals(id)))
+        .getSingleOrNull();
+    return workout?.toEntity();
+  }
+
+  Future<domain.Workout?> getActiveWorkout(String userId) async {
+    final workout = await (_database.select(_database.workouts)
+          ..where((w) => w.userId.equals(userId) & w.status.equals('in_progress')))
+        .getSingleOrNull();
+    return workout?.toEntity();
+  }
+
+  Future<List<domain.WorkoutSet>> getWorkoutSets(String workoutId) async {
+    final sets = await (_database.select(_database.workoutSets)
+          ..where((s) => s.workoutId.equals(workoutId))
+          ..orderBy([(s) => OrderingTerm.asc(s.setNumber)]))
+        .get();
+    return sets.map((s) => s.toEntity()).toList();
+  }
+
+  Future<void> createWorkout(domain.Workout workout) async {
+    await _database.into(_database.workouts).insert(workout.toCompanion());
+  }
+
+  Future<void> updateWorkout(domain.Workout workout) async {
+    await (_database.update(_database.workouts)
+          ..where((w) => w.id.equals(workout.id)))
+        .write(workout.toCompanion());
+  }
+
+  Future<void> deleteWorkout(String id) async {
+    await _database.transaction(() async {
+      // Delete workout sets first
+      await (_database.delete(_database.workoutSets)
+            ..where((s) => s.workoutId.equals(id)))
+          .go();
+      // Delete workout
+      await (_database.delete(_database.workouts)
+            ..where((w) => w.id.equals(id)))
+          .go();
+    });
+  }
+
+  Future<void> addWorkoutSet(domain.WorkoutSet workoutSet) async {
+    await _database.into(_database.workoutSets).insert(workoutSet.toCompanion());
+  }
+
+  Future<void> updateWorkoutSet(domain.WorkoutSet workoutSet) async {
+    await (_database.update(_database.workoutSets)
+          ..where((s) => s.id.equals(workoutSet.id)))
+        .write(workoutSet.toCompanion());
+  }
+
+  Future<void> deleteWorkoutSet(String setId) async {
+    await (_database.delete(_database.workoutSets)
+          ..where((s) => s.id.equals(setId)))
+        .go();
+  }
+
+  Future<Map<String, List<domain.WorkoutSet>>> getWorkoutSetsByExercise(String workoutId) async {
+    final sets = await (_database.select(_database.workoutSets)
+          ..where((s) => s.workoutId.equals(workoutId))
+          ..orderBy([(s) => OrderingTerm.asc(s.setNumber)]))
+        .get();
+    
+    final Map<String, List<domain.WorkoutSet>> exerciseSets = {};
+    for (final set in sets) {
+      final exerciseId = set.exerciseId;
+      if (!exerciseSets.containsKey(exerciseId)) {
+        exerciseSets[exerciseId] = [];
+      }
+      exerciseSets[exerciseId]!.add(set.toEntity());
+    }
+    
+    return exerciseSets;
+  }
+
+  // Program operations
+  Future<List<domain.Program>> getAllPrograms() async {
+    final programs = await _database.select(_database.programs).get();
+    return programs.map((p) => p.toEntity()).toList();
+  }
+
+  Future<List<domain.Program>> getProgramTemplates() async {
+    final programs = await (_database.select(_database.programs)
+          ..where((p) => p.isTemplate.equals(true)))
+        .get();
+    return programs.map((p) => p.toEntity()).toList();
+  }
+
+  Future<domain.Program?> getProgramById(String id) async {
+    final program = await (_database.select(_database.programs)
+          ..where((p) => p.id.equals(id)))
+        .getSingleOrNull();
+    return program?.toEntity();
+  }
+
+  Future<void> createProgram(domain.Program program) async {
+    await _database.into(_database.programs).insert(program.toCompanion());
+  }
+
+  Future<void> updateProgram(domain.Program program) async {
+    await (_database.update(_database.programs)
+          ..where((p) => p.id.equals(program.id)))
+        .write(program.toCompanion());
+  }
+
+  Future<void> deleteProgram(String id) async {
+    await (_database.delete(_database.programs)
+          ..where((p) => p.id.equals(id)))
+        .go();
+  }
+
+  // UserProgram operations
+  Future<List<domain.UserProgram>> getUserPrograms(String userId) async {
+    final userPrograms = await (_database.select(_database.userPrograms)
+          ..where((up) => up.userId.equals(userId))
+          ..orderBy([(up) => OrderingTerm.desc(up.createdAt)]))
+        .get();
+    return userPrograms.map((up) => up.toEntity()).toList();
+  }
+
+  Future<domain.UserProgram?> getActiveUserProgram(String userId) async {
+    final userProgram = await (_database.select(_database.userPrograms)
+          ..where((up) => up.userId.equals(userId) & up.status.equals('active')))
+        .getSingleOrNull();
+    return userProgram?.toEntity();
+  }
+
+  Future<domain.UserProgram?> getUserProgramById(String id) async {
+    final userProgram = await (_database.select(_database.userPrograms)
+          ..where((up) => up.id.equals(id)))
+        .getSingleOrNull();
+    return userProgram?.toEntity();
+  }
+
+  Future<void> createUserProgram(domain.UserProgram userProgram) async {
+    await _database.into(_database.userPrograms).insert(userProgram.toCompanion());
+  }
+
+  Future<void> updateUserProgram(domain.UserProgram userProgram) async {
+    await (_database.update(_database.userPrograms)
+          ..where((up) => up.id.equals(userProgram.id)))
+        .write(userProgram.toCompanion());
+  }
+
+  Future<void> deleteUserProgram(String id) async {
+    await _database.transaction(() async {
+      // Delete associated program sessions first
+      await (_database.delete(_database.programSessions)
+            ..where((ps) => ps.userProgramId.equals(id)))
+          .go();
+      // Delete user program
+      await (_database.delete(_database.userPrograms)
+            ..where((up) => up.id.equals(id)))
+          .go();
+    });
+  }
+
+  // ProgramSession operations
+  Future<List<domain.ProgramSession>> getSessionsByUserProgram(String userProgramId) async {
+    final sessions = await (_database.select(_database.programSessions)
+          ..where((ps) => ps.userProgramId.equals(userProgramId))
+          ..orderBy([(ps) => OrderingTerm.asc(ps.weekNumber), (ps) => OrderingTerm.asc(ps.dayNumber)]))
+        .get();
+    return sessions.map((ps) => ps.toEntity()).toList();
+  }
+
+  Future<domain.ProgramSession?> getSessionById(String id) async {
+    final session = await (_database.select(_database.programSessions)
+          ..where((ps) => ps.id.equals(id)))
+        .getSingleOrNull();
+    return session?.toEntity();
+  }
+
+  Future<domain.ProgramSession?> getSessionByWeekDay(String userProgramId, int weekNumber, int dayNumber) async {
+    final session = await (_database.select(_database.programSessions)
+          ..where((ps) => ps.userProgramId.equals(userProgramId) 
+              & ps.weekNumber.equals(weekNumber) 
+              & ps.dayNumber.equals(dayNumber)))
+        .getSingleOrNull();
+    return session?.toEntity();
+  }
+
+  Future<void> createProgramSession(domain.ProgramSession session) async {
+    await _database.into(_database.programSessions).insert(session.toCompanion());
+  }
+
+  Future<void> updateProgramSession(domain.ProgramSession session) async {
+    await (_database.update(_database.programSessions)
+          ..where((ps) => ps.id.equals(session.id)))
+        .write(session.toCompanion());
+  }
+
+  Future<void> deleteProgramSession(String id) async {
+    await (_database.delete(_database.programSessions)
+          ..where((ps) => ps.id.equals(id)))
+        .go();
+  }
+
+  Future<List<domain.ProgramSession>> getUpcomingSessions(String userProgramId, {int limit = 7}) async {
+    final sessions = await (_database.select(_database.programSessions)
+          ..where((ps) => ps.userProgramId.equals(userProgramId) & ps.status.equals('scheduled'))
+          ..orderBy([(ps) => OrderingTerm.asc(ps.scheduledDate)])
+          ..limit(limit))
+        .get();
+    return sessions.map((ps) => ps.toEntity()).toList();
+  }
+
+  Future<List<domain.ProgramSession>> getCompletedSessions(String userProgramId) async {
+    final sessions = await (_database.select(_database.programSessions)
+          ..where((ps) => ps.userProgramId.equals(userProgramId) & ps.status.equals('completed'))
+          ..orderBy([(ps) => OrderingTerm.desc(ps.completedAt)]))
+        .get();
+    return sessions.map((ps) => ps.toEntity()).toList();
+  }
+
   // Database utility operations
   Future<void> initializeDatabase() async {
     await seedExercises();
+    await ProgramSeeder.seedProgramTemplates(_database);
   }
 
   Future<void> clearAllData() async {
@@ -159,6 +411,9 @@ class LocalDataSource {
       await _database.delete(_database.workouts).go();
       await _database.delete(_database.workoutSets).go();
       await _database.delete(_database.progressEntries).go();
+      await _database.delete(_database.programs).go();
+      await _database.delete(_database.userPrograms).go();
+      await _database.delete(_database.programSessions).go();
     });
   }
 }

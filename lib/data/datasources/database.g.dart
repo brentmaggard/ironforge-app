@@ -3964,19 +3964,6 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
-  @override
-  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
-    'user_id',
-    aliasedName,
-    false,
-    additionalChecks: GeneratedColumn.checkTextLength(
-      minTextLength: 1,
-      maxTextLength: 36,
-    ),
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
@@ -4001,26 +3988,13 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _durationWeeksMeta = const VerificationMeta(
-    'durationWeeks',
-  );
+  static const VerificationMeta _authorMeta = const VerificationMeta('author');
   @override
-  late final GeneratedColumn<int> durationWeeks = GeneratedColumn<int>(
-    'duration_weeks',
+  late final GeneratedColumn<String> author = GeneratedColumn<String>(
+    'author',
     aliasedName,
     true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _sessionsPerWeekMeta = const VerificationMeta(
-    'sessionsPerWeek',
-  );
-  @override
-  late final GeneratedColumn<int> sessionsPerWeek = GeneratedColumn<int>(
-    'sessions_per_week',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
+    type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
   static const VerificationMeta _difficultyMeta = const VerificationMeta(
@@ -4039,12 +4013,41 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
     requiredDuringInsert: false,
     defaultValue: const Constant('intermediate'),
   );
-  static const VerificationMeta _configurationMeta = const VerificationMeta(
-    'configuration',
+  static const VerificationMeta _frequencyMeta = const VerificationMeta(
+    'frequency',
   );
   @override
-  late final GeneratedColumn<String> configuration = GeneratedColumn<String>(
-    'configuration',
+  late final GeneratedColumn<int> frequency = GeneratedColumn<int>(
+    'frequency',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _durationWeeksMeta = const VerificationMeta(
+    'durationWeeks',
+  );
+  @override
+  late final GeneratedColumn<int> durationWeeks = GeneratedColumn<int>(
+    'duration_weeks',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _tagsMeta = const VerificationMeta('tags');
+  @override
+  late final GeneratedColumn<String> tags = GeneratedColumn<String>(
+    'tags',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _configMeta = const VerificationMeta('config');
+  @override
+  late final GeneratedColumn<String> config = GeneratedColumn<String>(
+    'config',
     aliasedName,
     false,
     type: DriftSqlType.string,
@@ -4065,41 +4068,857 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
     ),
     defaultValue: const Constant(false),
   );
-  static const VerificationMeta _isActiveMeta = const VerificationMeta(
-    'isActive',
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
   );
   @override
-  late final GeneratedColumn<bool> isActive = GeneratedColumn<bool>(
-    'is_active',
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
     aliasedName,
     false,
-    type: DriftSqlType.bool,
+    type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("is_active" IN (0, 1))',
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _versionMeta = const VerificationMeta(
+    'version',
+  );
+  @override
+  late final GeneratedColumn<int> version = GeneratedColumn<int>(
+    'version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _syncStatusMeta = const VerificationMeta(
+    'syncStatus',
+  );
+  @override
+  late final GeneratedColumn<String> syncStatus = GeneratedColumn<String>(
+    'sync_status',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 20,
     ),
-    defaultValue: const Constant(false),
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('local'),
   );
-  static const VerificationMeta _startedAtMeta = const VerificationMeta(
-    'startedAt',
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
   );
   @override
-  late final GeneratedColumn<DateTime> startedAt = GeneratedColumn<DateTime>(
-    'started_at',
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
     aliasedName,
     true,
     type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _completedAtMeta = const VerificationMeta(
-    'completedAt',
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    name,
+    description,
+    author,
+    difficulty,
+    frequency,
+    durationWeeks,
+    tags,
+    config,
+    isTemplate,
+    createdAt,
+    updatedAt,
+    version,
+    syncStatus,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'programs';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Program> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+        _nameMeta,
+        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('description')) {
+      context.handle(
+        _descriptionMeta,
+        description.isAcceptableOrUnknown(
+          data['description']!,
+          _descriptionMeta,
+        ),
+      );
+    }
+    if (data.containsKey('author')) {
+      context.handle(
+        _authorMeta,
+        author.isAcceptableOrUnknown(data['author']!, _authorMeta),
+      );
+    }
+    if (data.containsKey('difficulty')) {
+      context.handle(
+        _difficultyMeta,
+        difficulty.isAcceptableOrUnknown(data['difficulty']!, _difficultyMeta),
+      );
+    }
+    if (data.containsKey('frequency')) {
+      context.handle(
+        _frequencyMeta,
+        frequency.isAcceptableOrUnknown(data['frequency']!, _frequencyMeta),
+      );
+    }
+    if (data.containsKey('duration_weeks')) {
+      context.handle(
+        _durationWeeksMeta,
+        durationWeeks.isAcceptableOrUnknown(
+          data['duration_weeks']!,
+          _durationWeeksMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tags')) {
+      context.handle(
+        _tagsMeta,
+        tags.isAcceptableOrUnknown(data['tags']!, _tagsMeta),
+      );
+    }
+    if (data.containsKey('config')) {
+      context.handle(
+        _configMeta,
+        config.isAcceptableOrUnknown(data['config']!, _configMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_configMeta);
+    }
+    if (data.containsKey('is_template')) {
+      context.handle(
+        _isTemplateMeta,
+        isTemplate.isAcceptableOrUnknown(data['is_template']!, _isTemplateMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('version')) {
+      context.handle(
+        _versionMeta,
+        version.isAcceptableOrUnknown(data['version']!, _versionMeta),
+      );
+    }
+    if (data.containsKey('sync_status')) {
+      context.handle(
+        _syncStatusMeta,
+        syncStatus.isAcceptableOrUnknown(data['sync_status']!, _syncStatusMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Program map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Program(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      name: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}name'],
+      )!,
+      description: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}description'],
+      ),
+      author: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}author'],
+      ),
+      difficulty: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}difficulty'],
+      )!,
+      frequency: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}frequency'],
+      ),
+      durationWeeks: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}duration_weeks'],
+      ),
+      tags: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}tags'],
+      ),
+      config: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}config'],
+      )!,
+      isTemplate: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_template'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      version: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}version'],
+      )!,
+      syncStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_status'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $ProgramsTable createAlias(String alias) {
+    return $ProgramsTable(attachedDatabase, alias);
+  }
+}
+
+class Program extends DataClass implements Insertable<Program> {
+  final String id;
+  final String name;
+  final String? description;
+  final String? author;
+  final String difficulty;
+  final int? frequency;
+  final int? durationWeeks;
+  final String? tags;
+  final String config;
+  final bool isTemplate;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int version;
+  final String syncStatus;
+  final DateTime? deletedAt;
+  const Program({
+    required this.id,
+    required this.name,
+    this.description,
+    this.author,
+    required this.difficulty,
+    this.frequency,
+    this.durationWeeks,
+    this.tags,
+    required this.config,
+    required this.isTemplate,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.version,
+    required this.syncStatus,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['name'] = Variable<String>(name);
+    if (!nullToAbsent || description != null) {
+      map['description'] = Variable<String>(description);
+    }
+    if (!nullToAbsent || author != null) {
+      map['author'] = Variable<String>(author);
+    }
+    map['difficulty'] = Variable<String>(difficulty);
+    if (!nullToAbsent || frequency != null) {
+      map['frequency'] = Variable<int>(frequency);
+    }
+    if (!nullToAbsent || durationWeeks != null) {
+      map['duration_weeks'] = Variable<int>(durationWeeks);
+    }
+    if (!nullToAbsent || tags != null) {
+      map['tags'] = Variable<String>(tags);
+    }
+    map['config'] = Variable<String>(config);
+    map['is_template'] = Variable<bool>(isTemplate);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['version'] = Variable<int>(version);
+    map['sync_status'] = Variable<String>(syncStatus);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  ProgramsCompanion toCompanion(bool nullToAbsent) {
+    return ProgramsCompanion(
+      id: Value(id),
+      name: Value(name),
+      description: description == null && nullToAbsent
+          ? const Value.absent()
+          : Value(description),
+      author: author == null && nullToAbsent
+          ? const Value.absent()
+          : Value(author),
+      difficulty: Value(difficulty),
+      frequency: frequency == null && nullToAbsent
+          ? const Value.absent()
+          : Value(frequency),
+      durationWeeks: durationWeeks == null && nullToAbsent
+          ? const Value.absent()
+          : Value(durationWeeks),
+      tags: tags == null && nullToAbsent ? const Value.absent() : Value(tags),
+      config: Value(config),
+      isTemplate: Value(isTemplate),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      version: Value(version),
+      syncStatus: Value(syncStatus),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory Program.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Program(
+      id: serializer.fromJson<String>(json['id']),
+      name: serializer.fromJson<String>(json['name']),
+      description: serializer.fromJson<String?>(json['description']),
+      author: serializer.fromJson<String?>(json['author']),
+      difficulty: serializer.fromJson<String>(json['difficulty']),
+      frequency: serializer.fromJson<int?>(json['frequency']),
+      durationWeeks: serializer.fromJson<int?>(json['durationWeeks']),
+      tags: serializer.fromJson<String?>(json['tags']),
+      config: serializer.fromJson<String>(json['config']),
+      isTemplate: serializer.fromJson<bool>(json['isTemplate']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      version: serializer.fromJson<int>(json['version']),
+      syncStatus: serializer.fromJson<String>(json['syncStatus']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'name': serializer.toJson<String>(name),
+      'description': serializer.toJson<String?>(description),
+      'author': serializer.toJson<String?>(author),
+      'difficulty': serializer.toJson<String>(difficulty),
+      'frequency': serializer.toJson<int?>(frequency),
+      'durationWeeks': serializer.toJson<int?>(durationWeeks),
+      'tags': serializer.toJson<String?>(tags),
+      'config': serializer.toJson<String>(config),
+      'isTemplate': serializer.toJson<bool>(isTemplate),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'version': serializer.toJson<int>(version),
+      'syncStatus': serializer.toJson<String>(syncStatus),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  Program copyWith({
+    String? id,
+    String? name,
+    Value<String?> description = const Value.absent(),
+    Value<String?> author = const Value.absent(),
+    String? difficulty,
+    Value<int?> frequency = const Value.absent(),
+    Value<int?> durationWeeks = const Value.absent(),
+    Value<String?> tags = const Value.absent(),
+    String? config,
+    bool? isTemplate,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? version,
+    String? syncStatus,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => Program(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    description: description.present ? description.value : this.description,
+    author: author.present ? author.value : this.author,
+    difficulty: difficulty ?? this.difficulty,
+    frequency: frequency.present ? frequency.value : this.frequency,
+    durationWeeks: durationWeeks.present
+        ? durationWeeks.value
+        : this.durationWeeks,
+    tags: tags.present ? tags.value : this.tags,
+    config: config ?? this.config,
+    isTemplate: isTemplate ?? this.isTemplate,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    version: version ?? this.version,
+    syncStatus: syncStatus ?? this.syncStatus,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  Program copyWithCompanion(ProgramsCompanion data) {
+    return Program(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      description: data.description.present
+          ? data.description.value
+          : this.description,
+      author: data.author.present ? data.author.value : this.author,
+      difficulty: data.difficulty.present
+          ? data.difficulty.value
+          : this.difficulty,
+      frequency: data.frequency.present ? data.frequency.value : this.frequency,
+      durationWeeks: data.durationWeeks.present
+          ? data.durationWeeks.value
+          : this.durationWeeks,
+      tags: data.tags.present ? data.tags.value : this.tags,
+      config: data.config.present ? data.config.value : this.config,
+      isTemplate: data.isTemplate.present
+          ? data.isTemplate.value
+          : this.isTemplate,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      version: data.version.present ? data.version.value : this.version,
+      syncStatus: data.syncStatus.present
+          ? data.syncStatus.value
+          : this.syncStatus,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Program(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('description: $description, ')
+          ..write('author: $author, ')
+          ..write('difficulty: $difficulty, ')
+          ..write('frequency: $frequency, ')
+          ..write('durationWeeks: $durationWeeks, ')
+          ..write('tags: $tags, ')
+          ..write('config: $config, ')
+          ..write('isTemplate: $isTemplate, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    name,
+    description,
+    author,
+    difficulty,
+    frequency,
+    durationWeeks,
+    tags,
+    config,
+    isTemplate,
+    createdAt,
+    updatedAt,
+    version,
+    syncStatus,
+    deletedAt,
   );
   @override
-  late final GeneratedColumn<DateTime> completedAt = GeneratedColumn<DateTime>(
-    'completed_at',
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Program &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.description == this.description &&
+          other.author == this.author &&
+          other.difficulty == this.difficulty &&
+          other.frequency == this.frequency &&
+          other.durationWeeks == this.durationWeeks &&
+          other.tags == this.tags &&
+          other.config == this.config &&
+          other.isTemplate == this.isTemplate &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.version == this.version &&
+          other.syncStatus == this.syncStatus &&
+          other.deletedAt == this.deletedAt);
+}
+
+class ProgramsCompanion extends UpdateCompanion<Program> {
+  final Value<String> id;
+  final Value<String> name;
+  final Value<String?> description;
+  final Value<String?> author;
+  final Value<String> difficulty;
+  final Value<int?> frequency;
+  final Value<int?> durationWeeks;
+  final Value<String?> tags;
+  final Value<String> config;
+  final Value<bool> isTemplate;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<int> version;
+  final Value<String> syncStatus;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const ProgramsCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.description = const Value.absent(),
+    this.author = const Value.absent(),
+    this.difficulty = const Value.absent(),
+    this.frequency = const Value.absent(),
+    this.durationWeeks = const Value.absent(),
+    this.tags = const Value.absent(),
+    this.config = const Value.absent(),
+    this.isTemplate = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ProgramsCompanion.insert({
+    required String id,
+    required String name,
+    this.description = const Value.absent(),
+    this.author = const Value.absent(),
+    this.difficulty = const Value.absent(),
+    this.frequency = const Value.absent(),
+    this.durationWeeks = const Value.absent(),
+    this.tags = const Value.absent(),
+    required String config,
+    this.isTemplate = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       name = Value(name),
+       config = Value(config);
+  static Insertable<Program> custom({
+    Expression<String>? id,
+    Expression<String>? name,
+    Expression<String>? description,
+    Expression<String>? author,
+    Expression<String>? difficulty,
+    Expression<int>? frequency,
+    Expression<int>? durationWeeks,
+    Expression<String>? tags,
+    Expression<String>? config,
+    Expression<bool>? isTemplate,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? version,
+    Expression<String>? syncStatus,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (description != null) 'description': description,
+      if (author != null) 'author': author,
+      if (difficulty != null) 'difficulty': difficulty,
+      if (frequency != null) 'frequency': frequency,
+      if (durationWeeks != null) 'duration_weeks': durationWeeks,
+      if (tags != null) 'tags': tags,
+      if (config != null) 'config': config,
+      if (isTemplate != null) 'is_template': isTemplate,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (version != null) 'version': version,
+      if (syncStatus != null) 'sync_status': syncStatus,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ProgramsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? name,
+    Value<String?>? description,
+    Value<String?>? author,
+    Value<String>? difficulty,
+    Value<int?>? frequency,
+    Value<int?>? durationWeeks,
+    Value<String?>? tags,
+    Value<String>? config,
+    Value<bool>? isTemplate,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<int>? version,
+    Value<String>? syncStatus,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return ProgramsCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      author: author ?? this.author,
+      difficulty: difficulty ?? this.difficulty,
+      frequency: frequency ?? this.frequency,
+      durationWeeks: durationWeeks ?? this.durationWeeks,
+      tags: tags ?? this.tags,
+      config: config ?? this.config,
+      isTemplate: isTemplate ?? this.isTemplate,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      version: version ?? this.version,
+      syncStatus: syncStatus ?? this.syncStatus,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (description.present) {
+      map['description'] = Variable<String>(description.value);
+    }
+    if (author.present) {
+      map['author'] = Variable<String>(author.value);
+    }
+    if (difficulty.present) {
+      map['difficulty'] = Variable<String>(difficulty.value);
+    }
+    if (frequency.present) {
+      map['frequency'] = Variable<int>(frequency.value);
+    }
+    if (durationWeeks.present) {
+      map['duration_weeks'] = Variable<int>(durationWeeks.value);
+    }
+    if (tags.present) {
+      map['tags'] = Variable<String>(tags.value);
+    }
+    if (config.present) {
+      map['config'] = Variable<String>(config.value);
+    }
+    if (isTemplate.present) {
+      map['is_template'] = Variable<bool>(isTemplate.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<int>(version.value);
+    }
+    if (syncStatus.present) {
+      map['sync_status'] = Variable<String>(syncStatus.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProgramsCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('description: $description, ')
+          ..write('author: $author, ')
+          ..write('difficulty: $difficulty, ')
+          ..write('frequency: $frequency, ')
+          ..write('durationWeeks: $durationWeeks, ')
+          ..write('tags: $tags, ')
+          ..write('config: $config, ')
+          ..write('isTemplate: $isTemplate, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $UserProgramsTable extends UserPrograms
+    with TableInfo<$UserProgramsTable, UserProgram> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $UserProgramsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
+  @override
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+    'user_id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _programIdMeta = const VerificationMeta(
+    'programId',
+  );
+  @override
+  late final GeneratedColumn<String> programId = GeneratedColumn<String>(
+    'program_id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _startDateMeta = const VerificationMeta(
+    'startDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> startDate = GeneratedColumn<DateTime>(
+    'start_date',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _currentWeekMeta = const VerificationMeta(
+    'currentWeek',
+  );
+  @override
+  late final GeneratedColumn<int> currentWeek = GeneratedColumn<int>(
+    'current_week',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _currentDayMeta = const VerificationMeta(
+    'currentDay',
+  );
+  @override
+  late final GeneratedColumn<int> currentDay = GeneratedColumn<int>(
+    'current_day',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 20,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('active'),
+  );
+  static const VerificationMeta _customizationsMeta = const VerificationMeta(
+    'customizations',
+  );
+  @override
+  late final GeneratedColumn<String> customizations = GeneratedColumn<String>(
+    'customizations',
     aliasedName,
     true,
-    type: DriftSqlType.dateTime,
+    type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
@@ -4169,16 +4988,12 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
   List<GeneratedColumn> get $columns => [
     id,
     userId,
-    name,
-    description,
-    durationWeeks,
-    sessionsPerWeek,
-    difficulty,
-    configuration,
-    isTemplate,
-    isActive,
-    startedAt,
-    completedAt,
+    programId,
+    startDate,
+    currentWeek,
+    currentDay,
+    status,
+    customizations,
     createdAt,
     updatedAt,
     version,
@@ -4189,10 +5004,10 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'programs';
+  static const String $name = 'user_programs';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Program> instance, {
+    Insertable<UserProgram> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -4210,82 +5025,49 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
     } else if (isInserting) {
       context.missing(_userIdMeta);
     }
-    if (data.containsKey('name')) {
+    if (data.containsKey('program_id')) {
       context.handle(
-        _nameMeta,
-        name.isAcceptableOrUnknown(data['name']!, _nameMeta),
+        _programIdMeta,
+        programId.isAcceptableOrUnknown(data['program_id']!, _programIdMeta),
       );
     } else if (isInserting) {
-      context.missing(_nameMeta);
+      context.missing(_programIdMeta);
     }
-    if (data.containsKey('description')) {
+    if (data.containsKey('start_date')) {
       context.handle(
-        _descriptionMeta,
-        description.isAcceptableOrUnknown(
-          data['description']!,
-          _descriptionMeta,
-        ),
-      );
-    }
-    if (data.containsKey('duration_weeks')) {
-      context.handle(
-        _durationWeeksMeta,
-        durationWeeks.isAcceptableOrUnknown(
-          data['duration_weeks']!,
-          _durationWeeksMeta,
-        ),
-      );
-    }
-    if (data.containsKey('sessions_per_week')) {
-      context.handle(
-        _sessionsPerWeekMeta,
-        sessionsPerWeek.isAcceptableOrUnknown(
-          data['sessions_per_week']!,
-          _sessionsPerWeekMeta,
-        ),
-      );
-    }
-    if (data.containsKey('difficulty')) {
-      context.handle(
-        _difficultyMeta,
-        difficulty.isAcceptableOrUnknown(data['difficulty']!, _difficultyMeta),
-      );
-    }
-    if (data.containsKey('configuration')) {
-      context.handle(
-        _configurationMeta,
-        configuration.isAcceptableOrUnknown(
-          data['configuration']!,
-          _configurationMeta,
-        ),
+        _startDateMeta,
+        startDate.isAcceptableOrUnknown(data['start_date']!, _startDateMeta),
       );
     } else if (isInserting) {
-      context.missing(_configurationMeta);
+      context.missing(_startDateMeta);
     }
-    if (data.containsKey('is_template')) {
+    if (data.containsKey('current_week')) {
       context.handle(
-        _isTemplateMeta,
-        isTemplate.isAcceptableOrUnknown(data['is_template']!, _isTemplateMeta),
+        _currentWeekMeta,
+        currentWeek.isAcceptableOrUnknown(
+          data['current_week']!,
+          _currentWeekMeta,
+        ),
       );
     }
-    if (data.containsKey('is_active')) {
+    if (data.containsKey('current_day')) {
       context.handle(
-        _isActiveMeta,
-        isActive.isAcceptableOrUnknown(data['is_active']!, _isActiveMeta),
+        _currentDayMeta,
+        currentDay.isAcceptableOrUnknown(data['current_day']!, _currentDayMeta),
       );
     }
-    if (data.containsKey('started_at')) {
+    if (data.containsKey('status')) {
       context.handle(
-        _startedAtMeta,
-        startedAt.isAcceptableOrUnknown(data['started_at']!, _startedAtMeta),
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
       );
     }
-    if (data.containsKey('completed_at')) {
+    if (data.containsKey('customizations')) {
       context.handle(
-        _completedAtMeta,
-        completedAt.isAcceptableOrUnknown(
-          data['completed_at']!,
-          _completedAtMeta,
+        _customizationsMeta,
+        customizations.isAcceptableOrUnknown(
+          data['customizations']!,
+          _customizationsMeta,
         ),
       );
     }
@@ -4325,9 +5107,9 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Program map(Map<String, dynamic> data, {String? tablePrefix}) {
+  UserProgram map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Program(
+    return UserProgram(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -4336,45 +5118,29 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
         DriftSqlType.string,
         data['${effectivePrefix}user_id'],
       )!,
-      name: attachedDatabase.typeMapping.read(
+      programId: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}name'],
+        data['${effectivePrefix}program_id'],
       )!,
-      description: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}description'],
-      ),
-      durationWeeks: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}duration_weeks'],
-      ),
-      sessionsPerWeek: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}sessions_per_week'],
-      ),
-      difficulty: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}difficulty'],
-      )!,
-      configuration: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}configuration'],
-      )!,
-      isTemplate: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}is_template'],
-      )!,
-      isActive: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}is_active'],
-      )!,
-      startedAt: attachedDatabase.typeMapping.read(
+      startDate: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
-        data['${effectivePrefix}started_at'],
-      ),
-      completedAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}completed_at'],
+        data['${effectivePrefix}start_date'],
+      )!,
+      currentWeek: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}current_week'],
+      )!,
+      currentDay: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}current_day'],
+      )!,
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      customizations: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}customizations'],
       ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
@@ -4400,42 +5166,34 @@ class $ProgramsTable extends Programs with TableInfo<$ProgramsTable, Program> {
   }
 
   @override
-  $ProgramsTable createAlias(String alias) {
-    return $ProgramsTable(attachedDatabase, alias);
+  $UserProgramsTable createAlias(String alias) {
+    return $UserProgramsTable(attachedDatabase, alias);
   }
 }
 
-class Program extends DataClass implements Insertable<Program> {
+class UserProgram extends DataClass implements Insertable<UserProgram> {
   final String id;
   final String userId;
-  final String name;
-  final String? description;
-  final int? durationWeeks;
-  final int? sessionsPerWeek;
-  final String difficulty;
-  final String configuration;
-  final bool isTemplate;
-  final bool isActive;
-  final DateTime? startedAt;
-  final DateTime? completedAt;
+  final String programId;
+  final DateTime startDate;
+  final int currentWeek;
+  final int currentDay;
+  final String status;
+  final String? customizations;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int version;
   final String syncStatus;
   final DateTime? deletedAt;
-  const Program({
+  const UserProgram({
     required this.id,
     required this.userId,
-    required this.name,
-    this.description,
-    this.durationWeeks,
-    this.sessionsPerWeek,
-    required this.difficulty,
-    required this.configuration,
-    required this.isTemplate,
-    required this.isActive,
-    this.startedAt,
-    this.completedAt,
+    required this.programId,
+    required this.startDate,
+    required this.currentWeek,
+    required this.currentDay,
+    required this.status,
+    this.customizations,
     required this.createdAt,
     required this.updatedAt,
     required this.version,
@@ -4447,25 +5205,13 @@ class Program extends DataClass implements Insertable<Program> {
     final map = <String, Expression>{};
     map['id'] = Variable<String>(id);
     map['user_id'] = Variable<String>(userId);
-    map['name'] = Variable<String>(name);
-    if (!nullToAbsent || description != null) {
-      map['description'] = Variable<String>(description);
-    }
-    if (!nullToAbsent || durationWeeks != null) {
-      map['duration_weeks'] = Variable<int>(durationWeeks);
-    }
-    if (!nullToAbsent || sessionsPerWeek != null) {
-      map['sessions_per_week'] = Variable<int>(sessionsPerWeek);
-    }
-    map['difficulty'] = Variable<String>(difficulty);
-    map['configuration'] = Variable<String>(configuration);
-    map['is_template'] = Variable<bool>(isTemplate);
-    map['is_active'] = Variable<bool>(isActive);
-    if (!nullToAbsent || startedAt != null) {
-      map['started_at'] = Variable<DateTime>(startedAt);
-    }
-    if (!nullToAbsent || completedAt != null) {
-      map['completed_at'] = Variable<DateTime>(completedAt);
+    map['program_id'] = Variable<String>(programId);
+    map['start_date'] = Variable<DateTime>(startDate);
+    map['current_week'] = Variable<int>(currentWeek);
+    map['current_day'] = Variable<int>(currentDay);
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || customizations != null) {
+      map['customizations'] = Variable<String>(customizations);
     }
     map['created_at'] = Variable<DateTime>(createdAt);
     map['updated_at'] = Variable<DateTime>(updatedAt);
@@ -4477,30 +5223,18 @@ class Program extends DataClass implements Insertable<Program> {
     return map;
   }
 
-  ProgramsCompanion toCompanion(bool nullToAbsent) {
-    return ProgramsCompanion(
+  UserProgramsCompanion toCompanion(bool nullToAbsent) {
+    return UserProgramsCompanion(
       id: Value(id),
       userId: Value(userId),
-      name: Value(name),
-      description: description == null && nullToAbsent
+      programId: Value(programId),
+      startDate: Value(startDate),
+      currentWeek: Value(currentWeek),
+      currentDay: Value(currentDay),
+      status: Value(status),
+      customizations: customizations == null && nullToAbsent
           ? const Value.absent()
-          : Value(description),
-      durationWeeks: durationWeeks == null && nullToAbsent
-          ? const Value.absent()
-          : Value(durationWeeks),
-      sessionsPerWeek: sessionsPerWeek == null && nullToAbsent
-          ? const Value.absent()
-          : Value(sessionsPerWeek),
-      difficulty: Value(difficulty),
-      configuration: Value(configuration),
-      isTemplate: Value(isTemplate),
-      isActive: Value(isActive),
-      startedAt: startedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(startedAt),
-      completedAt: completedAt == null && nullToAbsent
-          ? const Value.absent()
-          : Value(completedAt),
+          : Value(customizations),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
       version: Value(version),
@@ -4511,24 +5245,20 @@ class Program extends DataClass implements Insertable<Program> {
     );
   }
 
-  factory Program.fromJson(
+  factory UserProgram.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Program(
+    return UserProgram(
       id: serializer.fromJson<String>(json['id']),
       userId: serializer.fromJson<String>(json['userId']),
-      name: serializer.fromJson<String>(json['name']),
-      description: serializer.fromJson<String?>(json['description']),
-      durationWeeks: serializer.fromJson<int?>(json['durationWeeks']),
-      sessionsPerWeek: serializer.fromJson<int?>(json['sessionsPerWeek']),
-      difficulty: serializer.fromJson<String>(json['difficulty']),
-      configuration: serializer.fromJson<String>(json['configuration']),
-      isTemplate: serializer.fromJson<bool>(json['isTemplate']),
-      isActive: serializer.fromJson<bool>(json['isActive']),
-      startedAt: serializer.fromJson<DateTime?>(json['startedAt']),
-      completedAt: serializer.fromJson<DateTime?>(json['completedAt']),
+      programId: serializer.fromJson<String>(json['programId']),
+      startDate: serializer.fromJson<DateTime>(json['startDate']),
+      currentWeek: serializer.fromJson<int>(json['currentWeek']),
+      currentDay: serializer.fromJson<int>(json['currentDay']),
+      status: serializer.fromJson<String>(json['status']),
+      customizations: serializer.fromJson<String?>(json['customizations']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
       version: serializer.fromJson<int>(json['version']),
@@ -4542,16 +5272,12 @@ class Program extends DataClass implements Insertable<Program> {
     return <String, dynamic>{
       'id': serializer.toJson<String>(id),
       'userId': serializer.toJson<String>(userId),
-      'name': serializer.toJson<String>(name),
-      'description': serializer.toJson<String?>(description),
-      'durationWeeks': serializer.toJson<int?>(durationWeeks),
-      'sessionsPerWeek': serializer.toJson<int?>(sessionsPerWeek),
-      'difficulty': serializer.toJson<String>(difficulty),
-      'configuration': serializer.toJson<String>(configuration),
-      'isTemplate': serializer.toJson<bool>(isTemplate),
-      'isActive': serializer.toJson<bool>(isActive),
-      'startedAt': serializer.toJson<DateTime?>(startedAt),
-      'completedAt': serializer.toJson<DateTime?>(completedAt),
+      'programId': serializer.toJson<String>(programId),
+      'startDate': serializer.toJson<DateTime>(startDate),
+      'currentWeek': serializer.toJson<int>(currentWeek),
+      'currentDay': serializer.toJson<int>(currentDay),
+      'status': serializer.toJson<String>(status),
+      'customizations': serializer.toJson<String?>(customizations),
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'updatedAt': serializer.toJson<DateTime>(updatedAt),
       'version': serializer.toJson<int>(version),
@@ -4560,75 +5286,53 @@ class Program extends DataClass implements Insertable<Program> {
     };
   }
 
-  Program copyWith({
+  UserProgram copyWith({
     String? id,
     String? userId,
-    String? name,
-    Value<String?> description = const Value.absent(),
-    Value<int?> durationWeeks = const Value.absent(),
-    Value<int?> sessionsPerWeek = const Value.absent(),
-    String? difficulty,
-    String? configuration,
-    bool? isTemplate,
-    bool? isActive,
-    Value<DateTime?> startedAt = const Value.absent(),
-    Value<DateTime?> completedAt = const Value.absent(),
+    String? programId,
+    DateTime? startDate,
+    int? currentWeek,
+    int? currentDay,
+    String? status,
+    Value<String?> customizations = const Value.absent(),
     DateTime? createdAt,
     DateTime? updatedAt,
     int? version,
     String? syncStatus,
     Value<DateTime?> deletedAt = const Value.absent(),
-  }) => Program(
+  }) => UserProgram(
     id: id ?? this.id,
     userId: userId ?? this.userId,
-    name: name ?? this.name,
-    description: description.present ? description.value : this.description,
-    durationWeeks: durationWeeks.present
-        ? durationWeeks.value
-        : this.durationWeeks,
-    sessionsPerWeek: sessionsPerWeek.present
-        ? sessionsPerWeek.value
-        : this.sessionsPerWeek,
-    difficulty: difficulty ?? this.difficulty,
-    configuration: configuration ?? this.configuration,
-    isTemplate: isTemplate ?? this.isTemplate,
-    isActive: isActive ?? this.isActive,
-    startedAt: startedAt.present ? startedAt.value : this.startedAt,
-    completedAt: completedAt.present ? completedAt.value : this.completedAt,
+    programId: programId ?? this.programId,
+    startDate: startDate ?? this.startDate,
+    currentWeek: currentWeek ?? this.currentWeek,
+    currentDay: currentDay ?? this.currentDay,
+    status: status ?? this.status,
+    customizations: customizations.present
+        ? customizations.value
+        : this.customizations,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
     version: version ?? this.version,
     syncStatus: syncStatus ?? this.syncStatus,
     deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
   );
-  Program copyWithCompanion(ProgramsCompanion data) {
-    return Program(
+  UserProgram copyWithCompanion(UserProgramsCompanion data) {
+    return UserProgram(
       id: data.id.present ? data.id.value : this.id,
       userId: data.userId.present ? data.userId.value : this.userId,
-      name: data.name.present ? data.name.value : this.name,
-      description: data.description.present
-          ? data.description.value
-          : this.description,
-      durationWeeks: data.durationWeeks.present
-          ? data.durationWeeks.value
-          : this.durationWeeks,
-      sessionsPerWeek: data.sessionsPerWeek.present
-          ? data.sessionsPerWeek.value
-          : this.sessionsPerWeek,
-      difficulty: data.difficulty.present
-          ? data.difficulty.value
-          : this.difficulty,
-      configuration: data.configuration.present
-          ? data.configuration.value
-          : this.configuration,
-      isTemplate: data.isTemplate.present
-          ? data.isTemplate.value
-          : this.isTemplate,
-      isActive: data.isActive.present ? data.isActive.value : this.isActive,
-      startedAt: data.startedAt.present ? data.startedAt.value : this.startedAt,
-      completedAt: data.completedAt.present
-          ? data.completedAt.value
-          : this.completedAt,
+      programId: data.programId.present ? data.programId.value : this.programId,
+      startDate: data.startDate.present ? data.startDate.value : this.startDate,
+      currentWeek: data.currentWeek.present
+          ? data.currentWeek.value
+          : this.currentWeek,
+      currentDay: data.currentDay.present
+          ? data.currentDay.value
+          : this.currentDay,
+      status: data.status.present ? data.status.value : this.status,
+      customizations: data.customizations.present
+          ? data.customizations.value
+          : this.customizations,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
       version: data.version.present ? data.version.value : this.version,
@@ -4641,19 +5345,15 @@ class Program extends DataClass implements Insertable<Program> {
 
   @override
   String toString() {
-    return (StringBuffer('Program(')
+    return (StringBuffer('UserProgram(')
           ..write('id: $id, ')
           ..write('userId: $userId, ')
-          ..write('name: $name, ')
-          ..write('description: $description, ')
-          ..write('durationWeeks: $durationWeeks, ')
-          ..write('sessionsPerWeek: $sessionsPerWeek, ')
-          ..write('difficulty: $difficulty, ')
-          ..write('configuration: $configuration, ')
-          ..write('isTemplate: $isTemplate, ')
-          ..write('isActive: $isActive, ')
-          ..write('startedAt: $startedAt, ')
-          ..write('completedAt: $completedAt, ')
+          ..write('programId: $programId, ')
+          ..write('startDate: $startDate, ')
+          ..write('currentWeek: $currentWeek, ')
+          ..write('currentDay: $currentDay, ')
+          ..write('status: $status, ')
+          ..write('customizations: $customizations, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt, ')
           ..write('version: $version, ')
@@ -4667,16 +5367,12 @@ class Program extends DataClass implements Insertable<Program> {
   int get hashCode => Object.hash(
     id,
     userId,
-    name,
-    description,
-    durationWeeks,
-    sessionsPerWeek,
-    difficulty,
-    configuration,
-    isTemplate,
-    isActive,
-    startedAt,
-    completedAt,
+    programId,
+    startDate,
+    currentWeek,
+    currentDay,
+    status,
+    customizations,
     createdAt,
     updatedAt,
     version,
@@ -4686,19 +5382,15 @@ class Program extends DataClass implements Insertable<Program> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Program &&
+      (other is UserProgram &&
           other.id == this.id &&
           other.userId == this.userId &&
-          other.name == this.name &&
-          other.description == this.description &&
-          other.durationWeeks == this.durationWeeks &&
-          other.sessionsPerWeek == this.sessionsPerWeek &&
-          other.difficulty == this.difficulty &&
-          other.configuration == this.configuration &&
-          other.isTemplate == this.isTemplate &&
-          other.isActive == this.isActive &&
-          other.startedAt == this.startedAt &&
-          other.completedAt == this.completedAt &&
+          other.programId == this.programId &&
+          other.startDate == this.startDate &&
+          other.currentWeek == this.currentWeek &&
+          other.currentDay == this.currentDay &&
+          other.status == this.status &&
+          other.customizations == this.customizations &&
           other.createdAt == this.createdAt &&
           other.updatedAt == this.updatedAt &&
           other.version == this.version &&
@@ -4706,38 +5398,30 @@ class Program extends DataClass implements Insertable<Program> {
           other.deletedAt == this.deletedAt);
 }
 
-class ProgramsCompanion extends UpdateCompanion<Program> {
+class UserProgramsCompanion extends UpdateCompanion<UserProgram> {
   final Value<String> id;
   final Value<String> userId;
-  final Value<String> name;
-  final Value<String?> description;
-  final Value<int?> durationWeeks;
-  final Value<int?> sessionsPerWeek;
-  final Value<String> difficulty;
-  final Value<String> configuration;
-  final Value<bool> isTemplate;
-  final Value<bool> isActive;
-  final Value<DateTime?> startedAt;
-  final Value<DateTime?> completedAt;
+  final Value<String> programId;
+  final Value<DateTime> startDate;
+  final Value<int> currentWeek;
+  final Value<int> currentDay;
+  final Value<String> status;
+  final Value<String?> customizations;
   final Value<DateTime> createdAt;
   final Value<DateTime> updatedAt;
   final Value<int> version;
   final Value<String> syncStatus;
   final Value<DateTime?> deletedAt;
   final Value<int> rowid;
-  const ProgramsCompanion({
+  const UserProgramsCompanion({
     this.id = const Value.absent(),
     this.userId = const Value.absent(),
-    this.name = const Value.absent(),
-    this.description = const Value.absent(),
-    this.durationWeeks = const Value.absent(),
-    this.sessionsPerWeek = const Value.absent(),
-    this.difficulty = const Value.absent(),
-    this.configuration = const Value.absent(),
-    this.isTemplate = const Value.absent(),
-    this.isActive = const Value.absent(),
-    this.startedAt = const Value.absent(),
-    this.completedAt = const Value.absent(),
+    this.programId = const Value.absent(),
+    this.startDate = const Value.absent(),
+    this.currentWeek = const Value.absent(),
+    this.currentDay = const Value.absent(),
+    this.status = const Value.absent(),
+    this.customizations = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
     this.version = const Value.absent(),
@@ -4745,19 +5429,15 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     this.deletedAt = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  ProgramsCompanion.insert({
+  UserProgramsCompanion.insert({
     required String id,
     required String userId,
-    required String name,
-    this.description = const Value.absent(),
-    this.durationWeeks = const Value.absent(),
-    this.sessionsPerWeek = const Value.absent(),
-    this.difficulty = const Value.absent(),
-    required String configuration,
-    this.isTemplate = const Value.absent(),
-    this.isActive = const Value.absent(),
-    this.startedAt = const Value.absent(),
-    this.completedAt = const Value.absent(),
+    required String programId,
+    required DateTime startDate,
+    this.currentWeek = const Value.absent(),
+    this.currentDay = const Value.absent(),
+    this.status = const Value.absent(),
+    this.customizations = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
     this.version = const Value.absent(),
@@ -4766,21 +5446,17 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        userId = Value(userId),
-       name = Value(name),
-       configuration = Value(configuration);
-  static Insertable<Program> custom({
+       programId = Value(programId),
+       startDate = Value(startDate);
+  static Insertable<UserProgram> custom({
     Expression<String>? id,
     Expression<String>? userId,
-    Expression<String>? name,
-    Expression<String>? description,
-    Expression<int>? durationWeeks,
-    Expression<int>? sessionsPerWeek,
-    Expression<String>? difficulty,
-    Expression<String>? configuration,
-    Expression<bool>? isTemplate,
-    Expression<bool>? isActive,
-    Expression<DateTime>? startedAt,
-    Expression<DateTime>? completedAt,
+    Expression<String>? programId,
+    Expression<DateTime>? startDate,
+    Expression<int>? currentWeek,
+    Expression<int>? currentDay,
+    Expression<String>? status,
+    Expression<String>? customizations,
     Expression<DateTime>? createdAt,
     Expression<DateTime>? updatedAt,
     Expression<int>? version,
@@ -4791,16 +5467,12 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (userId != null) 'user_id': userId,
-      if (name != null) 'name': name,
-      if (description != null) 'description': description,
-      if (durationWeeks != null) 'duration_weeks': durationWeeks,
-      if (sessionsPerWeek != null) 'sessions_per_week': sessionsPerWeek,
-      if (difficulty != null) 'difficulty': difficulty,
-      if (configuration != null) 'configuration': configuration,
-      if (isTemplate != null) 'is_template': isTemplate,
-      if (isActive != null) 'is_active': isActive,
-      if (startedAt != null) 'started_at': startedAt,
-      if (completedAt != null) 'completed_at': completedAt,
+      if (programId != null) 'program_id': programId,
+      if (startDate != null) 'start_date': startDate,
+      if (currentWeek != null) 'current_week': currentWeek,
+      if (currentDay != null) 'current_day': currentDay,
+      if (status != null) 'status': status,
+      if (customizations != null) 'customizations': customizations,
       if (createdAt != null) 'created_at': createdAt,
       if (updatedAt != null) 'updated_at': updatedAt,
       if (version != null) 'version': version,
@@ -4810,19 +5482,15 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     });
   }
 
-  ProgramsCompanion copyWith({
+  UserProgramsCompanion copyWith({
     Value<String>? id,
     Value<String>? userId,
-    Value<String>? name,
-    Value<String?>? description,
-    Value<int?>? durationWeeks,
-    Value<int?>? sessionsPerWeek,
-    Value<String>? difficulty,
-    Value<String>? configuration,
-    Value<bool>? isTemplate,
-    Value<bool>? isActive,
-    Value<DateTime?>? startedAt,
-    Value<DateTime?>? completedAt,
+    Value<String>? programId,
+    Value<DateTime>? startDate,
+    Value<int>? currentWeek,
+    Value<int>? currentDay,
+    Value<String>? status,
+    Value<String?>? customizations,
     Value<DateTime>? createdAt,
     Value<DateTime>? updatedAt,
     Value<int>? version,
@@ -4830,19 +5498,15 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     Value<DateTime?>? deletedAt,
     Value<int>? rowid,
   }) {
-    return ProgramsCompanion(
+    return UserProgramsCompanion(
       id: id ?? this.id,
       userId: userId ?? this.userId,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      durationWeeks: durationWeeks ?? this.durationWeeks,
-      sessionsPerWeek: sessionsPerWeek ?? this.sessionsPerWeek,
-      difficulty: difficulty ?? this.difficulty,
-      configuration: configuration ?? this.configuration,
-      isTemplate: isTemplate ?? this.isTemplate,
-      isActive: isActive ?? this.isActive,
-      startedAt: startedAt ?? this.startedAt,
-      completedAt: completedAt ?? this.completedAt,
+      programId: programId ?? this.programId,
+      startDate: startDate ?? this.startDate,
+      currentWeek: currentWeek ?? this.currentWeek,
+      currentDay: currentDay ?? this.currentDay,
+      status: status ?? this.status,
+      customizations: customizations ?? this.customizations,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       version: version ?? this.version,
@@ -4861,35 +5525,23 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
     if (userId.present) {
       map['user_id'] = Variable<String>(userId.value);
     }
-    if (name.present) {
-      map['name'] = Variable<String>(name.value);
+    if (programId.present) {
+      map['program_id'] = Variable<String>(programId.value);
     }
-    if (description.present) {
-      map['description'] = Variable<String>(description.value);
+    if (startDate.present) {
+      map['start_date'] = Variable<DateTime>(startDate.value);
     }
-    if (durationWeeks.present) {
-      map['duration_weeks'] = Variable<int>(durationWeeks.value);
+    if (currentWeek.present) {
+      map['current_week'] = Variable<int>(currentWeek.value);
     }
-    if (sessionsPerWeek.present) {
-      map['sessions_per_week'] = Variable<int>(sessionsPerWeek.value);
+    if (currentDay.present) {
+      map['current_day'] = Variable<int>(currentDay.value);
     }
-    if (difficulty.present) {
-      map['difficulty'] = Variable<String>(difficulty.value);
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
     }
-    if (configuration.present) {
-      map['configuration'] = Variable<String>(configuration.value);
-    }
-    if (isTemplate.present) {
-      map['is_template'] = Variable<bool>(isTemplate.value);
-    }
-    if (isActive.present) {
-      map['is_active'] = Variable<bool>(isActive.value);
-    }
-    if (startedAt.present) {
-      map['started_at'] = Variable<DateTime>(startedAt.value);
-    }
-    if (completedAt.present) {
-      map['completed_at'] = Variable<DateTime>(completedAt.value);
+    if (customizations.present) {
+      map['customizations'] = Variable<String>(customizations.value);
     }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
@@ -4914,19 +5566,848 @@ class ProgramsCompanion extends UpdateCompanion<Program> {
 
   @override
   String toString() {
-    return (StringBuffer('ProgramsCompanion(')
+    return (StringBuffer('UserProgramsCompanion(')
           ..write('id: $id, ')
           ..write('userId: $userId, ')
-          ..write('name: $name, ')
-          ..write('description: $description, ')
-          ..write('durationWeeks: $durationWeeks, ')
-          ..write('sessionsPerWeek: $sessionsPerWeek, ')
-          ..write('difficulty: $difficulty, ')
-          ..write('configuration: $configuration, ')
-          ..write('isTemplate: $isTemplate, ')
-          ..write('isActive: $isActive, ')
-          ..write('startedAt: $startedAt, ')
+          ..write('programId: $programId, ')
+          ..write('startDate: $startDate, ')
+          ..write('currentWeek: $currentWeek, ')
+          ..write('currentDay: $currentDay, ')
+          ..write('status: $status, ')
+          ..write('customizations: $customizations, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ProgramSessionsTable extends ProgramSessions
+    with TableInfo<$ProgramSessionsTable, ProgramSession> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProgramSessionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _userProgramIdMeta = const VerificationMeta(
+    'userProgramId',
+  );
+  @override
+  late final GeneratedColumn<String> userProgramId = GeneratedColumn<String>(
+    'user_program_id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _weekNumberMeta = const VerificationMeta(
+    'weekNumber',
+  );
+  @override
+  late final GeneratedColumn<int> weekNumber = GeneratedColumn<int>(
+    'week_number',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dayNumberMeta = const VerificationMeta(
+    'dayNumber',
+  );
+  @override
+  late final GeneratedColumn<int> dayNumber = GeneratedColumn<int>(
+    'day_number',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _workoutIdMeta = const VerificationMeta(
+    'workoutId',
+  );
+  @override
+  late final GeneratedColumn<String> workoutId = GeneratedColumn<String>(
+    'workout_id',
+    aliasedName,
+    true,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 36,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _scheduledDateMeta = const VerificationMeta(
+    'scheduledDate',
+  );
+  @override
+  late final GeneratedColumn<DateTime> scheduledDate =
+      GeneratedColumn<DateTime>(
+        'scheduled_date',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _completedAtMeta = const VerificationMeta(
+    'completedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> completedAt = GeneratedColumn<DateTime>(
+    'completed_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
+  @override
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+    'status',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 20,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('scheduled'),
+  );
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+    'notes',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  static const VerificationMeta _versionMeta = const VerificationMeta(
+    'version',
+  );
+  @override
+  late final GeneratedColumn<int> version = GeneratedColumn<int>(
+    'version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _syncStatusMeta = const VerificationMeta(
+    'syncStatus',
+  );
+  @override
+  late final GeneratedColumn<String> syncStatus = GeneratedColumn<String>(
+    'sync_status',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 20,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('local'),
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    userProgramId,
+    weekNumber,
+    dayNumber,
+    workoutId,
+    scheduledDate,
+    completedAt,
+    status,
+    notes,
+    createdAt,
+    updatedAt,
+    version,
+    syncStatus,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'program_sessions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ProgramSession> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('user_program_id')) {
+      context.handle(
+        _userProgramIdMeta,
+        userProgramId.isAcceptableOrUnknown(
+          data['user_program_id']!,
+          _userProgramIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_userProgramIdMeta);
+    }
+    if (data.containsKey('week_number')) {
+      context.handle(
+        _weekNumberMeta,
+        weekNumber.isAcceptableOrUnknown(data['week_number']!, _weekNumberMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_weekNumberMeta);
+    }
+    if (data.containsKey('day_number')) {
+      context.handle(
+        _dayNumberMeta,
+        dayNumber.isAcceptableOrUnknown(data['day_number']!, _dayNumberMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dayNumberMeta);
+    }
+    if (data.containsKey('workout_id')) {
+      context.handle(
+        _workoutIdMeta,
+        workoutId.isAcceptableOrUnknown(data['workout_id']!, _workoutIdMeta),
+      );
+    }
+    if (data.containsKey('scheduled_date')) {
+      context.handle(
+        _scheduledDateMeta,
+        scheduledDate.isAcceptableOrUnknown(
+          data['scheduled_date']!,
+          _scheduledDateMeta,
+        ),
+      );
+    }
+    if (data.containsKey('completed_at')) {
+      context.handle(
+        _completedAtMeta,
+        completedAt.isAcceptableOrUnknown(
+          data['completed_at']!,
+          _completedAtMeta,
+        ),
+      );
+    }
+    if (data.containsKey('status')) {
+      context.handle(
+        _statusMeta,
+        status.isAcceptableOrUnknown(data['status']!, _statusMeta),
+      );
+    }
+    if (data.containsKey('notes')) {
+      context.handle(
+        _notesMeta,
+        notes.isAcceptableOrUnknown(data['notes']!, _notesMeta),
+      );
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    }
+    if (data.containsKey('version')) {
+      context.handle(
+        _versionMeta,
+        version.isAcceptableOrUnknown(data['version']!, _versionMeta),
+      );
+    }
+    if (data.containsKey('sync_status')) {
+      context.handle(
+        _syncStatusMeta,
+        syncStatus.isAcceptableOrUnknown(data['sync_status']!, _syncStatusMeta),
+      );
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProgramSession map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProgramSession(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      userProgramId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}user_program_id'],
+      )!,
+      weekNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}week_number'],
+      )!,
+      dayNumber: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}day_number'],
+      )!,
+      workoutId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}workout_id'],
+      ),
+      scheduledDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}scheduled_date'],
+      ),
+      completedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}completed_at'],
+      ),
+      status: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}status'],
+      )!,
+      notes: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notes'],
+      ),
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      version: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}version'],
+      )!,
+      syncStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sync_status'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $ProgramSessionsTable createAlias(String alias) {
+    return $ProgramSessionsTable(attachedDatabase, alias);
+  }
+}
+
+class ProgramSession extends DataClass implements Insertable<ProgramSession> {
+  final String id;
+  final String userProgramId;
+  final int weekNumber;
+  final int dayNumber;
+  final String? workoutId;
+  final DateTime? scheduledDate;
+  final DateTime? completedAt;
+  final String status;
+  final String? notes;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int version;
+  final String syncStatus;
+  final DateTime? deletedAt;
+  const ProgramSession({
+    required this.id,
+    required this.userProgramId,
+    required this.weekNumber,
+    required this.dayNumber,
+    this.workoutId,
+    this.scheduledDate,
+    this.completedAt,
+    required this.status,
+    this.notes,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.version,
+    required this.syncStatus,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['user_program_id'] = Variable<String>(userProgramId);
+    map['week_number'] = Variable<int>(weekNumber);
+    map['day_number'] = Variable<int>(dayNumber);
+    if (!nullToAbsent || workoutId != null) {
+      map['workout_id'] = Variable<String>(workoutId);
+    }
+    if (!nullToAbsent || scheduledDate != null) {
+      map['scheduled_date'] = Variable<DateTime>(scheduledDate);
+    }
+    if (!nullToAbsent || completedAt != null) {
+      map['completed_at'] = Variable<DateTime>(completedAt);
+    }
+    map['status'] = Variable<String>(status);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    map['version'] = Variable<int>(version);
+    map['sync_status'] = Variable<String>(syncStatus);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  ProgramSessionsCompanion toCompanion(bool nullToAbsent) {
+    return ProgramSessionsCompanion(
+      id: Value(id),
+      userProgramId: Value(userProgramId),
+      weekNumber: Value(weekNumber),
+      dayNumber: Value(dayNumber),
+      workoutId: workoutId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(workoutId),
+      scheduledDate: scheduledDate == null && nullToAbsent
+          ? const Value.absent()
+          : Value(scheduledDate),
+      completedAt: completedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(completedAt),
+      status: Value(status),
+      notes: notes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(notes),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      version: Value(version),
+      syncStatus: Value(syncStatus),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory ProgramSession.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProgramSession(
+      id: serializer.fromJson<String>(json['id']),
+      userProgramId: serializer.fromJson<String>(json['userProgramId']),
+      weekNumber: serializer.fromJson<int>(json['weekNumber']),
+      dayNumber: serializer.fromJson<int>(json['dayNumber']),
+      workoutId: serializer.fromJson<String?>(json['workoutId']),
+      scheduledDate: serializer.fromJson<DateTime?>(json['scheduledDate']),
+      completedAt: serializer.fromJson<DateTime?>(json['completedAt']),
+      status: serializer.fromJson<String>(json['status']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      version: serializer.fromJson<int>(json['version']),
+      syncStatus: serializer.fromJson<String>(json['syncStatus']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'userProgramId': serializer.toJson<String>(userProgramId),
+      'weekNumber': serializer.toJson<int>(weekNumber),
+      'dayNumber': serializer.toJson<int>(dayNumber),
+      'workoutId': serializer.toJson<String?>(workoutId),
+      'scheduledDate': serializer.toJson<DateTime?>(scheduledDate),
+      'completedAt': serializer.toJson<DateTime?>(completedAt),
+      'status': serializer.toJson<String>(status),
+      'notes': serializer.toJson<String?>(notes),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'version': serializer.toJson<int>(version),
+      'syncStatus': serializer.toJson<String>(syncStatus),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  ProgramSession copyWith({
+    String? id,
+    String? userProgramId,
+    int? weekNumber,
+    int? dayNumber,
+    Value<String?> workoutId = const Value.absent(),
+    Value<DateTime?> scheduledDate = const Value.absent(),
+    Value<DateTime?> completedAt = const Value.absent(),
+    String? status,
+    Value<String?> notes = const Value.absent(),
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? version,
+    String? syncStatus,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => ProgramSession(
+    id: id ?? this.id,
+    userProgramId: userProgramId ?? this.userProgramId,
+    weekNumber: weekNumber ?? this.weekNumber,
+    dayNumber: dayNumber ?? this.dayNumber,
+    workoutId: workoutId.present ? workoutId.value : this.workoutId,
+    scheduledDate: scheduledDate.present
+        ? scheduledDate.value
+        : this.scheduledDate,
+    completedAt: completedAt.present ? completedAt.value : this.completedAt,
+    status: status ?? this.status,
+    notes: notes.present ? notes.value : this.notes,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    version: version ?? this.version,
+    syncStatus: syncStatus ?? this.syncStatus,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  ProgramSession copyWithCompanion(ProgramSessionsCompanion data) {
+    return ProgramSession(
+      id: data.id.present ? data.id.value : this.id,
+      userProgramId: data.userProgramId.present
+          ? data.userProgramId.value
+          : this.userProgramId,
+      weekNumber: data.weekNumber.present
+          ? data.weekNumber.value
+          : this.weekNumber,
+      dayNumber: data.dayNumber.present ? data.dayNumber.value : this.dayNumber,
+      workoutId: data.workoutId.present ? data.workoutId.value : this.workoutId,
+      scheduledDate: data.scheduledDate.present
+          ? data.scheduledDate.value
+          : this.scheduledDate,
+      completedAt: data.completedAt.present
+          ? data.completedAt.value
+          : this.completedAt,
+      status: data.status.present ? data.status.value : this.status,
+      notes: data.notes.present ? data.notes.value : this.notes,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      version: data.version.present ? data.version.value : this.version,
+      syncStatus: data.syncStatus.present
+          ? data.syncStatus.value
+          : this.syncStatus,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProgramSession(')
+          ..write('id: $id, ')
+          ..write('userProgramId: $userProgramId, ')
+          ..write('weekNumber: $weekNumber, ')
+          ..write('dayNumber: $dayNumber, ')
+          ..write('workoutId: $workoutId, ')
+          ..write('scheduledDate: $scheduledDate, ')
           ..write('completedAt: $completedAt, ')
+          ..write('status: $status, ')
+          ..write('notes: $notes, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('version: $version, ')
+          ..write('syncStatus: $syncStatus, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    userProgramId,
+    weekNumber,
+    dayNumber,
+    workoutId,
+    scheduledDate,
+    completedAt,
+    status,
+    notes,
+    createdAt,
+    updatedAt,
+    version,
+    syncStatus,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProgramSession &&
+          other.id == this.id &&
+          other.userProgramId == this.userProgramId &&
+          other.weekNumber == this.weekNumber &&
+          other.dayNumber == this.dayNumber &&
+          other.workoutId == this.workoutId &&
+          other.scheduledDate == this.scheduledDate &&
+          other.completedAt == this.completedAt &&
+          other.status == this.status &&
+          other.notes == this.notes &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.version == this.version &&
+          other.syncStatus == this.syncStatus &&
+          other.deletedAt == this.deletedAt);
+}
+
+class ProgramSessionsCompanion extends UpdateCompanion<ProgramSession> {
+  final Value<String> id;
+  final Value<String> userProgramId;
+  final Value<int> weekNumber;
+  final Value<int> dayNumber;
+  final Value<String?> workoutId;
+  final Value<DateTime?> scheduledDate;
+  final Value<DateTime?> completedAt;
+  final Value<String> status;
+  final Value<String?> notes;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<int> version;
+  final Value<String> syncStatus;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const ProgramSessionsCompanion({
+    this.id = const Value.absent(),
+    this.userProgramId = const Value.absent(),
+    this.weekNumber = const Value.absent(),
+    this.dayNumber = const Value.absent(),
+    this.workoutId = const Value.absent(),
+    this.scheduledDate = const Value.absent(),
+    this.completedAt = const Value.absent(),
+    this.status = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  ProgramSessionsCompanion.insert({
+    required String id,
+    required String userProgramId,
+    required int weekNumber,
+    required int dayNumber,
+    this.workoutId = const Value.absent(),
+    this.scheduledDate = const Value.absent(),
+    this.completedAt = const Value.absent(),
+    this.status = const Value.absent(),
+    this.notes = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.version = const Value.absent(),
+    this.syncStatus = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       userProgramId = Value(userProgramId),
+       weekNumber = Value(weekNumber),
+       dayNumber = Value(dayNumber);
+  static Insertable<ProgramSession> custom({
+    Expression<String>? id,
+    Expression<String>? userProgramId,
+    Expression<int>? weekNumber,
+    Expression<int>? dayNumber,
+    Expression<String>? workoutId,
+    Expression<DateTime>? scheduledDate,
+    Expression<DateTime>? completedAt,
+    Expression<String>? status,
+    Expression<String>? notes,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<int>? version,
+    Expression<String>? syncStatus,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (userProgramId != null) 'user_program_id': userProgramId,
+      if (weekNumber != null) 'week_number': weekNumber,
+      if (dayNumber != null) 'day_number': dayNumber,
+      if (workoutId != null) 'workout_id': workoutId,
+      if (scheduledDate != null) 'scheduled_date': scheduledDate,
+      if (completedAt != null) 'completed_at': completedAt,
+      if (status != null) 'status': status,
+      if (notes != null) 'notes': notes,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (version != null) 'version': version,
+      if (syncStatus != null) 'sync_status': syncStatus,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  ProgramSessionsCompanion copyWith({
+    Value<String>? id,
+    Value<String>? userProgramId,
+    Value<int>? weekNumber,
+    Value<int>? dayNumber,
+    Value<String?>? workoutId,
+    Value<DateTime?>? scheduledDate,
+    Value<DateTime?>? completedAt,
+    Value<String>? status,
+    Value<String?>? notes,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<int>? version,
+    Value<String>? syncStatus,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return ProgramSessionsCompanion(
+      id: id ?? this.id,
+      userProgramId: userProgramId ?? this.userProgramId,
+      weekNumber: weekNumber ?? this.weekNumber,
+      dayNumber: dayNumber ?? this.dayNumber,
+      workoutId: workoutId ?? this.workoutId,
+      scheduledDate: scheduledDate ?? this.scheduledDate,
+      completedAt: completedAt ?? this.completedAt,
+      status: status ?? this.status,
+      notes: notes ?? this.notes,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      version: version ?? this.version,
+      syncStatus: syncStatus ?? this.syncStatus,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (userProgramId.present) {
+      map['user_program_id'] = Variable<String>(userProgramId.value);
+    }
+    if (weekNumber.present) {
+      map['week_number'] = Variable<int>(weekNumber.value);
+    }
+    if (dayNumber.present) {
+      map['day_number'] = Variable<int>(dayNumber.value);
+    }
+    if (workoutId.present) {
+      map['workout_id'] = Variable<String>(workoutId.value);
+    }
+    if (scheduledDate.present) {
+      map['scheduled_date'] = Variable<DateTime>(scheduledDate.value);
+    }
+    if (completedAt.present) {
+      map['completed_at'] = Variable<DateTime>(completedAt.value);
+    }
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
+    }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (version.present) {
+      map['version'] = Variable<int>(version.value);
+    }
+    if (syncStatus.present) {
+      map['sync_status'] = Variable<String>(syncStatus.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProgramSessionsCompanion(')
+          ..write('id: $id, ')
+          ..write('userProgramId: $userProgramId, ')
+          ..write('weekNumber: $weekNumber, ')
+          ..write('dayNumber: $dayNumber, ')
+          ..write('workoutId: $workoutId, ')
+          ..write('scheduledDate: $scheduledDate, ')
+          ..write('completedAt: $completedAt, ')
+          ..write('status: $status, ')
+          ..write('notes: $notes, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt, ')
           ..write('version: $version, ')
@@ -9692,6 +11173,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $GoalsTable goals = $GoalsTable(this);
   late final $ExercisesTable exercises = $ExercisesTable(this);
   late final $ProgramsTable programs = $ProgramsTable(this);
+  late final $UserProgramsTable userPrograms = $UserProgramsTable(this);
+  late final $ProgramSessionsTable programSessions = $ProgramSessionsTable(
+    this,
+  );
   late final $WorkoutsTable workouts = $WorkoutsTable(this);
   late final $WorkoutSetsTable workoutSets = $WorkoutSetsTable(this);
   late final $ProgressEntriesTable progressEntries = $ProgressEntriesTable(
@@ -9712,6 +11197,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     goals,
     exercises,
     programs,
+    userPrograms,
+    programSessions,
     workouts,
     workoutSets,
     progressEntries,
@@ -11401,17 +12888,15 @@ typedef $$ExercisesTableProcessedTableManager =
 typedef $$ProgramsTableCreateCompanionBuilder =
     ProgramsCompanion Function({
       required String id,
-      required String userId,
       required String name,
       Value<String?> description,
-      Value<int?> durationWeeks,
-      Value<int?> sessionsPerWeek,
+      Value<String?> author,
       Value<String> difficulty,
-      required String configuration,
+      Value<int?> frequency,
+      Value<int?> durationWeeks,
+      Value<String?> tags,
+      required String config,
       Value<bool> isTemplate,
-      Value<bool> isActive,
-      Value<DateTime?> startedAt,
-      Value<DateTime?> completedAt,
       Value<DateTime> createdAt,
       Value<DateTime> updatedAt,
       Value<int> version,
@@ -11422,17 +12907,15 @@ typedef $$ProgramsTableCreateCompanionBuilder =
 typedef $$ProgramsTableUpdateCompanionBuilder =
     ProgramsCompanion Function({
       Value<String> id,
-      Value<String> userId,
       Value<String> name,
       Value<String?> description,
-      Value<int?> durationWeeks,
-      Value<int?> sessionsPerWeek,
+      Value<String?> author,
       Value<String> difficulty,
-      Value<String> configuration,
+      Value<int?> frequency,
+      Value<int?> durationWeeks,
+      Value<String?> tags,
+      Value<String> config,
       Value<bool> isTemplate,
-      Value<bool> isActive,
-      Value<DateTime?> startedAt,
-      Value<DateTime?> completedAt,
       Value<DateTime> createdAt,
       Value<DateTime> updatedAt,
       Value<int> version,
@@ -11455,11 +12938,6 @@ class $$ProgramsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get userId => $composableBuilder(
-    column: $table.userId,
-    builder: (column) => ColumnFilters(column),
-  );
-
   ColumnFilters<String> get name => $composableBuilder(
     column: $table.name,
     builder: (column) => ColumnFilters(column),
@@ -11470,13 +12948,8 @@ class $$ProgramsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get durationWeeks => $composableBuilder(
-    column: $table.durationWeeks,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get sessionsPerWeek => $composableBuilder(
-    column: $table.sessionsPerWeek,
+  ColumnFilters<String> get author => $composableBuilder(
+    column: $table.author,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -11485,28 +12958,28 @@ class $$ProgramsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get configuration => $composableBuilder(
-    column: $table.configuration,
+  ColumnFilters<int> get frequency => $composableBuilder(
+    column: $table.frequency,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get durationWeeks => $composableBuilder(
+    column: $table.durationWeeks,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get tags => $composableBuilder(
+    column: $table.tags,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get config => $composableBuilder(
+    column: $table.config,
     builder: (column) => ColumnFilters(column),
   );
 
   ColumnFilters<bool> get isTemplate => $composableBuilder(
     column: $table.isTemplate,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get isActive => $composableBuilder(
-    column: $table.isActive,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get startedAt => $composableBuilder(
-    column: $table.startedAt,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<DateTime> get completedAt => $composableBuilder(
-    column: $table.completedAt,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -11550,11 +13023,6 @@ class $$ProgramsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get userId => $composableBuilder(
-    column: $table.userId,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<String> get name => $composableBuilder(
     column: $table.name,
     builder: (column) => ColumnOrderings(column),
@@ -11565,13 +13033,8 @@ class $$ProgramsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get durationWeeks => $composableBuilder(
-    column: $table.durationWeeks,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get sessionsPerWeek => $composableBuilder(
-    column: $table.sessionsPerWeek,
+  ColumnOrderings<String> get author => $composableBuilder(
+    column: $table.author,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -11580,28 +13043,28 @@ class $$ProgramsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get configuration => $composableBuilder(
-    column: $table.configuration,
+  ColumnOrderings<int> get frequency => $composableBuilder(
+    column: $table.frequency,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get durationWeeks => $composableBuilder(
+    column: $table.durationWeeks,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get tags => $composableBuilder(
+    column: $table.tags,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get config => $composableBuilder(
+    column: $table.config,
     builder: (column) => ColumnOrderings(column),
   );
 
   ColumnOrderings<bool> get isTemplate => $composableBuilder(
     column: $table.isTemplate,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<bool> get isActive => $composableBuilder(
-    column: $table.isActive,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get startedAt => $composableBuilder(
-    column: $table.startedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<DateTime> get completedAt => $composableBuilder(
-    column: $table.completedAt,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -11643,9 +13106,6 @@ class $$ProgramsTableAnnotationComposer
   GeneratedColumn<String> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get userId =>
-      $composableBuilder(column: $table.userId, builder: (column) => column);
-
   GeneratedColumn<String> get name =>
       $composableBuilder(column: $table.name, builder: (column) => column);
 
@@ -11654,39 +13114,30 @@ class $$ProgramsTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumn<int> get durationWeeks => $composableBuilder(
-    column: $table.durationWeeks,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<int> get sessionsPerWeek => $composableBuilder(
-    column: $table.sessionsPerWeek,
-    builder: (column) => column,
-  );
+  GeneratedColumn<String> get author =>
+      $composableBuilder(column: $table.author, builder: (column) => column);
 
   GeneratedColumn<String> get difficulty => $composableBuilder(
     column: $table.difficulty,
     builder: (column) => column,
   );
 
-  GeneratedColumn<String> get configuration => $composableBuilder(
-    column: $table.configuration,
+  GeneratedColumn<int> get frequency =>
+      $composableBuilder(column: $table.frequency, builder: (column) => column);
+
+  GeneratedColumn<int> get durationWeeks => $composableBuilder(
+    column: $table.durationWeeks,
     builder: (column) => column,
   );
+
+  GeneratedColumn<String> get tags =>
+      $composableBuilder(column: $table.tags, builder: (column) => column);
+
+  GeneratedColumn<String> get config =>
+      $composableBuilder(column: $table.config, builder: (column) => column);
 
   GeneratedColumn<bool> get isTemplate => $composableBuilder(
     column: $table.isTemplate,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<bool> get isActive =>
-      $composableBuilder(column: $table.isActive, builder: (column) => column);
-
-  GeneratedColumn<DateTime> get startedAt =>
-      $composableBuilder(column: $table.startedAt, builder: (column) => column);
-
-  GeneratedColumn<DateTime> get completedAt => $composableBuilder(
-    column: $table.completedAt,
     builder: (column) => column,
   );
 
@@ -11737,17 +13188,15 @@ class $$ProgramsTableTableManager
           updateCompanionCallback:
               ({
                 Value<String> id = const Value.absent(),
-                Value<String> userId = const Value.absent(),
                 Value<String> name = const Value.absent(),
                 Value<String?> description = const Value.absent(),
-                Value<int?> durationWeeks = const Value.absent(),
-                Value<int?> sessionsPerWeek = const Value.absent(),
+                Value<String?> author = const Value.absent(),
                 Value<String> difficulty = const Value.absent(),
-                Value<String> configuration = const Value.absent(),
+                Value<int?> frequency = const Value.absent(),
+                Value<int?> durationWeeks = const Value.absent(),
+                Value<String?> tags = const Value.absent(),
+                Value<String> config = const Value.absent(),
                 Value<bool> isTemplate = const Value.absent(),
-                Value<bool> isActive = const Value.absent(),
-                Value<DateTime?> startedAt = const Value.absent(),
-                Value<DateTime?> completedAt = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<DateTime> updatedAt = const Value.absent(),
                 Value<int> version = const Value.absent(),
@@ -11756,17 +13205,15 @@ class $$ProgramsTableTableManager
                 Value<int> rowid = const Value.absent(),
               }) => ProgramsCompanion(
                 id: id,
-                userId: userId,
                 name: name,
                 description: description,
-                durationWeeks: durationWeeks,
-                sessionsPerWeek: sessionsPerWeek,
+                author: author,
                 difficulty: difficulty,
-                configuration: configuration,
+                frequency: frequency,
+                durationWeeks: durationWeeks,
+                tags: tags,
+                config: config,
                 isTemplate: isTemplate,
-                isActive: isActive,
-                startedAt: startedAt,
-                completedAt: completedAt,
                 createdAt: createdAt,
                 updatedAt: updatedAt,
                 version: version,
@@ -11777,17 +13224,15 @@ class $$ProgramsTableTableManager
           createCompanionCallback:
               ({
                 required String id,
-                required String userId,
                 required String name,
                 Value<String?> description = const Value.absent(),
-                Value<int?> durationWeeks = const Value.absent(),
-                Value<int?> sessionsPerWeek = const Value.absent(),
+                Value<String?> author = const Value.absent(),
                 Value<String> difficulty = const Value.absent(),
-                required String configuration,
+                Value<int?> frequency = const Value.absent(),
+                Value<int?> durationWeeks = const Value.absent(),
+                Value<String?> tags = const Value.absent(),
+                required String config,
                 Value<bool> isTemplate = const Value.absent(),
-                Value<bool> isActive = const Value.absent(),
-                Value<DateTime?> startedAt = const Value.absent(),
-                Value<DateTime?> completedAt = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<DateTime> updatedAt = const Value.absent(),
                 Value<int> version = const Value.absent(),
@@ -11796,17 +13241,15 @@ class $$ProgramsTableTableManager
                 Value<int> rowid = const Value.absent(),
               }) => ProgramsCompanion.insert(
                 id: id,
-                userId: userId,
                 name: name,
                 description: description,
-                durationWeeks: durationWeeks,
-                sessionsPerWeek: sessionsPerWeek,
+                author: author,
                 difficulty: difficulty,
-                configuration: configuration,
+                frequency: frequency,
+                durationWeeks: durationWeeks,
+                tags: tags,
+                config: config,
                 isTemplate: isTemplate,
-                isActive: isActive,
-                startedAt: startedAt,
-                completedAt: completedAt,
                 createdAt: createdAt,
                 updatedAt: updatedAt,
                 version: version,
@@ -11834,6 +13277,753 @@ typedef $$ProgramsTableProcessedTableManager =
       $$ProgramsTableUpdateCompanionBuilder,
       (Program, BaseReferences<_$AppDatabase, $ProgramsTable, Program>),
       Program,
+      PrefetchHooks Function()
+    >;
+typedef $$UserProgramsTableCreateCompanionBuilder =
+    UserProgramsCompanion Function({
+      required String id,
+      required String userId,
+      required String programId,
+      required DateTime startDate,
+      Value<int> currentWeek,
+      Value<int> currentDay,
+      Value<String> status,
+      Value<String?> customizations,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> version,
+      Value<String> syncStatus,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+typedef $$UserProgramsTableUpdateCompanionBuilder =
+    UserProgramsCompanion Function({
+      Value<String> id,
+      Value<String> userId,
+      Value<String> programId,
+      Value<DateTime> startDate,
+      Value<int> currentWeek,
+      Value<int> currentDay,
+      Value<String> status,
+      Value<String?> customizations,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> version,
+      Value<String> syncStatus,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+
+class $$UserProgramsTableFilterComposer
+    extends Composer<_$AppDatabase, $UserProgramsTable> {
+  $$UserProgramsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get programId => $composableBuilder(
+    column: $table.programId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get startDate => $composableBuilder(
+    column: $table.startDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get currentWeek => $composableBuilder(
+    column: $table.currentWeek,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get currentDay => $composableBuilder(
+    column: $table.currentDay,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get customizations => $composableBuilder(
+    column: $table.customizations,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$UserProgramsTableOrderingComposer
+    extends Composer<_$AppDatabase, $UserProgramsTable> {
+  $$UserProgramsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userId => $composableBuilder(
+    column: $table.userId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get programId => $composableBuilder(
+    column: $table.programId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get startDate => $composableBuilder(
+    column: $table.startDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get currentWeek => $composableBuilder(
+    column: $table.currentWeek,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get currentDay => $composableBuilder(
+    column: $table.currentDay,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get customizations => $composableBuilder(
+    column: $table.customizations,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$UserProgramsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $UserProgramsTable> {
+  $$UserProgramsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get userId =>
+      $composableBuilder(column: $table.userId, builder: (column) => column);
+
+  GeneratedColumn<String> get programId =>
+      $composableBuilder(column: $table.programId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get startDate =>
+      $composableBuilder(column: $table.startDate, builder: (column) => column);
+
+  GeneratedColumn<int> get currentWeek => $composableBuilder(
+    column: $table.currentWeek,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get currentDay => $composableBuilder(
+    column: $table.currentDay,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get customizations => $composableBuilder(
+    column: $table.customizations,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<int> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+}
+
+class $$UserProgramsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $UserProgramsTable,
+          UserProgram,
+          $$UserProgramsTableFilterComposer,
+          $$UserProgramsTableOrderingComposer,
+          $$UserProgramsTableAnnotationComposer,
+          $$UserProgramsTableCreateCompanionBuilder,
+          $$UserProgramsTableUpdateCompanionBuilder,
+          (
+            UserProgram,
+            BaseReferences<_$AppDatabase, $UserProgramsTable, UserProgram>,
+          ),
+          UserProgram,
+          PrefetchHooks Function()
+        > {
+  $$UserProgramsTableTableManager(_$AppDatabase db, $UserProgramsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$UserProgramsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$UserProgramsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$UserProgramsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> userId = const Value.absent(),
+                Value<String> programId = const Value.absent(),
+                Value<DateTime> startDate = const Value.absent(),
+                Value<int> currentWeek = const Value.absent(),
+                Value<int> currentDay = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> customizations = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> version = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => UserProgramsCompanion(
+                id: id,
+                userId: userId,
+                programId: programId,
+                startDate: startDate,
+                currentWeek: currentWeek,
+                currentDay: currentDay,
+                status: status,
+                customizations: customizations,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                version: version,
+                syncStatus: syncStatus,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String userId,
+                required String programId,
+                required DateTime startDate,
+                Value<int> currentWeek = const Value.absent(),
+                Value<int> currentDay = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> customizations = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> version = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => UserProgramsCompanion.insert(
+                id: id,
+                userId: userId,
+                programId: programId,
+                startDate: startDate,
+                currentWeek: currentWeek,
+                currentDay: currentDay,
+                status: status,
+                customizations: customizations,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                version: version,
+                syncStatus: syncStatus,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$UserProgramsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $UserProgramsTable,
+      UserProgram,
+      $$UserProgramsTableFilterComposer,
+      $$UserProgramsTableOrderingComposer,
+      $$UserProgramsTableAnnotationComposer,
+      $$UserProgramsTableCreateCompanionBuilder,
+      $$UserProgramsTableUpdateCompanionBuilder,
+      (
+        UserProgram,
+        BaseReferences<_$AppDatabase, $UserProgramsTable, UserProgram>,
+      ),
+      UserProgram,
+      PrefetchHooks Function()
+    >;
+typedef $$ProgramSessionsTableCreateCompanionBuilder =
+    ProgramSessionsCompanion Function({
+      required String id,
+      required String userProgramId,
+      required int weekNumber,
+      required int dayNumber,
+      Value<String?> workoutId,
+      Value<DateTime?> scheduledDate,
+      Value<DateTime?> completedAt,
+      Value<String> status,
+      Value<String?> notes,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> version,
+      Value<String> syncStatus,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+typedef $$ProgramSessionsTableUpdateCompanionBuilder =
+    ProgramSessionsCompanion Function({
+      Value<String> id,
+      Value<String> userProgramId,
+      Value<int> weekNumber,
+      Value<int> dayNumber,
+      Value<String?> workoutId,
+      Value<DateTime?> scheduledDate,
+      Value<DateTime?> completedAt,
+      Value<String> status,
+      Value<String?> notes,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> version,
+      Value<String> syncStatus,
+      Value<DateTime?> deletedAt,
+      Value<int> rowid,
+    });
+
+class $$ProgramSessionsTableFilterComposer
+    extends Composer<_$AppDatabase, $ProgramSessionsTable> {
+  $$ProgramSessionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get userProgramId => $composableBuilder(
+    column: $table.userProgramId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get weekNumber => $composableBuilder(
+    column: $table.weekNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get dayNumber => $composableBuilder(
+    column: $table.dayNumber,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get workoutId => $composableBuilder(
+    column: $table.workoutId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get scheduledDate => $composableBuilder(
+    column: $table.scheduledDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get completedAt => $composableBuilder(
+    column: $table.completedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ProgramSessionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $ProgramSessionsTable> {
+  $$ProgramSessionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get userProgramId => $composableBuilder(
+    column: $table.userProgramId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get weekNumber => $composableBuilder(
+    column: $table.weekNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get dayNumber => $composableBuilder(
+    column: $table.dayNumber,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get workoutId => $composableBuilder(
+    column: $table.workoutId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get scheduledDate => $composableBuilder(
+    column: $table.scheduledDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get completedAt => $composableBuilder(
+    column: $table.completedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get status => $composableBuilder(
+    column: $table.status,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get notes => $composableBuilder(
+    column: $table.notes,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get version => $composableBuilder(
+    column: $table.version,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ProgramSessionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ProgramSessionsTable> {
+  $$ProgramSessionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get userProgramId => $composableBuilder(
+    column: $table.userProgramId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get weekNumber => $composableBuilder(
+    column: $table.weekNumber,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get dayNumber =>
+      $composableBuilder(column: $table.dayNumber, builder: (column) => column);
+
+  GeneratedColumn<String> get workoutId =>
+      $composableBuilder(column: $table.workoutId, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get scheduledDate => $composableBuilder(
+    column: $table.scheduledDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get completedAt => $composableBuilder(
+    column: $table.completedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
+
+  GeneratedColumn<String> get notes =>
+      $composableBuilder(column: $table.notes, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<int> get version =>
+      $composableBuilder(column: $table.version, builder: (column) => column);
+
+  GeneratedColumn<String> get syncStatus => $composableBuilder(
+    column: $table.syncStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+}
+
+class $$ProgramSessionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ProgramSessionsTable,
+          ProgramSession,
+          $$ProgramSessionsTableFilterComposer,
+          $$ProgramSessionsTableOrderingComposer,
+          $$ProgramSessionsTableAnnotationComposer,
+          $$ProgramSessionsTableCreateCompanionBuilder,
+          $$ProgramSessionsTableUpdateCompanionBuilder,
+          (
+            ProgramSession,
+            BaseReferences<
+              _$AppDatabase,
+              $ProgramSessionsTable,
+              ProgramSession
+            >,
+          ),
+          ProgramSession,
+          PrefetchHooks Function()
+        > {
+  $$ProgramSessionsTableTableManager(
+    _$AppDatabase db,
+    $ProgramSessionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ProgramSessionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ProgramSessionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ProgramSessionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> userProgramId = const Value.absent(),
+                Value<int> weekNumber = const Value.absent(),
+                Value<int> dayNumber = const Value.absent(),
+                Value<String?> workoutId = const Value.absent(),
+                Value<DateTime?> scheduledDate = const Value.absent(),
+                Value<DateTime?> completedAt = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> version = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProgramSessionsCompanion(
+                id: id,
+                userProgramId: userProgramId,
+                weekNumber: weekNumber,
+                dayNumber: dayNumber,
+                workoutId: workoutId,
+                scheduledDate: scheduledDate,
+                completedAt: completedAt,
+                status: status,
+                notes: notes,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                version: version,
+                syncStatus: syncStatus,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String userProgramId,
+                required int weekNumber,
+                required int dayNumber,
+                Value<String?> workoutId = const Value.absent(),
+                Value<DateTime?> scheduledDate = const Value.absent(),
+                Value<DateTime?> completedAt = const Value.absent(),
+                Value<String> status = const Value.absent(),
+                Value<String?> notes = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> version = const Value.absent(),
+                Value<String> syncStatus = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProgramSessionsCompanion.insert(
+                id: id,
+                userProgramId: userProgramId,
+                weekNumber: weekNumber,
+                dayNumber: dayNumber,
+                workoutId: workoutId,
+                scheduledDate: scheduledDate,
+                completedAt: completedAt,
+                status: status,
+                notes: notes,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                version: version,
+                syncStatus: syncStatus,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ProgramSessionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ProgramSessionsTable,
+      ProgramSession,
+      $$ProgramSessionsTableFilterComposer,
+      $$ProgramSessionsTableOrderingComposer,
+      $$ProgramSessionsTableAnnotationComposer,
+      $$ProgramSessionsTableCreateCompanionBuilder,
+      $$ProgramSessionsTableUpdateCompanionBuilder,
+      (
+        ProgramSession,
+        BaseReferences<_$AppDatabase, $ProgramSessionsTable, ProgramSession>,
+      ),
+      ProgramSession,
       PrefetchHooks Function()
     >;
 typedef $$WorkoutsTableCreateCompanionBuilder =
@@ -14123,6 +16313,10 @@ class $AppDatabaseManager {
       $$ExercisesTableTableManager(_db, _db.exercises);
   $$ProgramsTableTableManager get programs =>
       $$ProgramsTableTableManager(_db, _db.programs);
+  $$UserProgramsTableTableManager get userPrograms =>
+      $$UserProgramsTableTableManager(_db, _db.userPrograms);
+  $$ProgramSessionsTableTableManager get programSessions =>
+      $$ProgramSessionsTableTableManager(_db, _db.programSessions);
   $$WorkoutsTableTableManager get workouts =>
       $$WorkoutsTableTableManager(_db, _db.workouts);
   $$WorkoutSetsTableTableManager get workoutSets =>

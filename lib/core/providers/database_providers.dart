@@ -4,9 +4,17 @@ import '../../data/datasources/local_data_source.dart';
 import '../../data/repositories/exercise_repository_impl.dart';
 import '../../data/repositories/goal_repository_impl.dart';
 import '../../data/repositories/exercise_favorites_repository_impl.dart';
+import '../../data/repositories/workout_repository_impl.dart';
+import '../../data/repositories/program_repository_impl.dart';
+import '../../data/repositories/user_program_repository_impl.dart';
+import '../../data/repositories/program_session_repository_impl.dart';
 import '../../domain/repositories/exercise_repository.dart';
 import '../../domain/repositories/goal_repository.dart';
 import '../../domain/repositories/exercise_favorites_repository.dart';
+import '../../domain/repositories/workout_repository.dart';
+import '../../domain/repositories/program_repository.dart';
+import '../../domain/repositories/user_program_repository.dart';
+import '../../domain/repositories/program_session_repository.dart';
 import '../../domain/entities/goal.dart' as domain;
 
 /// Database provider - singleton instance
@@ -38,6 +46,30 @@ final goalRepositoryProvider = Provider<GoalRepository>((ref) {
 final exerciseFavoritesRepositoryProvider = Provider<ExerciseFavoritesRepository>((ref) {
   final database = ref.watch(databaseProvider);
   return ExerciseFavoritesRepositoryImpl(database);
+});
+
+/// Workout repository provider
+final workoutRepositoryProvider = Provider<WorkoutRepository>((ref) {
+  final localDataSource = ref.watch(localDataSourceProvider);
+  return WorkoutRepositoryImpl(localDataSource);
+});
+
+/// Program repository provider
+final programRepositoryProvider = Provider<ProgramRepository>((ref) {
+  final localDataSource = ref.watch(localDataSourceProvider);
+  return ProgramRepositoryImpl(localDataSource);
+});
+
+/// User program repository provider
+final userProgramRepositoryProvider = Provider<UserProgramRepository>((ref) {
+  final localDataSource = ref.watch(localDataSourceProvider);
+  return UserProgramRepositoryImpl(localDataSource);
+});
+
+/// Program session repository provider
+final programSessionRepositoryProvider = Provider<ProgramSessionRepository>((ref) {
+  final localDataSource = ref.watch(localDataSourceProvider);
+  return ProgramSessionRepositoryImpl(localDataSource);
 });
 
 /// Database initialization provider

@@ -8,7 +8,7 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 
 ## Current Status
 
-**PROJECT STATUS**: ✅ **PHASE 4 IN PROGRESS** - Goals, Exercise Database & Favorites Complete, Workout Logging Next
+**PROJECT STATUS**: ✅ **PHASE 4 IN PROGRESS** - Goals, Exercise Database, Favorites & Program Builder Systems Complete, Navigation Enhanced, Workout Logging Next
 
 **COMPLETED**:
 - ✅ Flutter SDK installation and setup
@@ -23,7 +23,7 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 - ✅ Clean architecture folder structure implemented
 
 **DATABASE LAYER (Phase 3) - COMPLETED** ✅:
-- ✅ **Enhanced Drift Database**: 11 tables with comprehensive schema and JSON data integration (Schema v4)
+- ✅ **Enhanced Drift Database**: 14 tables with comprehensive schema and JSON data integration (Schema v5)
 - ✅ **Production Exercise Database**: 52 real exercises from original IronForge web app via JSON import
 - ✅ **Rich Exercise Metadata**: Detailed instructions, tips, safety ratings, difficulty levels (1-5), starting weights
 - ✅ **Exercise Categorization**: 14 exercise categories and 18 equipment types with comprehensive classifications
@@ -69,17 +69,63 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 - ✅ **State Management**: Riverpod providers for reactive favorites management across screens
 - ✅ **Visual Design**: Material 3 compliance with proper theming and user experience patterns
 
-**IMMEDIATE NEXT STEPS (Phase 4.2c - Workout Logging System)**:
-1. **Workout Session Screen** 🔄 **NEXT PRIORITY**
-   - Active workout session interface with real-time tracking
-   - Exercise selection and addition to current workout
-   - Set-by-set logging with reps, weight, RPE, and notes
+**PROGRAM BUILDER SYSTEM (Phase 4.3) - COMPLETED** ✅:
+1. **Program Database Schema** ✅ **COMPLETED**
+   - ✅ Database schema migration to v5 with 3 program tables (Programs, UserPrograms, ProgramSessions)
+   - ✅ Program entities and data models with JSON configuration support
+   - ✅ Repository pattern implementation with clean architecture
+   - ✅ Program template seeding system with production data
+   
+2. **Starter Program Templates** ✅ **COMPLETED**
+   - ✅ Basic Beginner Routine with 3-month linear progression
+   - ✅ StrongLifts 5x5 with compound lift focus and progressive overload
+   - ✅ Starting Strength with 3x5 barbell program methodology
+   - ✅ 5/3/1 for Beginners with percentage-based progression system
+
+3. **Program Builder UI** ✅ **COMPLETED**
+   - ✅ Program template library with search and filtering capabilities
+   - ✅ Rich program detail screens with workout breakdowns and statistics
+   - ✅ User program management (start, pause, resume, progress tracking)
+   - ✅ Tab-based navigation between templates and active programs
+
+4. **Progression & Workout Generation** ✅ **COMPLETED**
+   - ✅ ProgressionService with linear, percentage, and session-based progression
+   - ✅ WorkoutGenerationService for automatic workout creation from programs
+   - ✅ Smart weight calculation with deload protocols and AMRAP set support
+   - ✅ Service provider architecture for clean integration with UI
+
+**NAVIGATION ENHANCEMENT (Phase 4.4) - COMPLETED** ✅:
+1. **Drawer Navigation System** ✅ **COMPLETED**
+   - ✅ Hamburger menu drawer with gradient header and branded design
+   - ✅ Programs screen accessible via drawer navigation
+   - ✅ Secondary navigation for overflow menu items (Settings, About, Plate Calculator)
+   - ✅ Mobile-optimized navigation structure with proper theming
+
+**IMMEDIATE NEXT STEPS (Phase 4.5 - Workout Session Integration)**:
+1. **Active Workout Session Screen** 🔄 **NEXT PRIORITY**
+   - Workout session interface with program-generated workouts
+   - Real-time set tracking with reps, weight, and RPE logging
    - Rest timer functionality and workout flow management
    
+## How to Access Program Builder Features
+
+**Programs Screen**: 
+- Open the app and tap the **hamburger menu (☰)** in the top-left corner
+- Select **"Programs"** from the drawer menu
+- Browse program templates in the "Templates" tab
+- Manage active programs in the "My Programs" tab
+
+**Program Features Available**:
+- 4 starter program templates (Basic Beginner, StrongLifts 5x5, Starting Strength, 5/3/1)
+- Program filtering by difficulty level
+- Detailed program information with workout breakdowns
+- Start/pause/resume program functionality
+- Progress tracking with completion percentages
+
 2. **Workout Management** 🔲 **PENDING**
-   - Workout creation, editing, and completion
-   - Workout templates and program integration
+   - Program-generated workout completion tracking
    - Exercise reordering and workout customization
+   - Workout templates independent of programs
    
 3. **Plate Calculator** 🔲 **PENDING**
    - Visual barbell loading interface
@@ -130,7 +176,7 @@ Additional requirements: Xcode, Android Studio, Chrome
 
 ## Development Commands
 
-**Current Project Status**: ✅ **Goals, Exercise System & Favorites Complete** - Workout Logging Next
+**Current Project Status**: ✅ **Goals, Exercise System, Favorites, Program Builder & Navigation Complete** - Workout Logging Next
 
 ```bash
 # Development
@@ -176,7 +222,9 @@ Based on the original web app, implement these core features:
 - ✅ `users` - User profiles and settings with experience levels
 - ✅ `goals` - Enhanced user goals and targets with progress tracking, colors, and exercise associations
 - ✅ `exercises` - **Production exercise database** with 52 real exercises from original IronForge web app
-- ✅ `programs` - Workout programs and templates with JSON configuration
+- ✅ `programs` - **Program templates and definitions** with JSON configuration and metadata (Schema v5)
+- ✅ `user_programs` - **User program instances** with progress tracking and status management (Schema v5)
+- ✅ `program_sessions` - **Program workout sessions** with scheduling and completion tracking (Schema v5)
 - ✅ `workouts` - Workout sessions with status tracking
 - ✅ `workout_sets` - Individual sets with reps/weight/RPE
 - ✅ `progress_entries` - Progress tracking data with multiple types
@@ -193,7 +241,7 @@ Based on the original web app, implement these core features:
 - ✅ **Data Integrity** - Proper constraints, nullable fields, and default values
 - ✅ **Exercise Categorization** - Comprehensive metadata with 14 categories and 18 equipment types
 - ✅ **JSON Storage** - Secondary muscle groups, available equipment, exercise types, and program configurations
-- ✅ **Database Migration** - Schema v4 with exercise favorites table and enhanced exercise support
+- ✅ **Database Migration** - Schema v5 with program system tables and enhanced program support
 
 **Production Exercise Database Content**:
 - ✅ **52 Real Exercises** imported from original IronForge web app via JSON
@@ -233,20 +281,29 @@ Based on the original web app, implement these core features:
      - ✅ Favorites management and filtering across the app
      - ✅ Navigation integration and state management with Riverpod
 
-### 🚧 Current Focus (Phase 4.2c)
-6. **Workout Logging System** - Active workout sessions and set tracking
-   - 🔄 Workout session screen with real-time tracking **NEXT**
-   - 🔲 Set logging with reps/weight/RPE tracking
-   - 🔲 Rest timers and workout flow management
-   - 🔲 Exercise selection and workout integration
+### 🚧 Current Focus (Phase 4.3)
+6. **Program Builder System** - Structured workout programming
+   - 🔄 **Database schema migration to v5 with program tables** **NEXT**
+   - 🔲 Program entities and data models creation
+   - 🔲 Starter program templates (Basic Beginner, StrongLifts 5x5, Starting Strength)
+   - 🔲 Program builder UI with template library and custom creator
+   - 🔲 Progression engine with auto-weight calculation
+   - 🔲 Program execution and workout generation
 
 ### 🔮 Upcoming
-7. **Advanced Features** - Enhanced functionality and integrations
-   - Program management with templates and scheduling
-   - Progress analytics with charts and trends
+7. **Workout Logging Integration** - Program-driven workout sessions
+   - Workout session screen with program context
+   - Set logging with progression tracking
+   - Rest timers and program-guided flow
+   - Exercise selection and program integration
+
+8. **Advanced Features** - Enhanced functionality and integrations
+   - Progress analytics with charts and trends  
    - Plate calculator with visual barbell loading
+   - Advanced program features (sharing, analytics)
    - Sync preparation for backend integration
-8. **Testing & Polish** - Comprehensive testing and optimization
+
+9. **Testing & Polish** - Comprehensive testing and optimization
 
 ## Code Conventions
 
@@ -293,3 +350,145 @@ This allows seamless transition from offline-only to sync-enabled app.
 - Riverpod for dependency injection and state management
 - Provider-based architecture with proper separation of concerns
 - Error handling with custom Failure classes
+
+## Program Builder System Implementation
+
+### **Design Philosophy**
+The Program Builder System follows proven methodologies from successful strength training programs like Starting Strength, StrongLifts 5x5, and 5/3/1. Instead of random workouts, users follow structured programs with built-in progression logic.
+
+### **Key Features**
+1. **Program Template Library** - Curated starter programs for different goals
+2. **Custom Program Creator** - Visual builder for personalized programs  
+3. **Smart Progression** - Auto-calculate weights and track advancement
+4. **Program Execution** - Generate workouts from program definitions
+5. **Progress Tracking** - Monitor program completion and performance
+
+### **Database Schema (Schema v5)**
+
+```sql
+-- Program templates and definitions
+CREATE TABLE programs (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT,
+  author TEXT,
+  difficulty TEXT CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
+  frequency INTEGER, -- days per week
+  duration_weeks INTEGER,
+  tags JSON, -- ["strength", "powerlifting", "full-body"]
+  config JSON, -- Full program definition
+  is_template BOOLEAN DEFAULT false,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL
+);
+
+-- User program instances and progress
+CREATE TABLE user_programs (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  program_id TEXT NOT NULL,
+  start_date DATE NOT NULL,
+  current_week INTEGER DEFAULT 1,
+  current_day INTEGER DEFAULT 1,
+  status TEXT CHECK (status IN ('active', 'completed', 'paused')) DEFAULT 'active',
+  customizations JSON, -- User modifications
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL,
+  FOREIGN KEY (program_id) REFERENCES programs(id)
+);
+
+-- Program workout progression tracking
+CREATE TABLE program_sessions (
+  id TEXT PRIMARY KEY,
+  user_program_id TEXT NOT NULL,
+  week_number INTEGER NOT NULL,
+  day_number INTEGER NOT NULL,
+  workout_id TEXT, -- References workouts table when completed
+  scheduled_date DATE,
+  completed_at DATETIME,
+  status TEXT CHECK (status IN ('scheduled', 'completed', 'skipped')) DEFAULT 'scheduled',
+  notes TEXT,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL,
+  FOREIGN KEY (user_program_id) REFERENCES user_programs(id),
+  FOREIGN KEY (workout_id) REFERENCES workouts(id)
+);
+```
+
+### **Program Configuration Model**
+
+Programs are defined using JSON configuration that specifies:
+- **Workout Structure**: Exercises, sets, reps, weights
+- **Progression Rules**: Linear (+5lbs), percentage-based (% of 1RM)
+- **Scheduling**: Weekly patterns, rest days, deload weeks
+- **Failure Handling**: Deload protocols, form checks
+
+**Example Basic Beginner Program:**
+```json
+{
+  "name": "Basic Beginner Routine",
+  "description": "3-month linear progression program for complete beginners",
+  "frequency": 3,
+  "duration_weeks": 12,
+  "workouts": {
+    "A": {
+      "name": "Workout A",
+      "exercises": [
+        {
+          "exerciseId": "bent_over_row",
+          "sets": [
+            {"reps": 5, "weight": 95, "type": "normal"},
+            {"reps": 5, "weight": 95, "type": "normal"},
+            {"reps": "5+", "weight": 95, "type": "amrap"}
+          ],
+          "restTime": 180,
+          "progression": {
+            "type": "linear",
+            "increment": 2.5,
+            "unit": "lbs"
+          }
+        }
+      ]
+    },
+    "B": {
+      "name": "Workout B", 
+      "exercises": [...]
+    }
+  },
+  "schedule": ["A", "B", "A", "rest", "B", "A", "B"],
+  "progressionRules": {
+    "failureThreshold": 3,
+    "deloadPercentage": 10,
+    "successCriteria": "complete_all_sets"
+  }
+}
+```
+
+### **Implementation Priority**
+
+**Phase 4.3a: Database & Models**
+- Database schema migration to v5
+- Program entity and repository creation
+- Program template seeding system
+
+**Phase 4.3b: Program Templates** 
+- Basic Beginner Routine
+- StrongLifts 5x5
+- Starting Strength
+- 5/3/1 for Beginners
+
+**Phase 4.3c: Program Builder UI**
+- Template library browsing
+- Custom program creation wizard
+- Exercise configuration interface
+
+**Phase 4.3d: Program Execution**
+- Workout generation engine
+- Progression calculation logic
+- Program dashboard and tracking
+
+### **Integration with Existing Systems**
+- **Exercise Database**: Programs reference existing exercise entities
+- **Workout Logging**: Generated workouts use existing workout session system
+- **Progress Tracking**: Program progress feeds into existing analytics
+- **Goal System**: Programs can be linked to strength/fitness goals

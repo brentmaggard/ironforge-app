@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../widgets/common/main_navigation.dart';
 import '../../../domain/entities/workout.dart';
+import 'workout_session_screen.dart';
 
 class WorkoutsScreen extends ConsumerStatefulWidget {
   const WorkoutsScreen({super.key});
@@ -475,33 +476,44 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
   }
 
   void _startQuickWorkout(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Starting workout session...'),
-        action: SnackBarAction(
-          label: 'View',
-          onPressed: () {},
-        ),
+    final newWorkout = Workout(
+      id: 'workout_${DateTime.now().millisecondsSinceEpoch}',
+      userId: 'demo-user',
+      name: 'Quick Workout',
+      status: 'in_progress',
+      totalSets: 0,
+      totalReps: 0,
+      totalVolume: 0.0,
+      startedAt: DateTime.now(),
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WorkoutSessionScreen(workout: newWorkout),
       ),
     );
   }
 
   void _continueWorkout(Workout workout) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Continuing ${workout.name}...'),
-        action: SnackBarAction(
-          label: 'Open',
-          onPressed: () {},
-        ),
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WorkoutSessionScreen(workout: workout),
       ),
     );
   }
 
   void _startWorkout(Workout workout) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Starting ${workout.name}...'),
+    final startedWorkout = workout.copyWith(
+      status: 'in_progress',
+      startedAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WorkoutSessionScreen(workout: startedWorkout),
       ),
     );
   }

@@ -98,17 +98,56 @@ class Exercises extends Table {
 /// Programs table for workout programs and templates
 class Programs extends Table {
   TextColumn get id => text().withLength(min: 1, max: 36)();
-  TextColumn get userId => text().withLength(min: 1, max: 36)();
   TextColumn get name => text().withLength(min: 1, max: 200)();
   TextColumn get description => text().nullable()();
-  IntColumn get durationWeeks => integer().nullable()();
-  IntColumn get sessionsPerWeek => integer().nullable()();
-  TextColumn get difficulty => text().withLength(min: 1, max: 20).withDefault(const Constant('intermediate'))();
-  TextColumn get configuration => text()(); // JSON configuration
-  BoolColumn get isTemplate => boolean().withDefault(const Constant(false))();
-  BoolColumn get isActive => boolean().withDefault(const Constant(false))();
-  DateTimeColumn get startedAt => dateTime().nullable()();
-  DateTimeColumn get completedAt => dateTime().nullable()();
+  TextColumn get author => text().nullable()(); // Program author
+  TextColumn get difficulty => text().withLength(min: 1, max: 20).withDefault(const Constant('intermediate'))(); // beginner, intermediate, advanced
+  IntColumn get frequency => integer().nullable()(); // days per week
+  IntColumn get durationWeeks => integer().nullable()(); // program duration
+  TextColumn get tags => text().nullable()(); // JSON array of tags ["strength", "powerlifting"]
+  TextColumn get config => text()(); // JSON program configuration
+  BoolColumn get isTemplate => boolean().withDefault(const Constant(false))(); // template vs user program
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+  IntColumn get version => integer().withDefault(const Constant(1))();
+  TextColumn get syncStatus => text().withLength(min: 1, max: 20).withDefault(const Constant('local'))();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// UserPrograms table for user program instances and progress
+class UserPrograms extends Table {
+  TextColumn get id => text().withLength(min: 1, max: 36)();
+  TextColumn get userId => text().withLength(min: 1, max: 36)();
+  TextColumn get programId => text().withLength(min: 1, max: 36)();
+  DateTimeColumn get startDate => dateTime()(); // When user started the program
+  IntColumn get currentWeek => integer().withDefault(const Constant(1))(); // Current week in program
+  IntColumn get currentDay => integer().withDefault(const Constant(1))(); // Current day in week
+  TextColumn get status => text().withLength(min: 1, max: 20).withDefault(const Constant('active'))(); // active, completed, paused
+  TextColumn get customizations => text().nullable()(); // JSON user modifications to program
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
+  IntColumn get version => integer().withDefault(const Constant(1))();
+  TextColumn get syncStatus => text().withLength(min: 1, max: 20).withDefault(const Constant('local'))();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// ProgramSessions table for tracking program workout sessions
+class ProgramSessions extends Table {
+  TextColumn get id => text().withLength(min: 1, max: 36)();
+  TextColumn get userProgramId => text().withLength(min: 1, max: 36)();
+  IntColumn get weekNumber => integer()(); // Week in program
+  IntColumn get dayNumber => integer()(); // Day in week
+  TextColumn get workoutId => text().withLength(min: 1, max: 36).nullable()(); // References workouts table when completed
+  DateTimeColumn get scheduledDate => dateTime().nullable()(); // Scheduled workout date
+  DateTimeColumn get completedAt => dateTime().nullable()(); // When workout was completed
+  TextColumn get status => text().withLength(min: 1, max: 20).withDefault(const Constant('scheduled'))(); // scheduled, completed, skipped
+  TextColumn get notes => text().nullable()(); // Session notes
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
   IntColumn get version => integer().withDefault(const Constant(1))();
@@ -252,6 +291,8 @@ class ExerciseFavorites extends Table {
   Goals,
   Exercises,
   Programs,
+  UserPrograms,
+  ProgramSessions,
   Workouts,
   WorkoutSets,
   ProgressEntries,
@@ -265,7 +306,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(QueryExecutor e) : super(e);
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -273,7 +314,19 @@ class AppDatabase extends _$AppDatabase {
       await m.createAll();
     },
     onUpgrade: (Migrator m, int from, int to) async {
-      if (from <= 3 && to >= 4) {
+      if (from <= 4 && to >= 5) {
+        print('Running database migration from version $from to $to');
+        
+        // Add new program-related tables for Program Builder System
+        await m.createTable($UserProgramsTable(this));
+        await m.createTable($ProgramSessionsTable(this));
+        
+        // Update Programs table structure - drop and recreate with new schema
+        await m.deleteTable('programs');
+        await m.createTable($ProgramsTable(this));
+        
+        print('Database migration completed - added UserPrograms, ProgramSessions tables and updated Programs schema');
+      } else if (from <= 3 && to >= 4) {
         print('Running database migration from version $from to $to');
         
         // Add the new ExerciseFavorites table
