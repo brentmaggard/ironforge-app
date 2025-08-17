@@ -326,7 +326,7 @@ class ProgramDetailScreen extends ConsumerWidget {
   Widget _buildExerciseItem(ProgramExercise programExercise, int index) {
     return Consumer(
       builder: (context, ref, child) {
-        final exerciseAsync = ref.watch(exerciseByIdProvider(programExercise.exerciseId));
+        final exerciseAsync = ref.watch(exerciseByExerciseIdProvider(programExercise.exerciseId));
         
         return exerciseAsync.when(
           data: (exercise) => _buildExerciseItemContent(exercise, programExercise, index),
@@ -463,4 +463,10 @@ class ProgramDetailScreen extends ConsumerWidget {
 final exerciseByIdProvider = FutureProvider.family<Exercise?, String>((ref, exerciseId) async {
   final exerciseRepository = ref.watch(exerciseRepositoryProvider);
   return await exerciseRepository.getExerciseById(exerciseId);
+});
+
+// Provider to get exercise by exercise_id (for program templates)
+final exerciseByExerciseIdProvider = FutureProvider.family<Exercise?, String>((ref, exerciseId) async {
+  final exerciseRepository = ref.watch(exerciseRepositoryProvider);
+  return await exerciseRepository.getExerciseByExerciseId(exerciseId);
 });

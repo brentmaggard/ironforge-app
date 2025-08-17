@@ -33,6 +33,11 @@ class ExerciseRepositoryImpl implements ExerciseRepository {
   }
 
   @override
+  Future<domain.Exercise?> getExerciseByExerciseId(String exerciseId) async {
+    return await _localDataSource.getExerciseByExerciseId(exerciseId);
+  }
+
+  @override
   Future<List<domain.Exercise>> getFavoriteExercises(String userId) async {
     // TODO: Implement favorites functionality
     // For now, return recent exercises as placeholder

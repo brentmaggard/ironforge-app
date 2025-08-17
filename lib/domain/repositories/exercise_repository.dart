@@ -6,6 +6,7 @@ abstract class ExerciseRepository {
   Future<List<Exercise>> getExercisesByEquipment(String equipment);
   Future<List<Exercise>> searchExercises(String query);
   Future<Exercise?> getExerciseById(String id);
+  Future<Exercise?> getExerciseByExerciseId(String exerciseId);
   Future<List<Exercise>> getFavoriteExercises(String userId);
   Future<List<Exercise>> getRecentExercises(String userId);
   Future<void> createExercise(Exercise exercise);

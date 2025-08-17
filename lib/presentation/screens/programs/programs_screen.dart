@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/providers/database_providers.dart';
 import '../../../domain/entities/program.dart';
 import '../../../domain/entities/user_program.dart';
+import '../../widgets/common/main_navigation.dart';
 import 'program_detail_screen.dart';
+import 'program_editor_screen.dart';
 import 'providers/program_providers.dart';
 
 class ProgramsScreen extends ConsumerStatefulWidget {
@@ -32,7 +34,9 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MainNavigation(
+      currentIndex: -1, // Programs is accessed via drawer, not bottom nav
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('Programs'),
           bottom: TabBar(
@@ -57,6 +61,7 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
           icon: const Icon(Icons.add),
           label: const Text('Create Program'),
         ),
+      ),
     );
   }
 
@@ -250,6 +255,11 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
                     '${program.durationWeeks ?? 12} weeks',
                   ),
                   const Spacer(),
+                  TextButton(
+                    onPressed: () => _editProgram(program),
+                    child: const Text('EDIT'),
+                  ),
+                  const SizedBox(width: 8),
                   TextButton(
                     onPressed: () => _startProgram(program),
                     child: const Text('START'),
@@ -582,11 +592,33 @@ class _ProgramsScreenState extends ConsumerState<ProgramsScreen> with TickerProv
     );
   }
 
-  void _showCreateProgramDialog() {
-    // TODO: Implement program creation dialog
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Program creation coming soon!')),
+  void _showCreateProgramDialog() async {
+    final result = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (context) => const ProgramEditorScreen(isCreateMode: true),
+      ),
     );
+    
+    if (result == true) {
+      // Refresh the programs list
+      ref.invalidate(programTemplatesProvider);
+    }
+  }
+
+  void _editProgram(Program program) async {
+    final result = await Navigator.of(context).push<bool>(
+      MaterialPageRoute(
+        builder: (context) => ProgramEditorScreen(
+          program: program,
+          isCreateMode: false,
+        ),
+      ),
+    );
+    
+    if (result == true) {
+      // Refresh the programs list
+      ref.invalidate(programTemplatesProvider);
+    }
   }
 
   void _showUserProgramDetails(UserProgram userProgram, Program program) {

@@ -62,6 +62,13 @@ class LocalDataSource {
     return exercise?.toEntity();
   }
 
+  Future<domain.Exercise?> getExerciseByExerciseId(String exerciseId) async {
+    final exercise = await (_database.select(_database.exercises)
+          ..where((e) => e.exerciseId.equals(exerciseId)))
+        .getSingleOrNull();
+    return exercise?.toEntity();
+  }
+
   Future<void> createExercise(domain.Exercise exercise) async {
     await _database.into(_database.exercises).insert(exercise.toCompanion());
   }
