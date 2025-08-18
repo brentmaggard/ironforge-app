@@ -4,15 +4,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/entities/workout.dart';
 import '../../../domain/entities/workout_set.dart';
 import '../../../domain/entities/exercise.dart';
+import '../../../core/providers/database_providers.dart';
 import '../exercises/exercise_selection_screen.dart';
 import 'providers/workout_session_provider.dart';
 
 class WorkoutSessionScreen extends ConsumerStatefulWidget {
   final Workout workout;
+  final bool isQuickStart;
   
   const WorkoutSessionScreen({
     super.key,
     required this.workout,
+    this.isQuickStart = false,
   });
 
   @override
@@ -194,6 +197,11 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: _showCancelWorkoutDialog,
+          tooltip: 'Cancel workout',
+        ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -734,6 +742,138 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
         ],
       ),
     );
+  }
+
+  void _showCancelWorkoutDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Cancel Workout'),
+        content: const Text('Are you sure you wish to cancel this workout? No data will be saved.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              _saveWorkout();
+            },
+            child: const Text('No'),
+          ),
+          FilledButton(
+            onPressed: () {
+              _deleteWorkout();
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _deleteWorkout() async {
+    try {
+      final workoutRepository = ref.read(workoutRepositoryProvider);
+      
+      bool shouldDelete = false;
+      String message = 'Session ended - workout data preserved';
+      
+      if (widget.isQuickStart) {
+        // For quick start workouts, always delete unless it was an existing active workout
+        shouldDelete = true;
+        message = 'Workout cancelled - no data saved';
+      } else {
+        // This is an existing active workout - never delete
+        shouldDelete = false;
+        message = 'Session ended - workout data preserved';
+      }
+      
+      if (shouldDelete) {
+        await workoutRepository.deleteWorkout(widget.workout.id);
+      }
+      
+      // Stop timers
+      _workoutTimer?.cancel();
+      _restTimer?.cancel();
+      
+      // Clear the session
+      ref.read(workoutSessionProvider.notifier).endSession();
+      
+      // Close dialog and return to workouts screen
+      Navigator.of(context).pop(); // Close dialog
+      Navigator.of(context).pop(); // Return to workouts screen
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } catch (e) {
+      // If deletion fails, still close the screen but show error
+      Navigator.of(context).pop(); // Close dialog
+      Navigator.of(context).pop(); // Return to workouts screen
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error ending workout session: $e'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
+  }
+
+  void _saveWorkout() async {
+    try {
+      // Save the current workout with any existing data
+      final sessionData = ref.read(workoutSessionProvider);
+      if (sessionData != null) {
+        // Calculate current stats
+        final exercises = sessionData.exercises;
+        int totalSets = exercises.fold(0, (sum, ex) => sum + ex.completedSets.length);
+        int totalReps = exercises.fold(0, (sum, ex) => 
+            sum + ex.completedSets.fold(0, (setSum, set) => setSum + set.reps));
+        double totalVolume = exercises.fold(0.0, (sum, ex) => 
+            sum + ex.completedSets.fold(0.0, (setSum, set) => setSum + set.volume));
+
+        // Mark workout as completed with current progress
+        final savedWorkout = sessionData.workout.copyWith(
+          status: 'completed',
+          completedAt: DateTime.now(),
+          totalSets: totalSets,
+          totalReps: totalReps,
+          totalVolume: totalVolume,
+          durationMinutes: _elapsedTime.inMinutes,
+          updatedAt: DateTime.now(),
+        );
+
+        // Save to database
+        final workoutRepository = ref.read(workoutRepositoryProvider);
+        await workoutRepository.updateWorkout(savedWorkout);
+      }
+      
+      // Stop timers
+      _workoutTimer?.cancel();
+      _restTimer?.cancel();
+      
+      // Clear the session
+      ref.read(workoutSessionProvider.notifier).endSession();
+      
+      // Close dialog and return to workouts screen
+      Navigator.of(context).pop(); // Close dialog
+      Navigator.of(context).pop(); // Return to workouts screen
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Workout saved successfully!'),
+        ),
+      );
+    } catch (e) {
+      // If save fails, still close the screen but show error
+      Navigator.of(context).pop(); // Close dialog
+      Navigator.of(context).pop(); // Return to workouts screen
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error saving workout: $e'),
+          backgroundColor: Theme.of(context).colorScheme.error,
+        ),
+      );
+    }
   }
 
   void _showPauseDialog() {

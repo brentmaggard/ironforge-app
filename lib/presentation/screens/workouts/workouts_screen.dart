@@ -478,7 +478,10 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
     
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => WorkoutSessionScreen(workout: newWorkout),
+        builder: (context) => WorkoutSessionScreen(
+          workout: newWorkout,
+          isQuickStart: true,
+        ),
       ),
     );
   }
