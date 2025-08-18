@@ -97,15 +97,52 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     );
     
     if (selectedExercise != null) {
-      final newExercise = WorkoutExercise(
-        exercise: selectedExercise,
-        plannedSets: 3,
-        targetReps: 10,
-        targetWeight: selectedExercise.startingWeightLbs ?? 0,
-        completedSets: [],
-      );
-      ref.read(workoutSessionProvider.notifier).addExercise(newExercise);
+      final sessionData = ref.read(workoutSessionProvider);
+      
+      // Check if exercise already exists in the workout
+      final existingExerciseIndex = sessionData?.exercises.indexWhere(
+        (workoutExercise) => workoutExercise.exercise.id == selectedExercise.id
+      ) ?? -1;
+      
+      if (existingExerciseIndex != -1) {
+        // Exercise already exists, add a new set to it
+        _showAddSetDialog(
+          sessionData!.exercises[existingExerciseIndex], 
+          existingExerciseIndex
+        );
+      } else {
+        // New exercise, add it to the workout
+        final newExercise = WorkoutExercise(
+          exercise: selectedExercise,
+          plannedSets: 3,
+          targetReps: 10,
+          targetWeight: selectedExercise.startingWeightLbs ?? 0,
+          completedSets: [],
+        );
+        ref.read(workoutSessionProvider.notifier).addExercise(newExercise);
+      }
     }
+  }
+
+  void _addSpecialSet() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Special Set'),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Special set types (drop sets, super sets, etc.) will be available in a future update.'),
+          ],
+        ),
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _reorderExercises(int oldIndex, int newIndex) {
@@ -197,8 +234,8 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
+        leading: IconButton.outlined(
+          icon: const Icon(Icons.close, color: Colors.red),
           onPressed: _showCancelWorkoutDialog,
           tooltip: 'Cancel workout',
         ),
@@ -219,13 +256,18 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           ],
         ),
         actions: [
-          IconButton(
+          IconButton.filledTonal(
             icon: const Icon(Icons.pause),
             onPressed: _showPauseDialog,
             tooltip: 'Pause workout',
           ),
-          IconButton(
-            icon: const Icon(Icons.stop),
+          IconButton.filledTonal(
+            icon: const Icon(Icons.settings),
+            onPressed: _showWorkoutSettings,
+            tooltip: 'Workout settings',
+          ),
+          IconButton.outlined(
+            icon: const Icon(Icons.check, color: Colors.green),
             onPressed: _showFinishDialog,
             tooltip: 'Finish workout',
           ),
@@ -262,10 +304,33 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _addExercise,
-        icon: const Icon(Icons.add),
-        label: const Text('Add Exercise'),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Expanded(
+              child: ElevatedButton.icon(
+                onPressed: _addExercise,
+                icon: const Icon(Icons.add),
+                label: const Text('Exercise'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: ElevatedButton.icon(
+                onPressed: _addSpecialSet,
+                icon: const Icon(Icons.add),
+                label: const Text('Special Set'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -402,7 +467,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
 
   Widget _buildExerciseCard(WorkoutExercise workoutExercise, int exerciseIndex) {
     return Card(
-      key: ValueKey(workoutExercise.exercise.id),
+      key: ValueKey('exercise_$exerciseIndex'),
       margin: const EdgeInsets.only(bottom: 16),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -419,22 +484,11 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        workoutExercise.exercise.name,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '${workoutExercise.exercise.primaryMuscles?.isNotEmpty == true ? workoutExercise.exercise.primaryMuscles!.first : 'Unknown'} • ${workoutExercise.exercise.defaultEquipment}',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    workoutExercise.exercise.name,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 PopupMenuButton(
@@ -463,7 +517,97 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
             
             // Sets list
             if (workoutExercise.completedSets.isNotEmpty) ...[
-              // Header for sets table
+              // Warm-up sets section
+              if (workoutExercise.completedSets.any((set) => set.isWarmUp)) ...[
+                Row(
+                  children: [
+                    const Text(
+                      'Warm-up Sets',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () => _showAddWarmUpSetDialog(workoutExercise, exerciseIndex),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Theme.of(context).colorScheme.outline),
+                              ),
+                              child: Icon(
+                                Icons.add,
+                                size: 12,
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Warm-up',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                
+                // Warm-up sets
+                ...workoutExercise.completedSets.asMap().entries.where((entry) => entry.value.isWarmUp).map((entry) {
+                  int setIndex = entry.key;
+                  WorkoutSet set = entry.value;
+                  int warmUpNumber = workoutExercise.completedSets.where((s) => s.isWarmUp).toList().indexOf(set) + 1;
+                  return _buildSetRow(set, warmUpNumber, workoutExercise, exerciseIndex, setIndex, true, isWarmUp: true);
+                }),
+                
+                const SizedBox(height: 16),
+              ] else ...[
+                // Add warm-up sets button when no warm-up sets exist
+                GestureDetector(
+                  onTap: () => _showAddWarmUpSetDialog(workoutExercise, exerciseIndex),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Theme.of(context).colorScheme.outline),
+                          ),
+                          child: Icon(
+                            Icons.add,
+                            size: 12,
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Add Warm-up Sets',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
+              
+              // Working sets header
               Row(
                 children: [
                   const SizedBox(width: 40, child: Text('Set', style: TextStyle(fontWeight: FontWeight.bold))),
@@ -476,11 +620,12 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
               ),
               const Divider(),
               
-              // Completed sets
-              ...workoutExercise.completedSets.asMap().entries.map((entry) {
+              // Working sets
+              ...workoutExercise.completedSets.asMap().entries.where((entry) => !entry.value.isWarmUp).map((entry) {
                 int setIndex = entry.key;
                 WorkoutSet set = entry.value;
-                return _buildSetRow(set, setIndex + 1, workoutExercise, exerciseIndex, setIndex, true);
+                int workingSetNumber = workoutExercise.completedSets.where((s) => !s.isWarmUp).toList().indexOf(set) + 1;
+                return _buildSetRow(set, workingSetNumber, workoutExercise, exerciseIndex, setIndex, true);
               }),
             ],
             
@@ -506,8 +651,9 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     WorkoutExercise workoutExercise,
     int exerciseIndex,
     int setIndex,
-    bool isCompleted,
-  ) {
+    bool isCompleted, {
+    bool isWarmUp = false,
+  }) {
     final isEditing = _editingSetId == set.id;
     
     return Container(
@@ -520,29 +666,44 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
       ),
       child: Row(
         children: [
-          // Set number with completion checkbox
+          // Set number with completion state
           SizedBox(
             width: 40,
             child: GestureDetector(
               onTap: () => _toggleSetCompletion(exerciseIndex, setIndex),
-              child: Row(
-                children: [
-                  Icon(
-                    set.isCompleted ? Icons.check_circle : Icons.radio_button_unchecked,
-                    size: 20,
+              child: Container(
+                width: 32,
+                height: 32,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
                     color: set.isCompleted 
                         ? Theme.of(context).colorScheme.primary
                         : Theme.of(context).colorScheme.outline,
+                    width: 2,
                   ),
-                  const SizedBox(width: 4),
-                  Text(
-                    setNumber.toString(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      decoration: set.isCompleted ? TextDecoration.lineThrough : null,
-                    ),
-                  ),
-                ],
+                  color: set.isCompleted 
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.transparent,
+                ),
+                child: Center(
+                  child: set.isCompleted
+                      ? Icon(
+                          Icons.check,
+                          size: 18,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        )
+                      : Text(
+                          isWarmUp ? 'W$setNumber' : setNumber.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: isWarmUp ? 12 : 14,
+                            color: isWarmUp 
+                                ? Theme.of(context).colorScheme.secondary
+                                : Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
+                ),
               ),
             ),
           ),
@@ -744,6 +905,86 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     );
   }
 
+  void _showAddWarmUpSetDialog(WorkoutExercise workoutExercise, int exerciseIndex) {
+    final weightController = TextEditingController();
+    final repsController = TextEditingController();
+    final rpeController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Add Warm-up Set'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: weightController,
+              decoration: const InputDecoration(
+                labelText: 'Weight (lbs)',
+                border: OutlineInputBorder(),
+                hintText: 'Lighter weight for warm-up',
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: repsController,
+              decoration: const InputDecoration(
+                labelText: 'Reps',
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: rpeController,
+              decoration: const InputDecoration(
+                labelText: 'RPE (1-10)',
+                border: OutlineInputBorder(),
+                hintText: 'Optional',
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final weight = double.tryParse(weightController.text) ?? 0;
+              final reps = int.tryParse(repsController.text) ?? 0;
+              final rpe = double.tryParse(rpeController.text);
+
+              if (weight > 0 && reps > 0) {
+                final newSet = WorkoutSet(
+                  id: 'set_${DateTime.now().millisecondsSinceEpoch}',
+                  workoutId: widget.workout.id,
+                  exerciseId: workoutExercise.exercise.id,
+                  setNumber: workoutExercise.completedSets.length + 1,
+                  reps: reps,
+                  weight: weight,
+                  rpe: rpe,
+                  isWarmUp: true, // Mark as warm-up set
+                  isCompleted: false,
+                  completedAt: null,
+                  createdAt: DateTime.now(),
+                  updatedAt: DateTime.now(),
+                );
+
+                ref.read(workoutSessionProvider.notifier).addSet(exerciseIndex, newSet);
+                Navigator.of(context).pop();
+              }
+            },
+            child: const Text('Add Warm-up Set'),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showCancelWorkoutDialog() {
     showDialog(
       context: context,
@@ -874,6 +1115,27 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
         ),
       );
     }
+  }
+
+  void _showWorkoutSettings() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Workout Settings'),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Workout settings will be available in a future update.'),
+          ],
+        ),
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _showPauseDialog() {

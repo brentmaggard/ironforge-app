@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/providers/database_providers.dart';
 import '../../../data/datasources/workout_seeder.dart';
 
@@ -48,6 +49,13 @@ class DashboardScreen extends ConsumerWidget {
                   }
                 },
                 child: const Text('🔄 Reseed Sample Workouts'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  context.go('/button-test');
+                },
+                child: const Text('🎨 View Button Styles'),
               ),
             ],
           ),

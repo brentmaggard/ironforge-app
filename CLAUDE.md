@@ -187,6 +187,13 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
    - ✅ Workout completion with final statistics and summary
    - ✅ **Enhanced Quick Start UX** - X button cancellation with smart deletion logic for new vs existing workouts
 
+5. **Advanced Workout Features** ✅ **COMPLETED**
+   - ✅ **Warm-up Sets System** - Dedicated warm-up set tracking with visual distinction (W1, W2, W3) and separate numbering
+   - ✅ **Smart Exercise Duplicate Handling** - Automatically adds sets to existing exercises instead of creating duplicates
+   - ✅ **Enhanced Set Completion UI** - Combined circle/number interface with single-tap completion toggle
+   - ✅ **Bottom Action Buttons** - Exercise and Special Set addition buttons with improved accessibility
+   - ✅ **Material 3 Action Buttons** - Updated app bar buttons with modern IconButton variants and color coding
+
 **MUSCLE MAP SYSTEM (MVP) (Phase 4.8) - COMPLETED** ✅:
 1. **Database Schema Extension** ✅ **COMPLETED**
    - ✅ Added `targetMuscleGroups` and `synergistMuscleGroups` JSON fields to exercises table (Schema v6)
@@ -286,6 +293,13 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
    - Visual barbell loading interface
    - Weight calculation and optimization
    - Multiple plate and barbell configurations
+
+4. **Enhanced Muscle Map System** 🔲 **FUTURE ENHANCEMENT**
+   - Investigate react-native-body-highlighter library (https://github.com/HichamELBSI/react-native-body-highlighter)
+   - High-quality SVG muscle maps with 22+ detailed anatomical regions
+   - Male/female body variations and professional muscle highlighting system
+   - Replace current simplified muscle maps with production-quality assets
+   - Enhanced muscle targeting visualization for exercise selection
 
 ## Implementation Plan
 
