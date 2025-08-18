@@ -17,6 +17,7 @@ import '../../domain/repositories/user_program_repository.dart';
 import '../../domain/repositories/program_session_repository.dart';
 import '../../domain/entities/goal.dart' as domain;
 import '../../domain/entities/exercise.dart' as domain_exercise;
+import '../../domain/entities/workout.dart' as domain_workout;
 
 /// Database provider - singleton instance
 final databaseProvider = Provider<AppDatabase>((ref) {
@@ -91,4 +92,17 @@ final allExercisesProvider = FutureProvider<List<domain_exercise.Exercise>>((ref
   await ref.watch(databaseInitializationProvider.future);
   final exerciseRepository = ref.watch(exerciseRepositoryProvider);
   return await exerciseRepository.getAllExercises();
+});
+
+/// Workout refresh notifier - used to trigger workout list refresh
+final workoutRefreshProvider = StateProvider<int>((ref) => 0);
+
+/// User workouts provider - gets all workouts for a specific user
+final userWorkoutsProvider = FutureProvider.family<List<domain_workout.Workout>, String>((ref, userId) async {
+  // Watch the refresh notifier to invalidate when workouts change
+  ref.watch(workoutRefreshProvider);
+  
+  await ref.watch(databaseInitializationProvider.future);
+  final workoutRepository = ref.watch(workoutRepositoryProvider);
+  return await workoutRepository.getWorkoutsByUserId(userId);
 });

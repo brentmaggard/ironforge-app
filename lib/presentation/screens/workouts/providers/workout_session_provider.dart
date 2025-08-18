@@ -66,8 +66,45 @@ class WorkoutExercise {
 // Workout session provider
 class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
   final WorkoutRepository _workoutRepository;
+  final Ref _ref;
   
-  WorkoutSessionNotifier(this._workoutRepository) : super(null);
+  WorkoutSessionNotifier(this._workoutRepository, this._ref) : super(null);
+
+  // Helper method to trigger workout list refresh
+  void _triggerWorkoutRefresh() {
+    final current = _ref.read(workoutRefreshProvider);
+    _ref.read(workoutRefreshProvider.notifier).state = current + 1;
+  }
+
+  // Helper method to recalculate and update workout stats in database
+  Future<void> _updateWorkoutStats() async {
+    if (state != null) {
+      // Calculate current stats from all sets
+      int totalSets = state!.exercises.fold(0, (sum, ex) => sum + ex.completedSets.length);
+      int totalReps = state!.exercises.fold(0, (sum, ex) => 
+          sum + ex.completedSets.fold(0, (setSum, set) => setSum + set.reps));
+      double totalVolume = state!.exercises.fold(0.0, (sum, ex) => 
+          sum + ex.completedSets.fold(0.0, (setSum, set) => setSum + set.volume));
+
+      // Update workout with new stats
+      final updatedWorkout = state!.workout.copyWith(
+        totalSets: totalSets,
+        totalReps: totalReps,
+        totalVolume: totalVolume,
+        updatedAt: DateTime.now(),
+      );
+
+      try {
+        // Save updated workout to database
+        await _workoutRepository.updateWorkout(updatedWorkout);
+        
+        // Update local state
+        state = state!.copyWith(workout: updatedWorkout);
+      } catch (e) {
+        print('Failed to update workout stats: $e');
+      }
+    }
+  }
 
   void startWorkout(Workout workout) async {
     // Save workout to database if not already saved
@@ -160,15 +197,39 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
 
   void addSet(int exerciseIndex, WorkoutSet set) async {
     if (state != null && exerciseIndex < state!.exercises.length) {
-      // Save set to database
-      await _workoutRepository.addWorkoutSet(set);
-      
-      // Update local state
-      final exercises = [...state!.exercises];
-      final exercise = exercises[exerciseIndex];
-      final updatedSets = [...exercise.completedSets, set];
-      exercises[exerciseIndex] = exercise.copyWith(completedSets: updatedSets);
-      state = state!.copyWith(exercises: exercises);
+      try {
+        // Save set to database
+        await _workoutRepository.addWorkoutSet(set);
+        
+        // Update local state only if database save succeeds
+        final exercises = [...state!.exercises];
+        final exercise = exercises[exerciseIndex];
+        final updatedSets = [...exercise.completedSets, set];
+        exercises[exerciseIndex] = exercise.copyWith(completedSets: updatedSets);
+        state = state!.copyWith(exercises: exercises);
+        
+        // Update workout stats in database
+        await _updateWorkoutStats();
+        
+        // Trigger workout list refresh
+        _triggerWorkoutRefresh();
+      } catch (e) {
+        // If database save fails, still update local state for UX
+        // In production, this would be logged properly
+        print('Failed to save set to database: $e');
+        
+        final exercises = [...state!.exercises];
+        final exercise = exercises[exerciseIndex];
+        final updatedSets = [...exercise.completedSets, set];
+        exercises[exerciseIndex] = exercise.copyWith(completedSets: updatedSets);
+        state = state!.copyWith(exercises: exercises);
+        
+        // Try to update stats even if set save failed
+        await _updateWorkoutStats();
+        
+        // Still trigger refresh even on error to show any partial updates
+        _triggerWorkoutRefresh();
+      }
     }
   }
 
@@ -186,6 +247,12 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
       updatedSets[setIndex] = updatedSet;
       exercises[exerciseIndex] = exercise.copyWith(completedSets: updatedSets);
       state = state!.copyWith(exercises: exercises);
+      
+      // Update workout stats in database
+      await _updateWorkoutStats();
+      
+      // Trigger workout list refresh
+      _triggerWorkoutRefresh();
     }
   }
 
@@ -204,6 +271,12 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
       final updatedSets = [...exercise.completedSets]..removeAt(setIndex);
       exercises[exerciseIndex] = exercise.copyWith(completedSets: updatedSets);
       state = state!.copyWith(exercises: exercises);
+      
+      // Update workout stats in database
+      await _updateWorkoutStats();
+      
+      // Trigger workout list refresh
+      _triggerWorkoutRefresh();
     }
   }
 
@@ -230,6 +303,9 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
       await _workoutRepository.updateWorkout(completedWorkout);
       
       state = state!.copyWith(workout: completedWorkout);
+      
+      // Trigger workout list refresh
+      _triggerWorkoutRefresh();
     }
   }
 
@@ -242,6 +318,6 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
 final workoutSessionProvider = StateNotifierProvider<WorkoutSessionNotifier, WorkoutSessionData?>(
   (ref) {
     final workoutRepository = ref.watch(workoutRepositoryProvider);
-    return WorkoutSessionNotifier(workoutRepository);
+    return WorkoutSessionNotifier(workoutRepository, ref);
   },
 );

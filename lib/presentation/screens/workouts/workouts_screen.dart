@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../widgets/common/main_navigation.dart';
 import '../../../domain/entities/workout.dart';
+import '../../../core/providers/database_providers.dart';
 import 'workout_session_screen.dart';
 
 class WorkoutsScreen extends ConsumerStatefulWidget {
@@ -26,48 +27,6 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
     super.dispose();
   }
 
-  // Demo data for UI development
-  List<Workout> get _demoWorkouts => [
-    Workout(
-      id: '1',
-      userId: 'demo-user',
-      name: 'Push Day - Chest & Triceps',
-      status: 'in_progress',
-      totalSets: 12,
-      totalReps: 120,
-      totalVolume: 2400.0,
-      startedAt: DateTime.now().subtract(const Duration(minutes: 45)),
-      createdAt: DateTime.now().subtract(const Duration(minutes: 45)),
-      updatedAt: DateTime.now(),
-      notes: 'Feeling strong today, increased weight on bench press',
-    ),
-    Workout(
-      id: '2',
-      userId: 'demo-user',
-      name: 'Pull Day - Back & Biceps',
-      status: 'completed',
-      totalSets: 15,
-      totalReps: 150,
-      totalVolume: 3200.0,
-      startedAt: DateTime.now().subtract(const Duration(days: 1, hours: 1)),
-      completedAt: DateTime.now().subtract(const Duration(days: 1)),
-      createdAt: DateTime.now().subtract(const Duration(days: 1)),
-      updatedAt: DateTime.now().subtract(const Duration(days: 1)),
-      durationMinutes: 65,
-    ),
-    Workout(
-      id: '3',
-      userId: 'demo-user',
-      name: 'Leg Day - Quads & Glutes',
-      status: 'planned',
-      totalSets: 0,
-      totalReps: 0,
-      totalVolume: 0.0,
-      createdAt: DateTime.now(),
-      updatedAt: DateTime.now(),
-      notes: 'Focus on squat form and depth',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -110,47 +69,75 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
   }
 
   Widget _buildActiveWorkoutsTab() {
-    final activeWorkouts = _demoWorkouts.where((w) => w.isInProgress || w.isPlanned).toList();
-    
-    if (activeWorkouts.isEmpty) {
-      return _buildEmptyState(
-        icon: Icons.play_arrow,
-        title: 'No Active Workouts',
-        subtitle: 'Start a new workout to begin tracking your progress',
-        actionText: 'Start Workout',
-        onAction: () => _startQuickWorkout(context),
-      );
-    }
+    return Consumer(
+      builder: (context, ref, child) {
+        final workoutsAsync = ref.watch(userWorkoutsProvider('demo-user'));
+        
+        return workoutsAsync.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stack) => Center(
+            child: Text('Error loading workouts: $error'),
+          ),
+          data: (workouts) {
+            final activeWorkouts = workouts.where((w) => w.isInProgress || w.isPlanned).toList();
+            
+            if (activeWorkouts.isEmpty) {
+              return _buildEmptyState(
+                icon: Icons.play_arrow,
+                title: 'No Active Workouts',
+                subtitle: 'Start a new workout to begin tracking your progress',
+                actionText: 'Start Workout',
+                onAction: () => _startQuickWorkout(context),
+              );
+            }
 
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: activeWorkouts.length,
-      itemBuilder: (context, index) {
-        final workout = activeWorkouts[index];
-        return _buildWorkoutCard(workout);
+            return ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: activeWorkouts.length,
+              itemBuilder: (context, index) {
+                final workout = activeWorkouts[index];
+                return _buildWorkoutCard(workout);
+              },
+            );
+          },
+        );
       },
     );
   }
 
   Widget _buildHistoryTab() {
-    final completedWorkouts = _demoWorkouts.where((w) => w.isCompleted).toList();
-    
-    if (completedWorkouts.isEmpty) {
-      return _buildEmptyState(
-        icon: Icons.history,
-        title: 'No Workout History',
-        subtitle: 'Complete your first workout to see it here',
-        actionText: 'Start Workout',
-        onAction: () => _startQuickWorkout(context),
-      );
-    }
+    return Consumer(
+      builder: (context, ref, child) {
+        final workoutsAsync = ref.watch(userWorkoutsProvider('demo-user'));
+        
+        return workoutsAsync.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stack) => Center(
+            child: Text('Error loading workouts: $error'),
+          ),
+          data: (workouts) {
+            final completedWorkouts = workouts.where((w) => w.isCompleted).toList();
+            
+            if (completedWorkouts.isEmpty) {
+              return _buildEmptyState(
+                icon: Icons.history,
+                title: 'No Workout History',
+                subtitle: 'Complete your first workout to see it here',
+                actionText: 'Start Workout',
+                onAction: () => _startQuickWorkout(context),
+              );
+            }
 
-    return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
-      itemCount: completedWorkouts.length,
-      itemBuilder: (context, index) {
-        final workout = completedWorkouts[index];
-        return _buildWorkoutCard(workout);
+            return ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: completedWorkouts.length,
+              itemBuilder: (context, index) {
+                final workout = completedWorkouts[index];
+                return _buildWorkoutCard(workout);
+              },
+            );
+          },
+        );
       },
     );
   }

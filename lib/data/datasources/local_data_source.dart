@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'database.dart';
 import 'csv_seeder.dart';
 import 'program_seeder.dart';
+import 'workout_seeder.dart';
 import '../models/exercise_model.dart';
 import '../models/goal_model.dart';
 import '../models/workout_model.dart';
@@ -406,9 +407,10 @@ class LocalDataSource {
   }
 
   // Database utility operations
-  Future<void> initializeDatabase() async {
+  Future<void> initializeDatabase({bool forceReseedWorkouts = false}) async {
     await seedExercises();
     await ProgramSeeder.seedProgramTemplates(_database);
+    await WorkoutSeeder.seedSampleWorkouts(_database, force: forceReseedWorkouts);
   }
 
   Future<void> clearAllData() async {
@@ -422,5 +424,15 @@ class LocalDataSource {
       await _database.delete(_database.userPrograms).go();
       await _database.delete(_database.programSessions).go();
     });
+  }
+
+  Future<void> clearWorkoutData() async {
+    await _database.transaction(() async {
+      // Delete workout sets first (foreign key constraint)
+      await _database.delete(_database.workoutSets).go();
+      // Then delete workouts
+      await _database.delete(_database.workouts).go();
+    });
+    print('Cleared all workout data from database');
   }
 }

@@ -53,70 +53,9 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     // Initialize the workout session in the provider
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(workoutSessionProvider.notifier).startWorkout(widget.workout);
-      
-      // Wait a moment for the workout to load from database
-      await Future.delayed(const Duration(milliseconds: 100));
-      
-      // Add demo exercises for development only if workout is empty
-      final sessionData = ref.read(workoutSessionProvider);
-      if (sessionData != null && sessionData.exercises.isEmpty) {
-        _addDemoExercises();
-      }
     });
   }
 
-  void _addDemoExercises() {
-    final demoExercises = [
-      WorkoutExercise(
-        exercise: Exercise(
-          id: 'ex1',
-          exerciseId: 'bench_press',
-          name: 'Barbell Bench Press',
-          defaultEquipment: 'Barbell',
-          primaryMuscles: ['Chest'],
-          difficultyLevel: 3,
-          instructions: 'Lie on bench, grip bar, lower to chest, press up',
-          tips: 'Keep core tight, full range of motion',
-          safetyRating: 4,
-          startingWeightLbs: 135,
-          startingWeightKg: 60,
-          isCompound: true,
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-        ),
-        plannedSets: 4,
-        targetReps: 8,
-        targetWeight: 185.0,
-        completedSets: [],
-      ),
-      WorkoutExercise(
-        exercise: Exercise(
-          id: 'ex2',
-          exerciseId: 'incline_dumbbell_press',
-          name: 'Incline Dumbbell Press',
-          defaultEquipment: 'Dumbbell',
-          primaryMuscles: ['Chest'],
-          difficultyLevel: 2,
-          instructions: 'Set bench to 30-45 degrees, press dumbbells up',
-          tips: 'Control the negative, don\'t let dumbbells drift back',
-          safetyRating: 4,
-          startingWeightLbs: 50,
-          startingWeightKg: 22,
-          isCompound: true,
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-        ),
-        plannedSets: 3,
-        targetReps: 10,
-        targetWeight: 65.0,
-        completedSets: [],
-      ),
-    ];
-
-    for (final exercise in demoExercises) {
-      ref.read(workoutSessionProvider.notifier).addExercise(exercise);
-    }
-  }
 
   void _startWorkoutTimer() {
     _workoutTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -482,7 +421,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
                         ),
                       ),
                       Text(
-                        '${workoutExercise.exercise.primaryMuscleGroup} • ${workoutExercise.exercise.equipment}',
+                        '${workoutExercise.exercise.primaryMuscles?.isNotEmpty == true ? workoutExercise.exercise.primaryMuscles!.first : 'Unknown'} • ${workoutExercise.exercise.defaultEquipment}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
@@ -662,9 +601,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
                 : IconButton(
                     icon: const Icon(Icons.delete_outline, size: 20),
                     onPressed: () {
-                      setState(() {
-                        workoutExercise.completedSets.removeAt(setIndex);
-                      });
+                      ref.read(workoutSessionProvider.notifier).removeSet(exerciseIndex, setIndex);
                     },
                   ),
           ),
@@ -786,9 +723,8 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
                   updatedAt: DateTime.now(),
                 );
 
-                setState(() {
-                  workoutExercise.completedSets.add(newSet);
-                });
+                // Use the provider to add the set properly to the database
+                ref.read(workoutSessionProvider.notifier).addSet(exerciseIndex, newSet);
 
                 Navigator.of(context).pop();
               }
