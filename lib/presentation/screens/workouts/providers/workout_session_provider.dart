@@ -10,22 +10,26 @@ class WorkoutSessionData {
   final Workout workout;
   final List<WorkoutExercise> exercises;
   final Duration elapsedTime;
+  final bool isPaused;
 
   WorkoutSessionData({
     required this.workout,
     required this.exercises,
     required this.elapsedTime,
+    this.isPaused = false,
   });
 
   WorkoutSessionData copyWith({
     Workout? workout,
     List<WorkoutExercise>? exercises,
     Duration? elapsedTime,
+    bool? isPaused,
   }) {
     return WorkoutSessionData(
       workout: workout ?? this.workout,
       exercises: exercises ?? this.exercises,
       elapsedTime: elapsedTime ?? this.elapsedTime,
+      isPaused: isPaused ?? this.isPaused,
     );
   }
 }
@@ -280,7 +284,7 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
     }
   }
 
-  void completeWorkout() async {
+  Future<void> completeWorkout() async {
     if (state != null) {
       // Calculate final stats
       int totalSets = state!.exercises.fold(0, (sum, ex) => sum + ex.completedSets.length);
@@ -306,6 +310,18 @@ class WorkoutSessionNotifier extends StateNotifier<WorkoutSessionData?> {
       
       // Trigger workout list refresh
       _triggerWorkoutRefresh();
+    }
+  }
+
+  void pauseWorkout() {
+    if (state != null) {
+      state = state!.copyWith(isPaused: true);
+    }
+  }
+
+  void resumeWorkout() {
+    if (state != null) {
+      state = state!.copyWith(isPaused: false);
     }
   }
 

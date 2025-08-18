@@ -256,10 +256,16 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           ],
         ),
         actions: [
-          IconButton.filledTonal(
-            icon: const Icon(Icons.pause),
-            onPressed: _showPauseDialog,
-            tooltip: 'Pause workout',
+          Consumer(
+            builder: (context, ref, _) {
+              final sessionData = ref.watch(workoutSessionProvider);
+              final isPaused = sessionData?.isPaused ?? false;
+              return IconButton.filledTonal(
+                icon: Icon(isPaused ? Icons.play_arrow : Icons.pause),
+                onPressed: _showPauseDialog,
+                tooltip: isPaused ? 'Resume workout' : 'Pause workout',
+              );
+            },
           ),
           IconButton.filledTonal(
             icon: const Icon(Icons.settings),
@@ -657,23 +663,24 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     final isEditing = _editingSetId == set.id;
     
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       decoration: BoxDecoration(
         color: set.isCompleted 
             ? Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3)
             : null,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Row(
         children: [
           // Set number with completion state
           SizedBox(
-            width: 40,
+            width: 32,
             child: GestureDetector(
               onTap: () => _toggleSetCompletion(exerciseIndex, setIndex),
               child: Container(
-                width: 32,
-                height: 32,
+                width: 28,
+                height: 28,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
@@ -707,7 +714,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 6),
           
           // Weight (editable)
           Expanded(
@@ -727,7 +734,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
               exerciseIndex,
               'reps',
               set.reps.toString(),
-              '',
+              'reps',
             ),
           ),
           
@@ -744,7 +751,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           
           // Actions
           SizedBox(
-            width: 40,
+            width: 36,
             child: isEditing
                 ? Row(
                     children: [
@@ -784,7 +791,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     
     if (isEditing) {
       return SizedBox(
-        height: 32,
+        height: 28,
         child: TextField(
           controller: _editController,
           autofocus: true,
@@ -792,7 +799,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           style: const TextStyle(fontSize: 14),
           decoration: const InputDecoration(
             isDense: true,
-            contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            contentPadding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             border: OutlineInputBorder(),
           ),
           onSubmitted: (_) => _saveEdit(),
@@ -803,20 +810,45 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     return GestureDetector(
       onTap: () => _startEditingField(setId, exerciseIndex, field, value),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent),
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Text(
-          value.isEmpty ? '-' : '$value${suffix.isNotEmpty ? ' $suffix' : ''}',
-          style: TextStyle(
-            fontSize: 14,
-            color: value.isEmpty 
-                ? Theme.of(context).colorScheme.onSurfaceVariant
-                : null,
-          ),
-        ),
+        child: value.isEmpty 
+            ? Text(
+                '-',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              )
+            : suffix.isNotEmpty
+                ? RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: [
+                        TextSpan(
+                          text: value,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' $suffix',
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Text(
+                    value,
+                    style: const TextStyle(fontSize: 14),
+                  ),
       ),
     );
   }
@@ -993,13 +1025,12 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
         content: const Text('Are you sure you wish to cancel this workout? No data will be saved.'),
         actions: [
           TextButton(
-            onPressed: () {
-              _saveWorkout();
-            },
+            onPressed: () => Navigator.of(context).pop(),
             child: const Text('No'),
           ),
           FilledButton(
             onPressed: () {
+              Navigator.of(context).pop(); // Close dialog first
               _deleteWorkout();
             },
             child: const Text('Yes'),
@@ -1037,85 +1068,46 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
       // Clear the session
       ref.read(workoutSessionProvider.notifier).endSession();
       
-      // Close dialog and return to workouts screen
-      Navigator.of(context).pop(); // Close dialog
-      Navigator.of(context).pop(); // Return to workouts screen
+      // Check if widget is still mounted before navigation
+      if (!mounted) return;
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message)),
-      );
-    } catch (e) {
-      // If deletion fails, still close the screen but show error
-      Navigator.of(context).pop(); // Close dialog
-      Navigator.of(context).pop(); // Return to workouts screen
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error ending workout session: $e'),
-          backgroundColor: Theme.of(context).colorScheme.error,
-        ),
-      );
-    }
-  }
-
-  void _saveWorkout() async {
-    try {
-      // Save the current workout with any existing data
-      final sessionData = ref.read(workoutSessionProvider);
-      if (sessionData != null) {
-        // Calculate current stats
-        final exercises = sessionData.exercises;
-        int totalSets = exercises.fold(0, (sum, ex) => sum + ex.completedSets.length);
-        int totalReps = exercises.fold(0, (sum, ex) => 
-            sum + ex.completedSets.fold(0, (setSum, set) => setSum + set.reps));
-        double totalVolume = exercises.fold(0.0, (sum, ex) => 
-            sum + ex.completedSets.fold(0.0, (setSum, set) => setSum + set.volume));
-
-        // Mark workout as completed with current progress
-        final savedWorkout = sessionData.workout.copyWith(
-          status: 'completed',
-          completedAt: DateTime.now(),
-          totalSets: totalSets,
-          totalReps: totalReps,
-          totalVolume: totalVolume,
-          durationMinutes: _elapsedTime.inMinutes,
-          updatedAt: DateTime.now(),
-        );
-
-        // Save to database
-        final workoutRepository = ref.read(workoutRepositoryProvider);
-        await workoutRepository.updateWorkout(savedWorkout);
+      // Navigate back to workouts screen
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop(); // Return to workouts screen
       }
       
-      // Stop timers
+      // Show success message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+      }
+    } catch (e) {
+      // Stop timers even on error
       _workoutTimer?.cancel();
       _restTimer?.cancel();
-      
-      // Clear the session
       ref.read(workoutSessionProvider.notifier).endSession();
       
-      // Close dialog and return to workouts screen
-      Navigator.of(context).pop(); // Close dialog
-      Navigator.of(context).pop(); // Return to workouts screen
+      // Check if widget is still mounted before navigation
+      if (!mounted) return;
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Workout saved successfully!'),
-        ),
-      );
-    } catch (e) {
-      // If save fails, still close the screen but show error
-      Navigator.of(context).pop(); // Close dialog
-      Navigator.of(context).pop(); // Return to workouts screen
+      // Navigate back on error
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop(); // Return to workouts screen
+      }
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error saving workout: $e'),
-          backgroundColor: Theme.of(context).colorScheme.error,
-        ),
-      );
+      // Show error message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error ending workout session: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
     }
   }
+
 
   void _showWorkoutSettings() {
     showDialog(
@@ -1139,11 +1131,16 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
   }
 
   void _showPauseDialog() {
+    final sessionData = ref.read(workoutSessionProvider);
+    if (sessionData == null) return;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Pause Workout'),
-        content: const Text('Are you sure you want to pause this workout?'),
+        title: Text(sessionData.isPaused ? 'Resume Workout' : 'Pause Workout'),
+        content: Text(sessionData.isPaused 
+          ? 'Resume your workout?' 
+          : 'Pause your workout? You can resume it later.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -1151,11 +1148,16 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           ),
           FilledButton(
             onPressed: () {
-              _workoutTimer?.cancel();
-              Navigator.of(context).pop();
+              if (sessionData.isPaused) {
+                ref.read(workoutSessionProvider.notifier).resumeWorkout();
+                _startWorkoutTimer();
+              } else {
+                ref.read(workoutSessionProvider.notifier).pauseWorkout();
+                _workoutTimer?.cancel();
+              }
               Navigator.of(context).pop();
             },
-            child: const Text('Pause'),
+            child: Text(sessionData.isPaused ? 'Resume' : 'Pause'),
           ),
         ],
       ),
@@ -1163,6 +1165,87 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
   }
 
   void _showFinishDialog() {
+    final sessionData = ref.read(workoutSessionProvider);
+    final exercises = sessionData?.exercises ?? [];
+    
+    // Check for incomplete sets
+    List<WorkoutSet> incompleteSets = [];
+    for (var exercise in exercises) {
+      for (var set in exercise.completedSets) {
+        if (!set.isCompleted) {
+          incompleteSets.add(set);
+        }
+      }
+    }
+    
+    // If there are incomplete sets, show options dialog first
+    if (incompleteSets.isNotEmpty) {
+      _showIncompleteSetsDialog(incompleteSets);
+      return;
+    }
+    
+    // All sets complete, show normal finish dialog
+    _showWorkoutSummaryDialog();
+  }
+
+  void _showIncompleteSetsDialog(List<WorkoutSet> incompleteSets) {
+    final int incompleteCount = incompleteSets.length;
+    final int warmupCount = incompleteSets.where((set) => set.isWarmUp).length;
+    final int workingCount = incompleteCount - warmupCount;
+    
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Incomplete Sets'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'You have $incompleteCount sets not marked as done:',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 12),
+            if (warmupCount > 0)
+              Text('• $warmupCount warm-up sets'),
+            if (workingCount > 0)
+              Text('• $workingCount working sets'),
+            const SizedBox(height: 16),
+            Text(
+              'What would you like to do?',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+          FilledButton.tonal(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _markAllSetsComplete(incompleteSets);
+              _showWorkoutSummaryDialog();
+            },
+            child: const Text('Mark as Done'),
+          ),
+          FilledButton.tonal(
+            onPressed: () {
+              Navigator.of(context).pop();
+              _deleteIncompleteSets(incompleteSets);
+              _showWorkoutSummaryDialog();
+            },
+            child: const Text('Delete Sets'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showWorkoutSummaryDialog() {
     final sessionData = ref.read(workoutSessionProvider);
     final exercises = sessionData?.exercises ?? [];
     
@@ -1202,6 +1285,7 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
           ),
           FilledButton(
             onPressed: () {
+              Navigator.of(context).pop(); // Close dialog first
               _completeWorkout();
             },
             child: const Text('Finish & Save'),
@@ -1209,6 +1293,56 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
         ],
       ),
     );
+  }
+
+  void _markAllSetsComplete(List<WorkoutSet> incompleteSets) {
+    final sessionData = ref.read(workoutSessionProvider);
+    if (sessionData == null) return;
+    
+    // Find and update each incomplete set
+    for (var incompleteSet in incompleteSets) {
+      // Find the exercise and set index for this incomplete set
+      for (int exerciseIndex = 0; exerciseIndex < sessionData.exercises.length; exerciseIndex++) {
+        final exercise = sessionData.exercises[exerciseIndex];
+        for (int setIndex = 0; setIndex < exercise.completedSets.length; setIndex++) {
+          final set = exercise.completedSets[setIndex];
+          if (set.id == incompleteSet.id) {
+            // Mark this set as completed
+            final completedSet = set.copyWith(
+              isCompleted: true,
+              completedAt: DateTime.now(),
+            );
+            ref.read(workoutSessionProvider.notifier).updateSet(
+              exerciseIndex,
+              setIndex,
+              completedSet,
+            );
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  void _deleteIncompleteSets(List<WorkoutSet> incompleteSets) {
+    final sessionData = ref.read(workoutSessionProvider);
+    if (sessionData == null) return;
+    
+    // Remove incomplete sets from back to front to avoid index issues
+    for (var incompleteSet in incompleteSets) {
+      // Find and remove each incomplete set
+      for (int exerciseIndex = 0; exerciseIndex < sessionData.exercises.length; exerciseIndex++) {
+        final exercise = sessionData.exercises[exerciseIndex];
+        for (int setIndex = exercise.completedSets.length - 1; setIndex >= 0; setIndex--) {
+          final set = exercise.completedSets[setIndex];
+          if (set.id == incompleteSet.id) {
+            // Remove this set
+            ref.read(workoutSessionProvider.notifier).removeSet(exerciseIndex, setIndex);
+            break;
+          }
+        }
+      }
+    }
   }
 
   Widget _buildSummaryRow(String label, String value) {
@@ -1227,33 +1361,65 @@ class _WorkoutSessionScreenState extends ConsumerState<WorkoutSessionScreen> {
     );
   }
 
-  void _completeWorkout() {
-    _workoutTimer?.cancel();
-    _restTimer?.cancel();
-    
-    // Complete the workout in the provider
-    ref.read(workoutSessionProvider.notifier).completeWorkout();
-    
-    // Close dialogs and return to workouts screen
-    Navigator.of(context).pop(); // Close dialog
-    Navigator.of(context).pop(); // Return to workouts screen
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${widget.workout.name} completed!'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        action: SnackBarAction(
-          label: 'View',
-          textColor: Theme.of(context).colorScheme.onPrimary,
-          onPressed: () {
-            // TODO: Navigate to workout detail view
-          },
-        ),
-      ),
-    );
-    
-    // End the session
-    ref.read(workoutSessionProvider.notifier).endSession();
+  void _completeWorkout() async {
+    try {
+      _workoutTimer?.cancel();
+      _restTimer?.cancel();
+      
+      // Complete the workout in the provider
+      await ref.read(workoutSessionProvider.notifier).completeWorkout();
+      
+      // Check if widget is still mounted before navigation
+      if (!mounted) return;
+      
+      // Navigate back to workouts screen
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop(); // Return to workouts screen
+      }
+      
+      // Show success message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${widget.workout.name} completed!'),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            action: SnackBarAction(
+              label: 'View',
+              textColor: Theme.of(context).colorScheme.onPrimary,
+              onPressed: () {
+                // TODO: Navigate to workout detail view
+              },
+            ),
+          ),
+        );
+      }
+      
+      // End the session
+      ref.read(workoutSessionProvider.notifier).endSession();
+    } catch (e) {
+      // Stop timers even on error
+      _workoutTimer?.cancel();
+      _restTimer?.cancel();
+      ref.read(workoutSessionProvider.notifier).endSession();
+      
+      // Check if widget is still mounted before navigation
+      if (!mounted) return;
+      
+      // Navigate back on error
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop(); // Return to workouts screen
+      }
+      
+      // Show error message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error completing workout: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    }
   }
 
   String _formatElapsedTime(Duration duration) {
