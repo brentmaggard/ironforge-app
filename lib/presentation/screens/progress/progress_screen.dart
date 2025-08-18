@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../widgets/common/main_navigation.dart';
 
 class ProgressScreen extends StatelessWidget {
   const ProgressScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MainNavigation(
-      currentIndex: 3,
-      child: Scaffold(
-        appBar: MainAppBar(title: 'Progress'),
+    return Scaffold(
+        appBar: AppBar(title: Text('Progress')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +22,6 @@ class ProgressScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

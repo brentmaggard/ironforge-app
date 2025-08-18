@@ -8,51 +8,80 @@ import '../../presentation/screens/progress/progress_screen.dart';
 import '../../presentation/screens/exercises_screen.dart';
 import '../../presentation/screens/exercise_detail_screen.dart';
 import '../../presentation/screens/plate_calculator/plate_calculator_screen.dart';
+import '../../presentation/widgets/common/main_navigation.dart';
 import '../../domain/entities/exercise.dart';
 
-/// App navigation configuration using go_router
+/// App navigation configuration using go_router with shell route
 class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: '/dashboard',
     routes: [
-      GoRoute(
-        path: '/dashboard',
-        name: 'dashboard',
-        builder: (context, state) => const DashboardScreen(),
+      // Shell route that provides the persistent bottom navigation
+      ShellRoute(
+        builder: (context, state, child) {
+          // Determine current index based on location
+          final location = state.matchedLocation;
+          int currentIndex = -1;
+          
+          if (location.startsWith('/dashboard')) {
+            currentIndex = 0;
+          } else if (location.startsWith('/workouts')) {
+            currentIndex = 1;
+          } else if (location.startsWith('/goals')) {
+            currentIndex = 2;
+          } else if (location.startsWith('/progress')) {
+            currentIndex = 3;
+          } else if (location.startsWith('/exercises')) {
+            currentIndex = 4;
+          }
+          
+          return MainNavigation(
+            currentIndex: currentIndex,
+            child: child,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: '/dashboard',
+            name: 'dashboard',
+            builder: (context, state) => const DashboardScreen(),
+          ),
+          GoRoute(
+            path: '/goals',
+            name: 'goals',
+            builder: (context, state) => const GoalsScreen(),
+          ),
+          GoRoute(
+            path: '/workouts',
+            name: 'workouts',
+            builder: (context, state) => const WorkoutsScreen(),
+          ),
+          GoRoute(
+            path: '/progress',
+            name: 'progress',
+            builder: (context, state) => const ProgressScreen(),
+          ),
+          GoRoute(
+            path: '/exercises',
+            name: 'exercises',
+            builder: (context, state) => const ExercisesScreen(),
+          ),
+          GoRoute(
+            path: '/exercises/:exerciseId',
+            name: 'exercise-detail',
+            builder: (context, state) {
+              final exerciseId = state.pathParameters['exerciseId']!;
+              final Exercise exercise = state.extra as Exercise;
+              return ExerciseDetailScreen(exercise: exercise);
+            },
+          ),
+        ],
       ),
-      GoRoute(
-        path: '/goals',
-        name: 'goals',
-        builder: (context, state) => const GoalsScreen(),
-      ),
-      GoRoute(
-        path: '/workouts',
-        name: 'workouts',
-        builder: (context, state) => const WorkoutsScreen(),
-      ),
+      // Routes outside the shell (no bottom nav)
       GoRoute(
         path: '/programs',
         name: 'programs',
         builder: (context, state) => const ProgramsScreen(),
-      ),
-      GoRoute(
-        path: '/progress',
-        name: 'progress',
-        builder: (context, state) => const ProgressScreen(),
-      ),
-      GoRoute(
-        path: '/exercises',
-        name: 'exercises',
-        builder: (context, state) => const ExercisesScreen(),
-      ),
-      GoRoute(
-        path: '/exercises/:exerciseId',
-        name: 'exercise-detail',
-        builder: (context, state) {
-          final exerciseId = state.pathParameters['exerciseId']!;
-          final Exercise exercise = state.extra as Exercise;
-          return ExerciseDetailScreen(exercise: exercise);
-        },
       ),
       GoRoute(
         path: '/plate-calculator',

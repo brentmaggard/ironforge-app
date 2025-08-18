@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../widgets/common/main_navigation.dart';
 import '../../../core/providers/database_providers.dart';
 import '../../../data/datasources/workout_seeder.dart';
 
@@ -9,11 +8,7 @@ class DashboardScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MainNavigation(
-      currentIndex: 0,
-      child: Scaffold(
-        appBar: const MainAppBar(title: 'Dashboard'),
-        body: Center(
+    return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -56,8 +51,6 @@ class DashboardScreen extends ConsumerWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        );
   }
 }

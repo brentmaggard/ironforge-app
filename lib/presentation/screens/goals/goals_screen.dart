@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/entities/goal.dart';
 import '../../../core/providers/database_providers.dart';
-import '../../widgets/common/main_navigation.dart';
 import 'widgets/goal_card.dart';
 import 'widgets/create_goal_dialog.dart';
 
@@ -16,9 +15,7 @@ class GoalsScreen extends ConsumerWidget {
     
     final goalsAsync = ref.watch(userGoalsProvider(userId));
 
-    return MainNavigation(
-      currentIndex: 2,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Goals'),
           actions: [
@@ -147,8 +144,7 @@ class GoalsScreen extends ConsumerWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 
   void _showCreateGoalDialog(BuildContext context) {

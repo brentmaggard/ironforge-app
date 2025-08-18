@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../widgets/common/main_navigation.dart';
 import '../../../domain/entities/workout.dart';
 import '../../../core/providers/database_providers.dart';
 import 'workout_session_screen.dart';
@@ -30,9 +29,7 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
 
   @override
   Widget build(BuildContext context) {
-    return MainNavigation(
-      currentIndex: 1,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Workouts'),
           bottom: TabBar(
@@ -64,8 +61,7 @@ class _WorkoutsScreenState extends ConsumerState<WorkoutsScreen> with TickerProv
           icon: const Icon(Icons.fitness_center),
           label: const Text('Quick Start'),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildActiveWorkoutsTab() {

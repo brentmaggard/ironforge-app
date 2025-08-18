@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../widgets/common/main_navigation.dart';
 import '../../core/providers/database_providers.dart';
 import '../../domain/entities/exercise.dart';
 import '../providers/exercise_favorites_provider.dart';
@@ -114,9 +113,7 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
     final dbInitialization = ref.watch(databaseInitializationProvider);
     final favorites = ref.watch(exerciseFavoritesNotifierProvider);
 
-    return MainNavigation(
-      currentIndex: 4,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Exercises'),
           actions: [
@@ -475,8 +472,7 @@ class _ExercisesScreenState extends ConsumerState<ExercisesScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 
   IconData _getExerciseIcon(String category) {
