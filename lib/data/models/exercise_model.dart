@@ -26,6 +26,12 @@ extension ExerciseModel on domain.Exercise {
       bodyParts: Value(bodyParts?.isNotEmpty == true
           ? jsonEncode(bodyParts)
           : null),
+      targetMuscleGroups: Value(targetMuscleGroups?.isNotEmpty == true
+          ? jsonEncode(targetMuscleGroups)
+          : null),
+      synergistMuscleGroups: Value(synergistMuscleGroups?.isNotEmpty == true
+          ? jsonEncode(synergistMuscleGroups)
+          : null),
       startingWeightLbs: Value(startingWeightLbs),
       startingWeightKg: Value(startingWeightKg),
       defaultWarmupWeight: Value(defaultWarmupWeight),
@@ -73,6 +79,8 @@ extension ExerciseFromDb on Exercise {
       primaryMuscles: parseJsonList(primaryMuscles),
       secondaryMuscles: parseJsonList(secondaryMuscles),
       bodyParts: parseJsonList(bodyParts),
+      targetMuscleGroups: parseJsonList(targetMuscleGroups),
+      synergistMuscleGroups: parseJsonList(synergistMuscleGroups),
       startingWeightLbs: startingWeightLbs,
       startingWeightKg: startingWeightKg,
       defaultWarmupWeight: defaultWarmupWeight,

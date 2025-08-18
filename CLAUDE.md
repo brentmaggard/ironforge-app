@@ -8,7 +8,7 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 
 ## Current Status
 
-**PROJECT STATUS**: ✅ **PHASE 4 COMPLETED** - Goals, Exercise Database, Favorites, Program Builder, Comprehensive Program Editor, Exercise Selection & Workout Logging Systems Complete
+**PROJECT STATUS**: ✅ **PHASE 4 COMPLETED** - Goals, Exercise Database, Favorites, Program Builder, Comprehensive Program Editor, Exercise Selection, Workout Logging & Muscle Map MVP Systems Complete
 
 **COMPLETED**:
 - ✅ Flutter SDK installation and setup
@@ -23,7 +23,7 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 - ✅ Clean architecture folder structure implemented
 
 **DATABASE LAYER (Phase 3) - COMPLETED** ✅:
-- ✅ **Enhanced Drift Database**: 14 tables with comprehensive schema and JSON data integration (Schema v5)
+- ✅ **Enhanced Drift Database**: 14 tables with comprehensive schema and JSON data integration (Schema v6)
 - ✅ **Production Exercise Database**: 52 real exercises from original IronForge web app via JSON import
 - ✅ **Rich Exercise Metadata**: Detailed instructions, tips, safety ratings, difficulty levels (1-5), starting weights
 - ✅ **Exercise Categorization**: 14 exercise categories and 18 equipment types with comprehensive classifications
@@ -180,7 +180,32 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
    - ✅ Set editing (weight, reps, RPE) with inline editing interface
    - ✅ Workout completion with final statistics and summary
    - ✅ **Enhanced Quick Start UX** - X button cancellation with smart deletion logic for new vs existing workouts
-   
+
+**MUSCLE MAP SYSTEM (MVP) (Phase 4.8) - COMPLETED** ✅:
+1. **Database Schema Extension** ✅ **COMPLETED**
+   - ✅ Added `targetMuscleGroups` and `synergistMuscleGroups` JSON fields to exercises table (Schema v6)
+   - ✅ Automatic database migration from v5 to v6 with proper column addition
+   - ✅ 60+ exercise-specific muscle mappings imported via MuscleMapSeeder
+   - ✅ ScreenMuscle enum with 11 basic muscle groups (chest, back, shoulders, biceps, triceps, abs, quadriceps, hamstrings, glutes, calves, forearms)
+
+2. **Visual Components** ✅ **COMPLETED**
+   - ✅ Front and back body SVG files with 11 muscle regions and data attributes
+   - ✅ MuscleMapView widget with dynamic SVG color injection based on activation levels
+   - ✅ Real-time muscle highlighting with color-coded intensity (0-1 opacity scale)
+   - ✅ XML parsing integration with flutter_svg for dynamic muscle visualization
+
+3. **User Interface** ✅ **COMPLETED**
+   - ✅ ExerciseMuscleMapScreen with tabbed front/back views and comprehensive muscle details
+   - ✅ "View Muscle Map" button seamlessly integrated into exercise detail screens
+   - ✅ Legend and muscle details cards showing target vs synergist muscle activation
+   - ✅ Material 3 compliant visual design with proper theming and responsive layout
+
+4. **Activation System** ✅ **COMPLETED**
+   - ✅ PointsCalculator with 1.0 target muscle activation and 0.3 synergist muscle activation
+   - ✅ MuscleActivation data structure with proper entity conversion and JSON serialization
+   - ✅ Automatic muscle mapping with exercise-specific overrides for accuracy
+   - ✅ Target vs synergist muscle classification with visual color coding (red for target, orange for synergist)
+
 ## How to Access Program Builder Features
 
 **Programs Screen**: 
@@ -232,6 +257,22 @@ IronForge Flutter is a cross-platform workout tracking application being ported 
 - **Pull Day - Back & Biceps** (In Progress) - Test continuing an existing workout
 - **Push Day - Chest & Shoulders** (Completed) - Example of completed workout history
 - **Debug Reseed**: Dashboard screen has "🔄 Reseed Sample Workouts" button to refresh test data
+
+## How to Access Muscle Map Features
+
+**Muscle Map Visualization**: 
+- Navigate to the **"Exercises"** tab in the bottom navigation
+- Browse or search exercises in the exercise database
+- Tap on any exercise card to open the exercise detail screen
+- Scroll down and tap the **"View Muscle Map"** button with the accessibility icon
+- View the muscle activation in tabbed front/back body views
+
+**Muscle Map Features**:
+- **Visual Body Diagrams**: Front and back body views with 11 muscle regions
+- **Color-Coded Activation**: Red highlighting for target muscles, orange for synergist muscles  
+- **Muscle Details**: Cards showing primary and secondary muscle groups worked
+- **Legend**: Clear visual legend explaining muscle activation levels
+- **Material 3 Design**: Consistent theming with the rest of the app
 
 2. **Advanced Features** 🔲 **PENDING**
    

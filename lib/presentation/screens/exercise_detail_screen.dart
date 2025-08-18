@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/entities/exercise.dart';
 import '../providers/exercise_favorites_provider.dart';
+import 'muscle_map/exercise_muscle_map_screen.dart';
 
 class ExerciseDetailScreen extends ConsumerStatefulWidget {
   final Exercise exercise;
@@ -395,6 +396,27 @@ class _ExerciseDetailScreenState extends ConsumerState<ExerciseDetailScreen> {
                         ),
                       ),
                     ],
+                  ),
+                  
+                  const SizedBox(height: 12),
+                  
+                  // Muscle Map button
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ExerciseMuscleMapScreen(exercise: exercise),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.accessibility),
+                      label: const Text('View Muscle Map'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                      ),
+                    ),
                   ),
                   
                   const SizedBox(height: 16),

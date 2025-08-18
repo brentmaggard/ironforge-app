@@ -3,6 +3,7 @@ import 'database.dart';
 import 'csv_seeder.dart';
 import 'program_seeder.dart';
 import 'workout_seeder.dart';
+import 'muscle_map_seeder.dart';
 import '../models/exercise_model.dart';
 import '../models/goal_model.dart';
 import '../models/workout_model.dart';
@@ -411,6 +412,7 @@ class LocalDataSource {
     await seedExercises();
     await ProgramSeeder.seedProgramTemplates(_database);
     await WorkoutSeeder.seedSampleWorkouts(_database, force: forceReseedWorkouts);
+    await MuscleMapSeeder.seedExerciseMuscleMap(_database);
   }
 
   Future<void> clearAllData() async {

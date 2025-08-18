@@ -2252,6 +2252,28 @@ class $ExercisesTable extends Exercises
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _targetMuscleGroupsMeta =
+      const VerificationMeta('targetMuscleGroups');
+  @override
+  late final GeneratedColumn<String> targetMuscleGroups =
+      GeneratedColumn<String>(
+        'target_muscle_groups',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _synergistMuscleGroupsMeta =
+      const VerificationMeta('synergistMuscleGroups');
+  @override
+  late final GeneratedColumn<String> synergistMuscleGroups =
+      GeneratedColumn<String>(
+        'synergist_muscle_groups',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
   static const VerificationMeta _startingWeightLbsMeta = const VerificationMeta(
     'startingWeightLbs',
   );
@@ -2553,6 +2575,8 @@ class $ExercisesTable extends Exercises
     primaryMuscles,
     secondaryMuscles,
     bodyParts,
+    targetMuscleGroups,
+    synergistMuscleGroups,
     startingWeightLbs,
     startingWeightKg,
     defaultWarmupWeight,
@@ -2661,6 +2685,24 @@ class $ExercisesTable extends Exercises
       context.handle(
         _bodyPartsMeta,
         bodyParts.isAcceptableOrUnknown(data['body_parts']!, _bodyPartsMeta),
+      );
+    }
+    if (data.containsKey('target_muscle_groups')) {
+      context.handle(
+        _targetMuscleGroupsMeta,
+        targetMuscleGroups.isAcceptableOrUnknown(
+          data['target_muscle_groups']!,
+          _targetMuscleGroupsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('synergist_muscle_groups')) {
+      context.handle(
+        _synergistMuscleGroupsMeta,
+        synergistMuscleGroups.isAcceptableOrUnknown(
+          data['synergist_muscle_groups']!,
+          _synergistMuscleGroupsMeta,
+        ),
       );
     }
     if (data.containsKey('starting_weight_lbs')) {
@@ -2882,6 +2924,14 @@ class $ExercisesTable extends Exercises
         DriftSqlType.string,
         data['${effectivePrefix}body_parts'],
       ),
+      targetMuscleGroups: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}target_muscle_groups'],
+      ),
+      synergistMuscleGroups: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}synergist_muscle_groups'],
+      ),
       startingWeightLbs: attachedDatabase.typeMapping.read(
         DriftSqlType.double,
         data['${effectivePrefix}starting_weight_lbs'],
@@ -2993,6 +3043,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   final String? primaryMuscles;
   final String? secondaryMuscles;
   final String? bodyParts;
+  final String? targetMuscleGroups;
+  final String? synergistMuscleGroups;
   final double? startingWeightLbs;
   final double? startingWeightKg;
   final double? defaultWarmupWeight;
@@ -3026,6 +3078,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     this.primaryMuscles,
     this.secondaryMuscles,
     this.bodyParts,
+    this.targetMuscleGroups,
+    this.synergistMuscleGroups,
     this.startingWeightLbs,
     this.startingWeightKg,
     this.defaultWarmupWeight,
@@ -3071,6 +3125,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     }
     if (!nullToAbsent || bodyParts != null) {
       map['body_parts'] = Variable<String>(bodyParts);
+    }
+    if (!nullToAbsent || targetMuscleGroups != null) {
+      map['target_muscle_groups'] = Variable<String>(targetMuscleGroups);
+    }
+    if (!nullToAbsent || synergistMuscleGroups != null) {
+      map['synergist_muscle_groups'] = Variable<String>(synergistMuscleGroups);
     }
     if (!nullToAbsent || startingWeightLbs != null) {
       map['starting_weight_lbs'] = Variable<double>(startingWeightLbs);
@@ -3141,6 +3201,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       bodyParts: bodyParts == null && nullToAbsent
           ? const Value.absent()
           : Value(bodyParts),
+      targetMuscleGroups: targetMuscleGroups == null && nullToAbsent
+          ? const Value.absent()
+          : Value(targetMuscleGroups),
+      synergistMuscleGroups: synergistMuscleGroups == null && nullToAbsent
+          ? const Value.absent()
+          : Value(synergistMuscleGroups),
       startingWeightLbs: startingWeightLbs == null && nullToAbsent
           ? const Value.absent()
           : Value(startingWeightLbs),
@@ -3204,6 +3270,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       primaryMuscles: serializer.fromJson<String?>(json['primaryMuscles']),
       secondaryMuscles: serializer.fromJson<String?>(json['secondaryMuscles']),
       bodyParts: serializer.fromJson<String?>(json['bodyParts']),
+      targetMuscleGroups: serializer.fromJson<String?>(
+        json['targetMuscleGroups'],
+      ),
+      synergistMuscleGroups: serializer.fromJson<String?>(
+        json['synergistMuscleGroups'],
+      ),
       startingWeightLbs: serializer.fromJson<double?>(
         json['startingWeightLbs'],
       ),
@@ -3246,6 +3318,10 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       'primaryMuscles': serializer.toJson<String?>(primaryMuscles),
       'secondaryMuscles': serializer.toJson<String?>(secondaryMuscles),
       'bodyParts': serializer.toJson<String?>(bodyParts),
+      'targetMuscleGroups': serializer.toJson<String?>(targetMuscleGroups),
+      'synergistMuscleGroups': serializer.toJson<String?>(
+        synergistMuscleGroups,
+      ),
       'startingWeightLbs': serializer.toJson<double?>(startingWeightLbs),
       'startingWeightKg': serializer.toJson<double?>(startingWeightKg),
       'defaultWarmupWeight': serializer.toJson<double?>(defaultWarmupWeight),
@@ -3282,6 +3358,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     Value<String?> primaryMuscles = const Value.absent(),
     Value<String?> secondaryMuscles = const Value.absent(),
     Value<String?> bodyParts = const Value.absent(),
+    Value<String?> targetMuscleGroups = const Value.absent(),
+    Value<String?> synergistMuscleGroups = const Value.absent(),
     Value<double?> startingWeightLbs = const Value.absent(),
     Value<double?> startingWeightKg = const Value.absent(),
     Value<double?> defaultWarmupWeight = const Value.absent(),
@@ -3323,6 +3401,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
         ? secondaryMuscles.value
         : this.secondaryMuscles,
     bodyParts: bodyParts.present ? bodyParts.value : this.bodyParts,
+    targetMuscleGroups: targetMuscleGroups.present
+        ? targetMuscleGroups.value
+        : this.targetMuscleGroups,
+    synergistMuscleGroups: synergistMuscleGroups.present
+        ? synergistMuscleGroups.value
+        : this.synergistMuscleGroups,
     startingWeightLbs: startingWeightLbs.present
         ? startingWeightLbs.value
         : this.startingWeightLbs,
@@ -3380,6 +3464,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ? data.secondaryMuscles.value
           : this.secondaryMuscles,
       bodyParts: data.bodyParts.present ? data.bodyParts.value : this.bodyParts,
+      targetMuscleGroups: data.targetMuscleGroups.present
+          ? data.targetMuscleGroups.value
+          : this.targetMuscleGroups,
+      synergistMuscleGroups: data.synergistMuscleGroups.present
+          ? data.synergistMuscleGroups.value
+          : this.synergistMuscleGroups,
       startingWeightLbs: data.startingWeightLbs.present
           ? data.startingWeightLbs.value
           : this.startingWeightLbs,
@@ -3446,6 +3536,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ..write('primaryMuscles: $primaryMuscles, ')
           ..write('secondaryMuscles: $secondaryMuscles, ')
           ..write('bodyParts: $bodyParts, ')
+          ..write('targetMuscleGroups: $targetMuscleGroups, ')
+          ..write('synergistMuscleGroups: $synergistMuscleGroups, ')
           ..write('startingWeightLbs: $startingWeightLbs, ')
           ..write('startingWeightKg: $startingWeightKg, ')
           ..write('defaultWarmupWeight: $defaultWarmupWeight, ')
@@ -3484,6 +3576,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     primaryMuscles,
     secondaryMuscles,
     bodyParts,
+    targetMuscleGroups,
+    synergistMuscleGroups,
     startingWeightLbs,
     startingWeightKg,
     defaultWarmupWeight,
@@ -3521,6 +3615,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           other.primaryMuscles == this.primaryMuscles &&
           other.secondaryMuscles == this.secondaryMuscles &&
           other.bodyParts == this.bodyParts &&
+          other.targetMuscleGroups == this.targetMuscleGroups &&
+          other.synergistMuscleGroups == this.synergistMuscleGroups &&
           other.startingWeightLbs == this.startingWeightLbs &&
           other.startingWeightKg == this.startingWeightKg &&
           other.defaultWarmupWeight == this.defaultWarmupWeight &&
@@ -3556,6 +3652,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<String?> primaryMuscles;
   final Value<String?> secondaryMuscles;
   final Value<String?> bodyParts;
+  final Value<String?> targetMuscleGroups;
+  final Value<String?> synergistMuscleGroups;
   final Value<double?> startingWeightLbs;
   final Value<double?> startingWeightKg;
   final Value<double?> defaultWarmupWeight;
@@ -3590,6 +3688,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.primaryMuscles = const Value.absent(),
     this.secondaryMuscles = const Value.absent(),
     this.bodyParts = const Value.absent(),
+    this.targetMuscleGroups = const Value.absent(),
+    this.synergistMuscleGroups = const Value.absent(),
     this.startingWeightLbs = const Value.absent(),
     this.startingWeightKg = const Value.absent(),
     this.defaultWarmupWeight = const Value.absent(),
@@ -3625,6 +3725,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.primaryMuscles = const Value.absent(),
     this.secondaryMuscles = const Value.absent(),
     this.bodyParts = const Value.absent(),
+    this.targetMuscleGroups = const Value.absent(),
+    this.synergistMuscleGroups = const Value.absent(),
     this.startingWeightLbs = const Value.absent(),
     this.startingWeightKg = const Value.absent(),
     this.defaultWarmupWeight = const Value.absent(),
@@ -3663,6 +3765,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Expression<String>? primaryMuscles,
     Expression<String>? secondaryMuscles,
     Expression<String>? bodyParts,
+    Expression<String>? targetMuscleGroups,
+    Expression<String>? synergistMuscleGroups,
     Expression<double>? startingWeightLbs,
     Expression<double>? startingWeightKg,
     Expression<double>? defaultWarmupWeight,
@@ -3698,6 +3802,10 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       if (primaryMuscles != null) 'primary_muscles': primaryMuscles,
       if (secondaryMuscles != null) 'secondary_muscles': secondaryMuscles,
       if (bodyParts != null) 'body_parts': bodyParts,
+      if (targetMuscleGroups != null)
+        'target_muscle_groups': targetMuscleGroups,
+      if (synergistMuscleGroups != null)
+        'synergist_muscle_groups': synergistMuscleGroups,
       if (startingWeightLbs != null) 'starting_weight_lbs': startingWeightLbs,
       if (startingWeightKg != null) 'starting_weight_kg': startingWeightKg,
       if (defaultWarmupWeight != null)
@@ -3736,6 +3844,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Value<String?>? primaryMuscles,
     Value<String?>? secondaryMuscles,
     Value<String?>? bodyParts,
+    Value<String?>? targetMuscleGroups,
+    Value<String?>? synergistMuscleGroups,
     Value<double?>? startingWeightLbs,
     Value<double?>? startingWeightKg,
     Value<double?>? defaultWarmupWeight,
@@ -3771,6 +3881,9 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       primaryMuscles: primaryMuscles ?? this.primaryMuscles,
       secondaryMuscles: secondaryMuscles ?? this.secondaryMuscles,
       bodyParts: bodyParts ?? this.bodyParts,
+      targetMuscleGroups: targetMuscleGroups ?? this.targetMuscleGroups,
+      synergistMuscleGroups:
+          synergistMuscleGroups ?? this.synergistMuscleGroups,
       startingWeightLbs: startingWeightLbs ?? this.startingWeightLbs,
       startingWeightKg: startingWeightKg ?? this.startingWeightKg,
       defaultWarmupWeight: defaultWarmupWeight ?? this.defaultWarmupWeight,
@@ -3827,6 +3940,14 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     }
     if (bodyParts.present) {
       map['body_parts'] = Variable<String>(bodyParts.value);
+    }
+    if (targetMuscleGroups.present) {
+      map['target_muscle_groups'] = Variable<String>(targetMuscleGroups.value);
+    }
+    if (synergistMuscleGroups.present) {
+      map['synergist_muscle_groups'] = Variable<String>(
+        synergistMuscleGroups.value,
+      );
     }
     if (startingWeightLbs.present) {
       map['starting_weight_lbs'] = Variable<double>(startingWeightLbs.value);
@@ -3917,6 +4038,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('primaryMuscles: $primaryMuscles, ')
           ..write('secondaryMuscles: $secondaryMuscles, ')
           ..write('bodyParts: $bodyParts, ')
+          ..write('targetMuscleGroups: $targetMuscleGroups, ')
+          ..write('synergistMuscleGroups: $synergistMuscleGroups, ')
           ..write('startingWeightLbs: $startingWeightLbs, ')
           ..write('startingWeightKg: $startingWeightKg, ')
           ..write('defaultWarmupWeight: $defaultWarmupWeight, ')
@@ -12149,6 +12272,8 @@ typedef $$ExercisesTableCreateCompanionBuilder =
       Value<String?> primaryMuscles,
       Value<String?> secondaryMuscles,
       Value<String?> bodyParts,
+      Value<String?> targetMuscleGroups,
+      Value<String?> synergistMuscleGroups,
       Value<double?> startingWeightLbs,
       Value<double?> startingWeightKg,
       Value<double?> defaultWarmupWeight,
@@ -12185,6 +12310,8 @@ typedef $$ExercisesTableUpdateCompanionBuilder =
       Value<String?> primaryMuscles,
       Value<String?> secondaryMuscles,
       Value<String?> bodyParts,
+      Value<String?> targetMuscleGroups,
+      Value<String?> synergistMuscleGroups,
       Value<double?> startingWeightLbs,
       Value<double?> startingWeightKg,
       Value<double?> defaultWarmupWeight,
@@ -12262,6 +12389,16 @@ class $$ExercisesTableFilterComposer
 
   ColumnFilters<String> get bodyParts => $composableBuilder(
     column: $table.bodyParts,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get targetMuscleGroups => $composableBuilder(
+    column: $table.targetMuscleGroups,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get synergistMuscleGroups => $composableBuilder(
+    column: $table.synergistMuscleGroups,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -12435,6 +12572,16 @@ class $$ExercisesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get targetMuscleGroups => $composableBuilder(
+    column: $table.targetMuscleGroups,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get synergistMuscleGroups => $composableBuilder(
+    column: $table.synergistMuscleGroups,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<double> get startingWeightLbs => $composableBuilder(
     column: $table.startingWeightLbs,
     builder: (column) => ColumnOrderings(column),
@@ -12599,6 +12746,16 @@ class $$ExercisesTableAnnotationComposer
   GeneratedColumn<String> get bodyParts =>
       $composableBuilder(column: $table.bodyParts, builder: (column) => column);
 
+  GeneratedColumn<String> get targetMuscleGroups => $composableBuilder(
+    column: $table.targetMuscleGroups,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get synergistMuscleGroups => $composableBuilder(
+    column: $table.synergistMuscleGroups,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<double> get startingWeightLbs => $composableBuilder(
     column: $table.startingWeightLbs,
     builder: (column) => column,
@@ -12734,6 +12891,8 @@ class $$ExercisesTableTableManager
                 Value<String?> primaryMuscles = const Value.absent(),
                 Value<String?> secondaryMuscles = const Value.absent(),
                 Value<String?> bodyParts = const Value.absent(),
+                Value<String?> targetMuscleGroups = const Value.absent(),
+                Value<String?> synergistMuscleGroups = const Value.absent(),
                 Value<double?> startingWeightLbs = const Value.absent(),
                 Value<double?> startingWeightKg = const Value.absent(),
                 Value<double?> defaultWarmupWeight = const Value.absent(),
@@ -12768,6 +12927,8 @@ class $$ExercisesTableTableManager
                 primaryMuscles: primaryMuscles,
                 secondaryMuscles: secondaryMuscles,
                 bodyParts: bodyParts,
+                targetMuscleGroups: targetMuscleGroups,
+                synergistMuscleGroups: synergistMuscleGroups,
                 startingWeightLbs: startingWeightLbs,
                 startingWeightKg: startingWeightKg,
                 defaultWarmupWeight: defaultWarmupWeight,
@@ -12804,6 +12965,8 @@ class $$ExercisesTableTableManager
                 Value<String?> primaryMuscles = const Value.absent(),
                 Value<String?> secondaryMuscles = const Value.absent(),
                 Value<String?> bodyParts = const Value.absent(),
+                Value<String?> targetMuscleGroups = const Value.absent(),
+                Value<String?> synergistMuscleGroups = const Value.absent(),
                 Value<double?> startingWeightLbs = const Value.absent(),
                 Value<double?> startingWeightKg = const Value.absent(),
                 Value<double?> defaultWarmupWeight = const Value.absent(),
@@ -12838,6 +13001,8 @@ class $$ExercisesTableTableManager
                 primaryMuscles: primaryMuscles,
                 secondaryMuscles: secondaryMuscles,
                 bodyParts: bodyParts,
+                targetMuscleGroups: targetMuscleGroups,
+                synergistMuscleGroups: synergistMuscleGroups,
                 startingWeightLbs: startingWeightLbs,
                 startingWeightKg: startingWeightKg,
                 defaultWarmupWeight: defaultWarmupWeight,

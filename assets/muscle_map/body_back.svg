@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="400" viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background body outline -->
+  <path d="M100 20 C85 20, 70 35, 70 50 
+           L70 70 L65 90 L60 110 L65 130 L70 150 
+           L70 200 L75 250 L80 300 L85 340 L90 380 
+           L110 380 L115 340 L120 300 L125 250 L130 200 
+           L130 150 L135 130 L140 110 L135 90 L130 70 
+           L130 50 C130 35, 115 20, 100 20 Z" 
+        fill="#f0f0f0" stroke="#ccc" stroke-width="2"/>
+
+  <!-- Head (for reference) -->
+  <circle cx="100" cy="35" r="15" fill="#f5f5f5" stroke="#ccc" stroke-width="1"/>
+
+  <!-- Back muscle region -->
+  <rect id="back" x="80" y="70" width="40" height="60" 
+        fill="rgba(96, 125, 139, 0)" stroke="rgba(96, 125, 139, 0.3)" 
+        stroke-width="1" rx="5" data-muscle="back"/>
+
+  <!-- Triceps muscle regions -->
+  <ellipse id="left-tricep" cx="60" cy="120" rx="12" ry="25" 
+           fill="rgba(244, 67, 54, 0)" stroke="rgba(244, 67, 54, 0.3)" 
+           stroke-width="1" data-muscle="triceps"/>
+  <ellipse id="right-tricep" cx="140" cy="120" rx="12" ry="25" 
+           fill="rgba(244, 67, 54, 0)" stroke="rgba(244, 67, 54, 0.3)" 
+           stroke-width="1" data-muscle="triceps"/>
+
+  <!-- Glutes muscle region -->
+  <ellipse id="glutes" cx="100" cy="190" rx="35" ry="25" 
+           fill="rgba(139, 195, 74, 0)" stroke="rgba(139, 195, 74, 0.3)" 
+           stroke-width="1" data-muscle="glutes"/>
+
+  <!-- Hamstrings muscle regions -->
+  <ellipse id="left-hamstring" cx="85" cy="260" rx="15" ry="40" 
+           fill="rgba(255, 87, 34, 0)" stroke="rgba(255, 87, 34, 0.3)" 
+           stroke-width="1" data-muscle="hamstrings"/>
+  <ellipse id="right-hamstring" cx="115" cy="260" rx="15" ry="40" 
+           fill="rgba(255, 87, 34, 0)" stroke="rgba(255, 87, 34, 0.3)" 
+           stroke-width="1" data-muscle="hamstrings"/>
+
+  <!-- Calves muscle regions (back view) -->
+  <ellipse id="left-calf-back" cx="85" cy="340" rx="12" ry="25" 
+           fill="rgba(121, 85, 72, 0)" stroke="rgba(121, 85, 72, 0.3)" 
+           stroke-width="1" data-muscle="calves"/>
+  <ellipse id="right-calf-back" cx="115" cy="340" rx="12" ry="25" 
+           fill="rgba(121, 85, 72, 0)" stroke="rgba(121, 85, 72, 0.3)" 
+           stroke-width="1" data-muscle="calves"/>
+
+  <!-- Labels for muscle groups -->
+  <text x="100" y="100" text-anchor="middle" font-size="8" fill="#666" opacity="0.7">Back</text>
+  <text x="60" y="125" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Triceps</text>
+  <text x="140" y="125" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Triceps</text>
+  <text x="100" y="200" text-anchor="middle" font-size="8" fill="#666" opacity="0.7">Glutes</text>
+  <text x="85" y="270" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Hamstrings</text>
+  <text x="115" y="270" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Hamstrings</text>
+  <text x="85" y="350" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Calves</text>
+  <text x="115" y="350" text-anchor="middle" font-size="7" fill="#666" opacity="0.7">Calves</text>
+</svg>

@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:equatable/equatable.dart';
+import 'muscle_map.dart';
 
 class Exercise extends Equatable {
   const Exercise({
@@ -11,6 +13,8 @@ class Exercise extends Equatable {
     this.primaryMuscles,
     this.secondaryMuscles,
     this.bodyParts,
+    this.targetMuscleGroups,
+    this.synergistMuscleGroups,
     this.startingWeightLbs,
     this.startingWeightKg,
     this.defaultWarmupWeight,
@@ -42,6 +46,8 @@ class Exercise extends Equatable {
   final List<String>? primaryMuscles; // Primary muscles worked
   final List<String>? secondaryMuscles; // Secondary muscles worked
   final List<String>? bodyParts; // upper_body, lower_body, core, full_body
+  final List<String>? targetMuscleGroups; // Muscle map target muscles
+  final List<String>? synergistMuscleGroups; // Muscle map synergist muscles
   final double? startingWeightLbs; // Suggested starting weight in lbs
   final double? startingWeightKg; // Suggested starting weight in kg
   final double? defaultWarmupWeight; // Warmup weight suggestion
@@ -84,6 +90,37 @@ class Exercise extends Equatable {
   }
   String? get imageUrl => imageUrlLarge ?? imageUrlSmall;
 
+  /// Get muscle activation data for muscle map visualization
+  MuscleActivation get muscleActivation {
+    final targetMuscles = <ScreenMuscle, double>{};
+    final synergistMuscles = <ScreenMuscle, double>{};
+
+    // Convert target muscle groups to ScreenMuscle enums
+    if (targetMuscleGroups != null && targetMuscleGroups!.isNotEmpty) {
+      for (final muscleGroup in targetMuscleGroups!) {
+        final screenMuscle = ScreenMuscle.fromString(muscleGroup);
+        if (screenMuscle != null) {
+          targetMuscles[screenMuscle] = 1.0; // Full activation (0-1 scale) for target muscles
+        }
+      }
+    }
+
+    // Convert synergist muscle groups to ScreenMuscle enums
+    if (synergistMuscleGroups != null && synergistMuscleGroups!.isNotEmpty) {
+      for (final muscleGroup in synergistMuscleGroups!) {
+        final screenMuscle = ScreenMuscle.fromString(muscleGroup);
+        if (screenMuscle != null && !targetMuscles.containsKey(screenMuscle)) {
+          synergistMuscles[screenMuscle] = 0.3; // Partial activation (0-1 scale) for synergist muscles
+        }
+      }
+    }
+
+    return MuscleActivation(
+      targetMuscles: targetMuscles,
+      synergistMuscles: synergistMuscles,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,
@@ -95,6 +132,8 @@ class Exercise extends Equatable {
         primaryMuscles,
         secondaryMuscles,
         bodyParts,
+        targetMuscleGroups,
+        synergistMuscleGroups,
         startingWeightLbs,
         startingWeightKg,
         defaultWarmupWeight,
@@ -127,6 +166,8 @@ class Exercise extends Equatable {
     List<String>? primaryMuscles,
     List<String>? secondaryMuscles,
     List<String>? bodyParts,
+    List<String>? targetMuscleGroups,
+    List<String>? synergistMuscleGroups,
     double? startingWeightLbs,
     double? startingWeightKg,
     double? defaultWarmupWeight,
@@ -158,6 +199,8 @@ class Exercise extends Equatable {
       primaryMuscles: primaryMuscles ?? this.primaryMuscles,
       secondaryMuscles: secondaryMuscles ?? this.secondaryMuscles,
       bodyParts: bodyParts ?? this.bodyParts,
+      targetMuscleGroups: targetMuscleGroups ?? this.targetMuscleGroups,
+      synergistMuscleGroups: synergistMuscleGroups ?? this.synergistMuscleGroups,
       startingWeightLbs: startingWeightLbs ?? this.startingWeightLbs,
       startingWeightKg: startingWeightKg ?? this.startingWeightKg,
       defaultWarmupWeight: defaultWarmupWeight ?? this.defaultWarmupWeight,

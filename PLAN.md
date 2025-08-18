@@ -3,8 +3,8 @@
 ## 📊 **PROJECT STATUS OVERVIEW**
 
 **Current Phase**: ✅ **Phase 4** - Core Feature Implementation **COMPLETED**  
-**Completion**: ✅ **Phases 1-4 Complete** + **Goals, Exercise Database, Favorites, Program Builder & Workout Logging Systems Implemented**  
-**Next Milestone**: Advanced features - progress analytics, plate calculator, and sync preparation  
+**Completion**: ✅ **Phases 1-4 Complete** + **Goals, Exercise Database, Favorites, Program Builder, Workout Logging & Muscle Map MVP Systems Implemented**  
+**Next Milestone**: Advanced features - progress analytics, plate calculator, enhanced muscle map features, and sync preparation  
 
 ### Quick Status
 - ✅ **Phase 1**: Project Foundation & Architecture  
@@ -163,6 +163,18 @@
 ### 4.6 Workout Logging System ✅ **COMPLETED**
 - ✅ **Database-Driven Workout Management** - Complete workout data integration with real-time loading
 - ✅ **Active Workout Session Screen** - Real-time workout tracking with comprehensive UI
+
+### 4.7 Muscle Map System (MVP) ✅ **COMPLETED**
+- ✅ **Database Schema Extension** - Added `targetMuscleGroups` and `synergistMuscleGroups` JSON fields to exercises table (Schema v6)
+- ✅ **ScreenMuscle Enum** - 11 basic muscle groups (chest, back, shoulders, biceps, triceps, abs, quadriceps, hamstrings, glutes, calves, forearms)
+- ✅ **Exercise Muscle Mappings** - 60+ exercise-specific muscle mappings with target and synergist classifications
+- ✅ **SVG Body Visualizations** - Front and back body views with 11 muscle regions and dynamic highlighting
+- ✅ **MuscleMapView Widget** - Real-time muscle activation visualization with color-coded intensity (0-1 opacity scale)
+- ✅ **ExerciseMuscleMapScreen** - Full-screen muscle map interface with tabbed front/back views and muscle details
+- ✅ **Exercise Detail Integration** - "View Muscle Map" button seamlessly integrated into exercise detail screens
+- ✅ **Visual Design System** - Material 3 compliant muscle highlighting with legend and muscle group chips
+- ✅ **Activation Scoring** - PointsCalculator with 1.0 target muscle activation and 0.3 synergist muscle activation
+- ✅ **Database Migration** - Automatic schema migration from v5 to v6 with proper column addition
 - ✅ **Set Logging System** - Complete set tracking with reps/weight/RPE logging and persistence
 - ✅ **Rest Timer Functionality** - Automatic 2-minute rest timer with skip option
 - ✅ **Exercise Integration** - Full exercise database integration with workout sessions
@@ -178,9 +190,88 @@
 - 🔲 Equipment management and settings
 - 🔲 Quick weight presets
 
+### 4.8 Muscle Map Visualization System 🔲 **PLANNED**
+
+#### **Option A: MVP Implementation** 🚀 **RECOMMENDED FIRST**
+*Priority: Can be implemented immediately after Phase 4 completion*
+*Estimated Timeline: 1-2 weeks focused development*
+
+**Core Value**: Exercise-specific muscle visualization with minimal complexity
+
+**MVP Phase 1: Minimal Database Setup (2 days) 🔲 PENDING**
+- 🔲 Add target_muscle_groups and synergist_muscle_groups JSON fields to existing exercises table
+- 🔲 Create ScreenMuscle enum with 11 basic muscle groups (chest, back, shoulders, biceps, triceps, abs, quadriceps, hamstrings, glutes, calves, forearms)
+
+**MVP Phase 2: Asset & Dependencies (1 day) 🔲 PENDING**
+- 🔲 Add flutter_svg dependency to pubspec.yaml for SVG rendering
+- 🔲 Create basic muscle mappings for existing 52 exercises - Map each exercise to 1-2 target muscle groups
+
+**MVP Phase 3: Simple Visual Component (2-3 days) 🔲 PENDING**
+- 🔲 Create simple front body SVG with 11 clickable muscle regions
+- 🔲 Build basic MuscleMapView widget that shows muscle activation with color intensity (0-1 opacity)
+- 🔲 Create PointsCalculator that assigns 100 points to target muscles and 30 points to synergist muscles
+
+**MVP Phase 4: Integration (2-3 days) 🔲 PENDING**
+- 🔲 Add 'View Muscle Map' button to exercise detail screens
+- 🔲 Create ExerciseMuscleMapScreen that shows muscle activation for a single exercise
+- 🔲 Test muscle map with 5-10 key exercises to validate functionality
+
+**MVP Benefits:**
+- Immediate user value with exercise-specific muscle targeting
+- Zero migration risk (only adds fields to existing table)
+- Fast implementation building on completed exercise system
+- Natural validation before full system implementation
+
+#### **Option B: Full Implementation** 🔲 **FUTURE ENHANCEMENT**
+*Priority: Implementation after MVP validation and Phase 5 completion*
+*Estimated Timeline: 3 weeks focused development*
+
+**Phase 1: Database Schema Extension (Schema v6) 🔲 PENDING**
+- 🔲 Create muscle_groups, muscles, and exercise_muscles tables
+- 🔲 Extend exercises table with muscle-related JSON fields (exercise_types, target_muscle_groups, synergist_muscle_groups)
+
+**Phase 2: Asset Preparation & Setup 🔲 PENDING** 
+- 🔲 Set up muscle asset structure (SVG body maps, anatomy images)
+- 🔲 Add flutter_svg and xml dependencies for SVG manipulation
+
+**Phase 3: Data Models & Architecture 🔲 PENDING**
+- 🔲 Create domain entities: Muscle, MuscleGroup, ExerciseMuscle with proper enums
+- 🔲 Extend Exercise entity with muscle-related fields and convenience getters
+
+**Phase 4: Seed Data Creation 🔲 PENDING**
+- 🔲 Create MuscleSeeder with comprehensive muscle groups and individual muscles data
+- 🔲 Create ExerciseMuscleSeeder with mappings for all 52 existing exercises
+
+**Phase 5: Core Muscle Map Components 🔲 PENDING**
+- 🔲 Build PointsCalculator for strength/hypertrophy muscle activation scoring
+- 🔲 Create MuscleMapView widget with SVG rendering and dynamic color injection
+
+**Phase 6: Exercise Details Integration 🔲 PENDING**
+- 🔲 Build ExerciseMuscleGroupsSection for exercise details integration
+- 🔲 Create MuscleDescriptionSheet and dialog components
+
+**Phase 7: Testing & Quality 🔲 PENDING**
+- 🔲 Add comprehensive unit tests for PointsCalculator and widget tests
+- 🔲 Integration testing and quality assurance with existing exercise system
+
+**Integration Benefits:**
+- Builds on completed Phase 4.2 exercise database system
+- Enhances exercise selection with visual muscle targeting
+- Integrates with program builder for muscle balance visualization
+- Transforms IronForge into comprehensive fitness education platform
+
+**Recommended Approach:** Start with MVP implementation to validate user interest and provide immediate value, then enhance to full system based on user feedback.
+
 ## Phase 5: Advanced Features (Week 11-14)
 
-### 5.1 Advanced Program Features
+### 5.1 Muscle Map System Enhancement 🔲 **FUTURE**
+- Interactive muscle map with click-to-highlight functionality
+- Exercise recommendations based on muscle group selection
+- Muscle fatigue tracking and recovery recommendations
+- Program muscle balance analysis and visualization
+- Integration with workout planning for balanced routines
+
+### 5.2 Advanced Program Features
 - Program sharing and export/import functionality
 - Custom progression rule builder
 - Program analytics and performance tracking

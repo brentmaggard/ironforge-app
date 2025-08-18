@@ -67,6 +67,8 @@ class Exercises extends Table {
   TextColumn get primaryMuscles => text().nullable()(); // JSON array of primary muscles
   TextColumn get secondaryMuscles => text().nullable()(); // JSON array of secondary muscles
   TextColumn get bodyParts => text().nullable()(); // JSON array (upper_body, lower_body, core, full_body)
+  TextColumn get targetMuscleGroups => text().nullable()(); // JSON array for muscle map - target muscles
+  TextColumn get synergistMuscleGroups => text().nullable()(); // JSON array for muscle map - synergist muscles
   RealColumn get startingWeightLbs => real().nullable()(); // Suggested starting weight in lbs
   RealColumn get startingWeightKg => real().nullable()(); // Suggested starting weight in kg
   RealColumn get defaultWarmupWeight => real().nullable()(); // Warmup weight suggestion
@@ -306,7 +308,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.forTesting(QueryExecutor e) : super(e);
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -314,7 +316,15 @@ class AppDatabase extends _$AppDatabase {
       await m.createAll();
     },
     onUpgrade: (Migrator m, int from, int to) async {
-      if (from <= 4 && to >= 5) {
+      if (from <= 5 && to >= 6) {
+        print('Running database migration from version $from to $to');
+        
+        // Add muscle map columns to exercises table
+        await m.addColumn(exercises, exercises.targetMuscleGroups);
+        await m.addColumn(exercises, exercises.synergistMuscleGroups);
+        
+        print('Database migration completed - added muscle map columns to exercises table');
+      } else if (from <= 4 && to >= 5) {
         print('Running database migration from version $from to $to');
         
         // Add new program-related tables for Program Builder System

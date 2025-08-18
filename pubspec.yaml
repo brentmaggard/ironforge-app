@@ -50,12 +50,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   fl_chart: ^0.64.0
   material_color_utilities: ^0.11.1
+  flutter_svg: ^2.0.9
 
   # Utilities
   intl: ^0.20.2
   json_annotation: ^4.8.1
   equatable: ^2.0.5
   uuid: ^4.2.1
+  xml: ^6.5.0
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +85,7 @@ flutter:
   assets:
     - data bk/
     - assets/data/
+    - assets/muscle_map/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
